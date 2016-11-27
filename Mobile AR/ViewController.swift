@@ -7,19 +7,23 @@
 //
 
 import UIKit
+import FileBrowser
 
 class ViewController: UIViewController {
+
+    let fileBrowser = FileBrowser()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-    }
+   }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func didPressShowFilesButton(sender: UIButton) {
+        presentViewController(fileBrowser, animated: true, completion: nil)
+    }
 }
-
