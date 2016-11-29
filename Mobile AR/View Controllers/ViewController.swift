@@ -7,11 +7,8 @@
 //
 
 import UIKit
-import FileBrowser
 
 class ViewController: UIViewController {
-
-    let fileBrowser = FileBrowser()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +21,6 @@ class ViewController: UIViewController {
     }
 
     @IBAction func didPressShowFilesButton(sender: UIButton) {
-        presentViewController(fileBrowser, animated: true, completion: nil)
+        print("this shouldn't be logging anything.")
     }
 }
