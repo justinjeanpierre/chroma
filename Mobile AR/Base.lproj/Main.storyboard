@@ -22,7 +22,7 @@
                                 <rect key="frame" x="266" y="262" width="69" height="30"/>
                                 <state key="normal" title="show files"/>
                                 <connections>
-                                    <segue destination="4DW-OT-2HH" kind="show" id="Dz0-ep-T0a"/>
+                                    <action selector="didPressShowFilesButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qN3-Bu-w9g"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRh-es-9ok">
@@ -42,6 +42,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="l5V-AY-j4c"/>
+                    <connections>
+                        <segue destination="4DW-OT-2HH" kind="show" identifier="showFilesSegue" id="YSC-5Z-grg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -13,9 +13,6 @@
 		2D1EBF671DED2A2C002D6999 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF661DED2A2C002D6999 /* CaptureViewController.swift */; };
 		2D1EBF681DED2A2C002D6999 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF661DED2A2C002D6999 /* CaptureViewController.swift */; };
 		2D1EBF691DED2A2C002D6999 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF661DED2A2C002D6999 /* CaptureViewController.swift */; };
-		2D1EBF6B1DED2D18002D6999 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF6A1DED2D18002D6999 /* BrowseViewController.swift */; };
-		2D1EBF6C1DED2D18002D6999 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF6A1DED2D18002D6999 /* BrowseViewController.swift */; };
-		2D1EBF6D1DED2D18002D6999 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF6A1DED2D18002D6999 /* BrowseViewController.swift */; };
 		2D1EBF731DED2EBF002D6999 /* FBFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF701DED2EBF002D6999 /* FBFile.swift */; };
 		2D1EBF741DED2EBF002D6999 /* FBFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF701DED2EBF002D6999 /* FBFile.swift */; };
 		2D1EBF751DED2EBF002D6999 /* FBFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF701DED2EBF002D6999 /* FBFile.swift */; };
@@ -43,8 +40,6 @@
 		2D1EBF911DED3041002D6999 /* FileListSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF901DED3041002D6999 /* FileListSearch.swift */; };
 		2D1EBF921DED3041002D6999 /* FileListSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF901DED3041002D6999 /* FileListSearch.swift */; };
 		2D1EBF931DED3041002D6999 /* FileListSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF901DED3041002D6999 /* FileListSearch.swift */; };
-		2D7A5EF01DEB54CE00F08592 /* FileBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7A5EEF1DEB54CE00F08592 /* FileBrowser.framework */; };
-		2D7A5EF21DEB56AA00F08592 /* FileBrowser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7A5EEF1DEB54CE00F08592 /* FileBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2DDFBC8A1DEB510B00730E8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFBC891DEB510B00730E8B /* AppDelegate.swift */; };
 		2DDFBC8F1DEB510B00730E8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DDFBC8D1DEB510B00730E8B /* Main.storyboard */; };
 		2DDFBC911DEB510B00730E8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DDFBC901DEB510B00730E8B /* Assets.xcassets */; };
@@ -70,24 +65,9 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		2D7A5EF31DEB56AB00F08592 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				2D7A5EF21DEB56AA00F08592 /* FileBrowser.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		2D1EBF621DED2A01002D6999 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2D1EBF661DED2A2C002D6999 /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
-		2D1EBF6A1DED2D18002D6999 /* BrowseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		2D1EBF701DED2EBF002D6999 /* FBFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBFile.swift; sourceTree = "<group>"; };
 		2D1EBF711DED2EBF002D6999 /* FileListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileListTableView.swift; sourceTree = "<group>"; };
 		2D1EBF721DED2EBF002D6999 /* FileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileListViewController.swift; sourceTree = "<group>"; };
@@ -117,7 +97,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D7A5EF01DEB54CE00F08592 /* FileBrowser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +122,6 @@
 			children = (
 				2D1EBF621DED2A01002D6999 /* ViewController.swift */,
 				2D1EBF661DED2A2C002D6999 /* CaptureViewController.swift */,
-				2D1EBF6A1DED2D18002D6999 /* BrowseViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -235,7 +213,6 @@
 				2DDFBC821DEB510B00730E8B /* Sources */,
 				2DDFBC831DEB510B00730E8B /* Frameworks */,
 				2DDFBC841DEB510B00730E8B /* Resources */,
-				2D7A5EF31DEB56AB00F08592 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -366,7 +343,6 @@
 				2D1EBF811DED2F75002D6999 /* FileParser.swift in Sources */,
 				2D1EBF761DED2EBF002D6999 /* FileListTableView.swift in Sources */,
 				2D1EBF8D1DED2FAD002D6999 /* PreviewTransitionViewController.swift in Sources */,
-				2D1EBF6B1DED2D18002D6999 /* BrowseViewController.swift in Sources */,
 				2D1EBF7D1DED2F64002D6999 /* FileListPreview.swift in Sources */,
 				2D1EBF911DED3041002D6999 /* FileListSearch.swift in Sources */,
 				2DDFBC8A1DEB510B00730E8B /* AppDelegate.swift in Sources */,
@@ -386,7 +362,6 @@
 				2D1EBF821DED2F75002D6999 /* FileParser.swift in Sources */,
 				2D1EBF771DED2EBF002D6999 /* FileListTableView.swift in Sources */,
 				2D1EBF8E1DED2FAD002D6999 /* PreviewTransitionViewController.swift in Sources */,
-				2D1EBF6C1DED2D18002D6999 /* BrowseViewController.swift in Sources */,
 				2D1EBF7E1DED2F64002D6999 /* FileListPreview.swift in Sources */,
 				2D1EBF921DED3041002D6999 /* FileListSearch.swift in Sources */,
 				2DDFBC9F1DEB510B00730E8B /* Mobile_ARTests.swift in Sources */,
@@ -406,7 +381,6 @@
 				2D1EBF831DED2F75002D6999 /* FileParser.swift in Sources */,
 				2D1EBF781DED2EBF002D6999 /* FileListTableView.swift in Sources */,
 				2D1EBF8F1DED2FAD002D6999 /* PreviewTransitionViewController.swift in Sources */,
-				2D1EBF6D1DED2D18002D6999 /* BrowseViewController.swift in Sources */,
 				2D1EBF7F1DED2F64002D6999 /* FileListPreview.swift in Sources */,
 				2D1EBF931DED3041002D6999 /* FileListSearch.swift in Sources */,
 				2DDFBCAA1DEB510B00730E8B /* Mobile_ARUITests.swift in Sources */,

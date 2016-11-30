@@ -9,24 +9,24 @@
 import UIKit
 import AVFoundation
 
-class CaptureViewController: UIViewController {
+class CaptureViewController: UIViewController, AVCaptureFileOutputRecordingDelegate {
 
     // outlets
     @IBOutlet weak var toggleRecordingButton: UIButton!
+
     // other vars
     lazy var captureSession = AVCaptureSession()
     var isRecording = false;
+    var output: AVCaptureMovieFileOutput?
 
     @IBAction func toggleRecordStopState(sender: UIButton) {
         isRecording = !isRecording
 
         if isRecording {
             toggleRecordingButton.setTitle("stop", forState: .Normal)
-
             startRecording()
         } else {
             toggleRecordingButton.setTitle("record", forState: .Normal)
-
             stopRecording()
         }
     }
@@ -74,17 +74,34 @@ class CaptureViewController: UIViewController {
 
         viewFinder.frame = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)
         viewLayer.addSublayer(viewFinder)
+
+        // configure AVCaptureMovieOutput object here
+        output = AVCaptureMovieFileOutput()
+
+        if captureSession.canAddOutput(output) {
+            captureSession.addOutput(output)
+        }
     }
 
     func startRecording() {
+        captureSession.startRunning()
 
+        // generate path to file
+        let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        let fileURL = NSURL(fileURLWithPath: documentsDirectory.stringByAppendingString("/\(NSDate()).mpg"), isDirectory: false)
+
+        output?.startRecordingToOutputFileURL(fileURL, recordingDelegate: self)
     }
 
     func stopRecording() {
-
+        captureSession.stopRunning()
+        output?.stopRecording()
     }
 
-    func saveVideo() {
+    //  MARK: AVCaptureFileOutputRecordingDelegate methods
 
+    func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
+        print(#function)
     }
 }
