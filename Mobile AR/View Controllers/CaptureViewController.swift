@@ -89,7 +89,7 @@ class CaptureViewController: UIViewController, AVCaptureFileOutputRecordingDeleg
         // generate path to file
         let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         let documentsDirectory = paths[0]
-        let fileURL = NSURL(fileURLWithPath: documentsDirectory.stringByAppendingString("/\(NSDate()).mpg"), isDirectory: false)
+        let fileURL = NSURL(fileURLWithPath: documentsDirectory.stringByAppendingString("/\(NSDate()).mov"), isDirectory: false)
 
         output?.startRecordingToOutputFileURL(fileURL, recordingDelegate: self)
     }
