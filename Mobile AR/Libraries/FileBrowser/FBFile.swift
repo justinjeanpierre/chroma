@@ -57,10 +57,10 @@ public class FBFile: NSObject {
  FBFile type
  */
 public enum FBFileType: String {
-    /// .mpg video file
-    case MPG   = "mpg"
-    /// .mpeg video file
+    /// video files
+    case MPG    = "mpg"
     case MPEG   = "mpeg"
+    case MOV    = "mov"
     /// Directory
     case Directory = "directory"
     /// GIF file

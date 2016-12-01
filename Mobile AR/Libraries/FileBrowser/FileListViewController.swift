@@ -67,11 +67,8 @@ class FileListViewController: UIViewController {
     override func viewDidLoad() {
         
         // Prepare data
-        if let initialPath = initialPath {
-            files = parser.filesForDirectory(initialPath)
-            indexFiles()
-        }
-        
+        prepareData()
+
         // Set search bar
         tableView.tableHeaderView = searchController.searchBar
         
@@ -85,10 +82,6 @@ class FileListViewController: UIViewController {
         // Scroll to hide search bar
         self.tableView.contentOffset = CGPointMake(0, searchController.searchBar.frame.size.height)
 
-        if let navigationControllerHeight = navigationController?.navigationBar.frame.size.height {
-            self.tableView.contentOffset = CGPointMake(0, self.tableView.contentOffset.y + navigationControllerHeight)
-        }
-
         // Make sure navigation bar is visible
         self.navigationController?.navigationBarHidden = false
     }
@@ -98,6 +91,12 @@ class FileListViewController: UIViewController {
     }
     
     //MARK: Data
+    func prepareData() {
+        if let initialPath = initialPath {
+            files = parser.filesForDirectory(initialPath)
+            indexFiles()
+        }
+    }
     
     func indexFiles() {
         let selector: Selector = Selector("displayName")

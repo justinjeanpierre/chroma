@@ -23,7 +23,25 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         if searchController.active {
             return filteredFiles.count
         }
+
         return sections[section].count
+    }
+
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            let filemanager = NSFileManager.defaultManager()
+            do {
+                try filemanager.removeItemAtURL(fileForIndexPath(indexPath).filePath)
+                prepareData()
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            } catch _ {
+
+            }
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -36,6 +54,7 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         let selectedFile = fileForIndexPath(indexPath)
         cell.textLabel?.text = selectedFile.displayName
         cell.imageView?.image = selectedFile.type.image()
+
         return cell
     }
     
@@ -46,8 +65,7 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
             let fileListViewController = FileListViewController(initialPath: selectedFile.filePath)
             fileListViewController.didSelectFile = didSelectFile
             self.navigationController?.pushViewController(fileListViewController, animated: true)
-        }
-        else {
+        } else {
             if let didSelectFile = didSelectFile {
                 self.dismiss()
                 didSelectFile(selectedFile)
@@ -64,10 +82,10 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         if searchController.active {
             return nil
         }
+
         if sections[section].count > 0 {
             return collation.sectionTitles[section]
-        }
-        else {
+        } else {
             return nil
         }
     }
@@ -76,6 +94,7 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         if searchController.active {
             return nil
         }
+
         return collation.sectionIndexTitles
     }
     
@@ -83,8 +102,7 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         if searchController.active {
             return 0
         }
+
         return collation.sectionForSectionIndexTitleAtIndex(index)
     }
-    
-    
 }
