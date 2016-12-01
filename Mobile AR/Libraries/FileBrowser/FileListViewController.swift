@@ -32,7 +32,6 @@ class FileListViewController: UIViewController {
         return searchController
     }()
     
-    
     //MARK: Lifecycle
     
     convenience init (initialPath: NSURL) {
@@ -111,12 +110,13 @@ class FileListViewController: UIViewController {
     
     func fileForIndexPath(indexPath: NSIndexPath) -> FBFile {
         var file: FBFile
+
         if searchController.active {
             file = filteredFiles[indexPath.row]
-        }
-        else {
+        } else {
             file = sections[indexPath.section][indexPath.row]
         }
+
         return file
     }
     
@@ -126,6 +126,4 @@ class FileListViewController: UIViewController {
         })
         tableView.reloadData()
     }
-
 }
-

@@ -16,6 +16,7 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         if searchController.active {
             return 1
         }
+
         return sections.count
     }
     
@@ -32,7 +33,7 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete {
+        if editingStyle == .Delete {
             let filemanager = NSFileManager.defaultManager()
             do {
                 try filemanager.removeItemAtURL(fileForIndexPath(indexPath).filePath)
@@ -47,9 +48,11 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "FileCell"
         var cell = UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
+
         if let reuseCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
             cell = reuseCell
         }
+
         cell.selectionStyle = .Blue
         let selectedFile = fileForIndexPath(indexPath)
         cell.textLabel?.text = selectedFile.displayName
@@ -61,6 +64,7 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedFile = fileForIndexPath(indexPath)
         searchController.active = false
+
         if selectedFile.isDirectory {
             let fileListViewController = FileListViewController(initialPath: selectedFile.filePath)
             fileListViewController.didSelectFile = didSelectFile
@@ -69,8 +73,7 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
             if let didSelectFile = didSelectFile {
                 self.dismiss()
                 didSelectFile(selectedFile)
-            }
-            else {
+            } else {
                 let filePreview = previewManager.previewViewControllerForFile(selectedFile, fromNavigation: true)
                 self.navigationController?.pushViewController(filePreview, animated: true)
             }
