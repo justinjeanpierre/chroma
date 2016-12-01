@@ -34,18 +34,18 @@ public class FBFile: NSObject {
         self.filePath = filePath
         let isDirectory = checkDirectory(filePath)
         self.isDirectory = isDirectory
+
         if self.isDirectory {
             self.fileAttributes = nil
             self.fileExtension = nil
             self.type = .Directory
-        }
-        else {
+        } else {
             self.fileAttributes = getFileAttributes(self.filePath)
             self.fileExtension = filePath.pathExtension
+
             if let fileExtension = fileExtension {
                 self.type = FBFileType(rawValue: fileExtension) ?? .Default
-            }
-            else {
+            } else {
                 self.type = .Default
             }
         }
@@ -57,10 +57,10 @@ public class FBFile: NSObject {
  FBFile type
  */
 public enum FBFileType: String {
-    /// .mpg video file
-    case MPG   = "mpg"
-    /// .mpeg video file
+    /// video files
+    case MPG    = "mpg"
     case MPEG   = "mpeg"
+    case MOV    = "mov"
     /// Directory
     case Directory = "directory"
     /// GIF file

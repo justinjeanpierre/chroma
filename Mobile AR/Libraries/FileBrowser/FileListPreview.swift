@@ -37,8 +37,7 @@ extension FileListViewController: UIViewControllerPreviewingDelegate {
     func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
         if let previewTransitionViewController = viewControllerToCommit as? PreviewTransitionViewController {
             self.navigationController?.pushViewController(previewTransitionViewController.quickLookPreviewController, animated: true)
-        }
-        else {
+        } else {
             self.navigationController?.pushViewController(viewControllerToCommit, animated: true)
         }
 

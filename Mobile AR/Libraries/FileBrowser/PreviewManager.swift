@@ -19,7 +19,7 @@ class PreviewManager: NSObject, QLPreviewControllerDataSource {
             let webviewPreviewViewController = WebviewPreviewViewContoller(nibName: "WebviewPreviewViewContoller", bundle: NSBundle(forClass: WebviewPreviewViewContoller.self))
             webviewPreviewViewController.file = file
             return webviewPreviewViewController
-        } else if file.type == .MPG || file.type == .MPEG {
+        } else if file.type == .MPG || file.type == .MPEG || file.type == .MOV {
             return previewViewControllerForVideoFile(file, fromNavigation: fromNavigation)
         } else {
             let previewTransitionViewController = PreviewTransitionViewController(nibName: "PreviewTransitionViewController", bundle: NSBundle(forClass: PreviewTransitionViewController.self))

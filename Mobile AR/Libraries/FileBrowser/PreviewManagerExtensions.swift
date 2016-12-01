@@ -12,6 +12,7 @@ import AVFoundation
 
 extension PreviewManager {
     func previewViewControllerForVideoFile(file: FBFile, fromNavigation: Bool) -> UIViewController {
+        // (maybe guard file type?)
         let playerItem = AVPlayerItem(URL: file.filePath)
         let player = AVPlayer(playerItem: playerItem)
         let playerViewController = AVPlayerViewController()
