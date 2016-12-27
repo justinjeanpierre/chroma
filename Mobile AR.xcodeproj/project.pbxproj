@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		2D7A5EF01DEB54CE00F08592 /* FileBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7A5EEF1DEB54CE00F08592 /* FileBrowser.framework */; };
 		2D7A5EF21DEB56AA00F08592 /* FileBrowser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7A5EEF1DEB54CE00F08592 /* FileBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2DC505D11E12EC7100EF4292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DC505D01E12EC7100EF4292 /* Assets.xcassets */; };
 		2DDFBC8A1DEB510B00730E8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFBC891DEB510B00730E8B /* AppDelegate.swift */; };
 		2DDFBC8C1DEB510B00730E8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFBC8B1DEB510B00730E8B /* ViewController.swift */; };
 		2DDFBC8F1DEB510B00730E8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DDFBC8D1DEB510B00730E8B /* Main.storyboard */; };
-		2DDFBC911DEB510B00730E8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DDFBC901DEB510B00730E8B /* Assets.xcassets */; };
 		2DDFBC941DEB510B00730E8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DDFBC921DEB510B00730E8B /* LaunchScreen.storyboard */; };
 		2DDFBC9F1DEB510B00730E8B /* Mobile_ARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFBC9E1DEB510B00730E8B /* Mobile_ARTests.swift */; };
 		2DDFBCAA1DEB510B00730E8B /* Mobile_ARUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFBCA91DEB510B00730E8B /* Mobile_ARUITests.swift */; };
@@ -51,11 +51,11 @@
 
 /* Begin PBXFileReference section */
 		2D7A5EEF1DEB54CE00F08592 /* FileBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileBrowser.framework; path = Carthage/Build/iOS/FileBrowser.framework; sourceTree = "<group>"; };
+		2DC505D01E12EC7100EF4292 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DDFBC861DEB510B00730E8B /* Mobile AR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mobile AR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DDFBC891DEB510B00730E8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DDFBC8B1DEB510B00730E8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2DDFBC8E1DEB510B00730E8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2DDFBC901DEB510B00730E8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DDFBC931DEB510B00730E8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2DDFBC951DEB510B00730E8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DDFBC9A1DEB510B00730E8B /* Mobile ARTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mobile ARTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,8 +118,8 @@
 			children = (
 				2DDFBC891DEB510B00730E8B /* AppDelegate.swift */,
 				2DDFBC8B1DEB510B00730E8B /* ViewController.swift */,
+				2DC505D01E12EC7100EF4292 /* Assets.xcassets */,
 				2DDFBC8D1DEB510B00730E8B /* Main.storyboard */,
-				2DDFBC901DEB510B00730E8B /* Assets.xcassets */,
 				2DDFBC921DEB510B00730E8B /* LaunchScreen.storyboard */,
 				2DDFBC951DEB510B00730E8B /* Info.plist */,
 			);
@@ -250,7 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DDFBC941DEB510B00730E8B /* LaunchScreen.storyboard in Resources */,
-				2DDFBC911DEB510B00730E8B /* Assets.xcassets in Resources */,
+				2DC505D11E12EC7100EF4292 /* Assets.xcassets in Resources */,
 				2DDFBC8F1DEB510B00730E8B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,7 +420,7 @@
 		2DDFBCAF1DEB510B00730E8B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -437,7 +437,7 @@
 		2DDFBCB01DEB510B00730E8B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
