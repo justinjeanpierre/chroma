@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D1E76B61E1CBC8800F2003E /* CameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E76B51E1CBC8800F2003E /* CameraViewController.mm */; };
+		2D1E76B71E1CBC8800F2003E /* CameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E76B51E1CBC8800F2003E /* CameraViewController.mm */; };
+		2D1E76B81E1CBC8800F2003E /* CameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E76B51E1CBC8800F2003E /* CameraViewController.mm */; };
 		2D1EBF631DED2A01002D6999 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF621DED2A01002D6999 /* ViewController.swift */; };
 		2D1EBF641DED2A01002D6999 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF621DED2A01002D6999 /* ViewController.swift */; };
 		2D1EBF651DED2A01002D6999 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF621DED2A01002D6999 /* ViewController.swift */; };
@@ -41,6 +44,11 @@
 
 /* Begin PBXFileReference section */
 		0AC9D8F0E13D3F009717B0B9 /* Pods_Mobile_AR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mobile_AR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D1E76B11E1CBC8700F2003E /* Mobile AR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mobile AR-Bridging-Header.h"; sourceTree = "<group>"; };
+		2D1E76B21E1CBC8700F2003E /* Mobile ARTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mobile ARTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		2D1E76B31E1CBC8800F2003E /* Mobile ARUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mobile ARUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		2D1E76B41E1CBC8800F2003E /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		2D1E76B51E1CBC8800F2003E /* CameraViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraViewController.mm; sourceTree = "<group>"; };
 		2D1EBF621DED2A01002D6999 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2D1EBF661DED2A2C002D6999 /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
 		2DA410591E1CB2270032FE76 /* FileBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileBrowser.framework; path = "DerivedData/Mobile AR/Build/Products/Debug-iphonesimulator/FileBrowser/FileBrowser.framework"; sourceTree = "<group>"; };
@@ -100,15 +108,13 @@
 			children = (
 				2D1EBF621DED2A01002D6999 /* ViewController.swift */,
 				2D1EBF661DED2A2C002D6999 /* CaptureViewController.swift */,
+				2D1E76B41E1CBC8800F2003E /* CameraViewController.h */,
+				2D1E76B51E1CBC8800F2003E /* CameraViewController.mm */,
+				2D1E76B11E1CBC8700F2003E /* Mobile AR-Bridging-Header.h */,
+				2D1E76B21E1CBC8700F2003E /* Mobile ARTests-Bridging-Header.h */,
+				2D1E76B31E1CBC8800F2003E /* Mobile ARUITests-Bridging-Header.h */,
 			);
 			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		2D1EBF6E1DED2EBF002D6999 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Libraries;
 			sourceTree = "<group>";
 		};
 		2DDFBC7D1DEB510B00730E8B = {
@@ -137,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				2D1EBF611DED2A01002D6999 /* View Controllers */,
-				2D1EBF6E1DED2EBF002D6999 /* Libraries */,
 				2DDFBC891DEB510B00730E8B /* AppDelegate.swift */,
 				2DC505D01E12EC7100EF4292 /* Assets.xcassets */,
 				2DDFBC8D1DEB510B00730E8B /* Main.storyboard */,
@@ -357,6 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D1EBF631DED2A01002D6999 /* ViewController.swift in Sources */,
+				2D1E76B61E1CBC8800F2003E /* CameraViewController.mm in Sources */,
 				2D1EBF671DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
 				2DDFBC8A1DEB510B00730E8B /* AppDelegate.swift in Sources */,
 			);
@@ -367,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D1EBF641DED2A01002D6999 /* ViewController.swift in Sources */,
+				2D1E76B71E1CBC8800F2003E /* CameraViewController.mm in Sources */,
 				2D1EBF681DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
 				2DDFBC9F1DEB510B00730E8B /* Mobile_ARTests.swift in Sources */,
 			);
@@ -377,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D1EBF651DED2A01002D6999 /* ViewController.swift in Sources */,
+				2D1E76B81E1CBC8800F2003E /* CameraViewController.mm in Sources */,
 				2D1EBF691DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
 				2DDFBCAA1DEB510B00730E8B /* Mobile_ARUITests.swift in Sources */,
 			);
@@ -507,6 +515,7 @@
 			baseConfigurationReference = DD24CEFDC030E1C03BA3F5ED /* Pods-Mobile AR.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DerivedData/Mobile",
@@ -519,6 +528,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jean-pierredigital.Mobile-AR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile AR/View Controllers/Mobile AR-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -528,6 +539,7 @@
 			baseConfigurationReference = F13346BA0F118A2A08F326B2 /* Pods-Mobile AR.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DerivedData/Mobile",
@@ -540,6 +552,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jean-pierredigital.Mobile-AR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile AR/View Controllers/Mobile AR-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -548,10 +561,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Mobile ARTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jean-pierredigital.Mobile-ARTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile AR/View Controllers/Mobile ARTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mobile AR.app/Mobile AR";
 			};
 			name = Debug;
@@ -560,10 +576,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Mobile ARTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jean-pierredigital.Mobile-ARTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile AR/View Controllers/Mobile ARTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mobile AR.app/Mobile AR";
 			};
 			name = Release;
@@ -571,10 +589,13 @@
 		2DDFBCB51DEB510B00730E8B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Mobile ARUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jean-pierredigital.Mobile-ARUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile AR/View Controllers/Mobile ARUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_TARGET_NAME = "Mobile AR";
 			};
 			name = Debug;
@@ -582,10 +603,12 @@
 		2DDFBCB61DEB510B00730E8B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Mobile ARUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jean-pierredigital.Mobile-ARUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile AR/View Controllers/Mobile ARUITests-Bridging-Header.h";
 				TEST_TARGET_NAME = "Mobile AR";
 			};
 			name = Release;
