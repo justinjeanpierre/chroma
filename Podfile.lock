@@ -1,0 +1,15 @@
+PODS:
+  - FileBrowser (0.1.4)
+  - OpenCV (3.1.0.1)
+
+DEPENDENCIES:
+  - FileBrowser (~> 0.1.4)
+  - OpenCV (~> 3.1)
+
+SPEC CHECKSUMS:
+  FileBrowser: 4e48c118606571cf59fd1d20930ac41887c026d0
+  OpenCV: 41c4250e2b06a394d6fbb634b5fa622cdd846018
+
+PODFILE CHECKSUM: c6513da7549777fd5617a75e4833fc1358490a8d
+
+COCOAPODS: 1.1.1

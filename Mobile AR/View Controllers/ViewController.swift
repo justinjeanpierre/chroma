@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FileBrowser
 
 class ViewController: UIViewController {
 
@@ -15,19 +16,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
    }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showFilesSegue" {
-            let destinationViewController = segue.destinationViewController as! FileListViewController
-
-            let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-            let documentsDirectory = paths[0]
-            let directoryURL = NSURL(fileURLWithPath: documentsDirectory, isDirectory: true)
-
-            destinationViewController.initialPath = directoryURL
-        }
-    }
-
     @IBAction func didPressShowFilesButton(sender: UIButton) {
-        performSegueWithIdentifier("showFilesSegue", sender: sender)
+        presentViewController(FileBrowser(), animated: true, completion: nil)
     }
 }
