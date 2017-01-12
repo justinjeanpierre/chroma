@@ -17,6 +17,11 @@
 		2D1EBF671DED2A2C002D6999 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF661DED2A2C002D6999 /* CaptureViewController.swift */; };
 		2D1EBF681DED2A2C002D6999 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF661DED2A2C002D6999 /* CaptureViewController.swift */; };
 		2D1EBF691DED2A2C002D6999 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF661DED2A2C002D6999 /* CaptureViewController.swift */; };
+		2D5DFE431E284C9D008A411B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5DFE411E284C9D008A411B /* OpenGLES.framework */; };
+		2D5DFE441E284C9D008A411B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5DFE421E284C9D008A411B /* QuartzCore.framework */; };
+		2D5DFE471E284CC4008A411B /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE461E284CC4008A411B /* OverlayViewController.m */; };
+		2D5DFE481E284CC4008A411B /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE461E284CC4008A411B /* OverlayViewController.m */; };
+		2D5DFE491E284CC4008A411B /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE461E284CC4008A411B /* OverlayViewController.m */; };
 		2D83B8E01E1DF76C00F1FFBB /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */; };
 		2D83B8E11E1DF76C00F1FFBB /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */; };
 		2D83B8E21E1DF76C00F1FFBB /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */; };
@@ -63,6 +68,10 @@
 		2D1E76B51E1CBC8800F2003E /* CameraViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraViewController.mm; sourceTree = "<group>"; };
 		2D1EBF621DED2A01002D6999 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2D1EBF661DED2A2C002D6999 /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
+		2D5DFE411E284C9D008A411B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		2D5DFE421E284C9D008A411B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2D5DFE451E284CC4008A411B /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
+		2D5DFE461E284CC4008A411B /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
 		2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		2D83B8E31E1DF78600F1FFBB /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		2D83B8E81E1DF7FA00F1FFBB /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
@@ -93,6 +102,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D5DFE431E284C9D008A411B /* OpenGLES.framework in Frameworks */,
+				2D5DFE441E284C9D008A411B /* QuartzCore.framework in Frameworks */,
 				B04A8F7B9A17A430B8026FC0 /* Pods_Mobile_AR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,6 +130,8 @@
 		2D1245858680E00BAD0969E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2D5DFE411E284C9D008A411B /* OpenGLES.framework */,
+				2D5DFE421E284C9D008A411B /* QuartzCore.framework */,
 				2DA410591E1CB2270032FE76 /* FileBrowser.framework */,
 				0AC9D8F0E13D3F009717B0B9 /* Pods_Mobile_AR.framework */,
 				0BA3F61705B4ED596B4C11D9 /* Pods_Mobile_ARTests.framework */,
@@ -137,6 +150,8 @@
 				2D1E76B11E1CBC8700F2003E /* Mobile AR-Bridging-Header.h */,
 				2D1E76B21E1CBC8700F2003E /* Mobile ARTests-Bridging-Header.h */,
 				2D1E76B31E1CBC8800F2003E /* Mobile ARUITests-Bridging-Header.h */,
+				2D5DFE451E284CC4008A411B /* OverlayViewController.h */,
+				2D5DFE461E284CC4008A411B /* OverlayViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -507,6 +522,7 @@
 			files = (
 				2D1EBF631DED2A01002D6999 /* ViewController.swift in Sources */,
 				2D83B8E01E1DF76C00F1FFBB /* Cube.swift in Sources */,
+				2D5DFE471E284CC4008A411B /* OverlayViewController.m in Sources */,
 				2D1E76B61E1CBC8800F2003E /* CameraViewController.mm in Sources */,
 				2D83B8E41E1DF78600F1FFBB /* Point.swift in Sources */,
 				2D1EBF671DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
@@ -522,6 +538,7 @@
 				2D83B8E11E1DF76C00F1FFBB /* Cube.swift in Sources */,
 				2D1E76B71E1CBC8800F2003E /* CameraViewController.mm in Sources */,
 				2D83B8E51E1DF78600F1FFBB /* Point.swift in Sources */,
+				2D5DFE481E284CC4008A411B /* OverlayViewController.m in Sources */,
 				2D83B8EB1E1DFA1000F1FFBB /* CubeTests.swift in Sources */,
 				2D83B8E91E1DF7FA00F1FFBB /* PointTests.swift in Sources */,
 				2D1EBF681DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
@@ -535,6 +552,7 @@
 			files = (
 				2D1EBF651DED2A01002D6999 /* ViewController.swift in Sources */,
 				2D83B8E21E1DF76C00F1FFBB /* Cube.swift in Sources */,
+				2D5DFE491E284CC4008A411B /* OverlayViewController.m in Sources */,
 				2D1E76B81E1CBC8800F2003E /* CameraViewController.mm in Sources */,
 				2D83B8E61E1DF78600F1FFBB /* Point.swift in Sources */,
 				2D1EBF691DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
