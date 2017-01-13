@@ -28,10 +28,10 @@
 		2D83B8E01E1DF76C00F1FFBB /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */; };
 		2D83B8E11E1DF76C00F1FFBB /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */; };
 		2D83B8E21E1DF76C00F1FFBB /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */; };
-		2D83B8E41E1DF78600F1FFBB /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8E31E1DF78600F1FFBB /* Point.swift */; };
-		2D83B8E51E1DF78600F1FFBB /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8E31E1DF78600F1FFBB /* Point.swift */; };
-		2D83B8E61E1DF78600F1FFBB /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8E31E1DF78600F1FFBB /* Point.swift */; };
-		2D83B8E91E1DF7FA00F1FFBB /* PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8E81E1DF7FA00F1FFBB /* PointTests.swift */; };
+		2D83B8E41E1DF78600F1FFBB /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8E31E1DF78600F1FFBB /* Vertex.swift */; };
+		2D83B8E51E1DF78600F1FFBB /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8E31E1DF78600F1FFBB /* Vertex.swift */; };
+		2D83B8E61E1DF78600F1FFBB /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8E31E1DF78600F1FFBB /* Vertex.swift */; };
+		2D83B8E91E1DF7FA00F1FFBB /* VertexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8E81E1DF7FA00F1FFBB /* VertexTests.swift */; };
 		2D83B8EB1E1DFA1000F1FFBB /* CubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8EA1E1DFA1000F1FFBB /* CubeTests.swift */; };
 		2DC505D11E12EC7100EF4292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DC505D01E12EC7100EF4292 /* Assets.xcassets */; };
 		2DDFBC8A1DEB510B00730E8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFBC891DEB510B00730E8B /* AppDelegate.swift */; };
@@ -78,8 +78,8 @@
 		2D5DFE4B1E284E54008A411B /* BoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxView.h; sourceTree = "<group>"; };
 		2D5DFE4C1E284E54008A411B /* BoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxView.m; sourceTree = "<group>"; };
 		2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
-		2D83B8E31E1DF78600F1FFBB /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
-		2D83B8E81E1DF7FA00F1FFBB /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
+		2D83B8E31E1DF78600F1FFBB /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		2D83B8E81E1DF7FA00F1FFBB /* VertexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VertexTests.swift; sourceTree = "<group>"; };
 		2D83B8EA1E1DFA1000F1FFBB /* CubeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubeTests.swift; sourceTree = "<group>"; };
 		2DA410591E1CB2270032FE76 /* FileBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileBrowser.framework; path = "DerivedData/Mobile AR/Build/Products/Debug-iphonesimulator/FileBrowser/FileBrowser.framework"; sourceTree = "<group>"; };
 		2DC505D01E12EC7100EF4292 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -174,7 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */,
-				2D83B8E31E1DF78600F1FFBB /* Point.swift */,
+				2D83B8E31E1DF78600F1FFBB /* Vertex.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -182,7 +182,7 @@
 		2D83B8E71E1DF7E800F1FFBB /* Data Model Tests */ = {
 			isa = PBXGroup;
 			children = (
-				2D83B8E81E1DF7FA00F1FFBB /* PointTests.swift */,
+				2D83B8E81E1DF7FA00F1FFBB /* VertexTests.swift */,
 				2D83B8EA1E1DFA1000F1FFBB /* CubeTests.swift */,
 			);
 			path = "Data Model Tests";
@@ -540,7 +540,7 @@
 				2D83B8E01E1DF76C00F1FFBB /* Cube.swift in Sources */,
 				2D5DFE471E284CC4008A411B /* OverlayViewController.m in Sources */,
 				2D1E76B61E1CBC8800F2003E /* CameraViewController.mm in Sources */,
-				2D83B8E41E1DF78600F1FFBB /* Point.swift in Sources */,
+				2D83B8E41E1DF78600F1FFBB /* Vertex.swift in Sources */,
 				2D1EBF671DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
 				2DDFBC8A1DEB510B00730E8B /* AppDelegate.swift in Sources */,
 			);
@@ -553,10 +553,10 @@
 				2D1EBF641DED2A01002D6999 /* ViewController.swift in Sources */,
 				2D83B8E11E1DF76C00F1FFBB /* Cube.swift in Sources */,
 				2D1E76B71E1CBC8800F2003E /* CameraViewController.mm in Sources */,
-				2D83B8E51E1DF78600F1FFBB /* Point.swift in Sources */,
+				2D83B8E51E1DF78600F1FFBB /* Vertex.swift in Sources */,
 				2D5DFE481E284CC4008A411B /* OverlayViewController.m in Sources */,
 				2D83B8EB1E1DFA1000F1FFBB /* CubeTests.swift in Sources */,
-				2D83B8E91E1DF7FA00F1FFBB /* PointTests.swift in Sources */,
+				2D83B8E91E1DF7FA00F1FFBB /* VertexTests.swift in Sources */,
 				2D1EBF681DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
 				2D5DFE4E1E284E54008A411B /* BoxView.m in Sources */,
 				2DDFBC9F1DEB510B00730E8B /* Mobile_ARTests.swift in Sources */,
@@ -572,7 +572,7 @@
 				2D83B8E21E1DF76C00F1FFBB /* Cube.swift in Sources */,
 				2D5DFE491E284CC4008A411B /* OverlayViewController.m in Sources */,
 				2D1E76B81E1CBC8800F2003E /* CameraViewController.mm in Sources */,
-				2D83B8E61E1DF78600F1FFBB /* Point.swift in Sources */,
+				2D83B8E61E1DF78600F1FFBB /* Vertex.swift in Sources */,
 				2D1EBF691DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
 				2DDFBCAA1DEB510B00730E8B /* Mobile_ARUITests.swift in Sources */,
 			);

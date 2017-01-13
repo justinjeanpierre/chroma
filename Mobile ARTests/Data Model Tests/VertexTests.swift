@@ -1,5 +1,5 @@
 //
-//  PointTests.swift
+//  VertexTests.swift
 //  Mobile AR
 //
 //  Created by Justin Jean-Pierre on 2017-01-04.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class PointTests: XCTestCase {
+class VertexTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -20,15 +20,15 @@ class PointTests: XCTestCase {
         super.tearDown()
     }
     
-    func testCreatePoint() {
+    func testInitVertex() {
         let xTestValue: Float = 1.2
         let yTestValue: Float = 3.4
         let zTestValue: Float = 5.6
 
-        let point = Point(x: xTestValue, y: yTestValue, z: zTestValue)
+        let vertex = Vertex(x: xTestValue, y: yTestValue, z: zTestValue)
 
-        XCTAssertEqual(point.x, xTestValue)
-        XCTAssertEqual(point.y, yTestValue)
-        XCTAssertEqual(point.z, zTestValue)
+        XCTAssertEqual(vertex.x, xTestValue)
+        XCTAssertEqual(vertex.y, yTestValue)
+        XCTAssertEqual(vertex.z, zTestValue)
     }
 }
