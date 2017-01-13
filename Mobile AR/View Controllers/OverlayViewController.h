@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface OverlayViewController : UIView
+@interface OverlayViewController : UIViewController <AVCaptureFileOutputRecordingDelegate>
 
 @end

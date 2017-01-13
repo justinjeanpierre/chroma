@@ -220,10 +220,10 @@
             </objects>
             <point key="canvasLocation" x="1195" y="793"/>
         </scene>
-        <!--View Controller-->
+        <!--Overlay View Controller-->
         <scene sceneID="cOp-SS-3Fj">
             <objects>
-                <viewController id="F34-u0-iu5" sceneMemberID="viewController">
+                <viewController id="F34-u0-iu5" customClass="OverlayViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Byo-C4-j2V"/>
                         <viewControllerLayoutGuide type="bottom" id="Ytl-Vt-dOS"/>
@@ -233,7 +233,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OverlayViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="orA-tI-roF">
-                                <rect key="frame" x="206" y="72" width="189" height="21"/>
+                                <rect key="frame" x="206" y="559" width="189" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="189" id="ptB-w3-D7Z"/>
                                 </constraints>
@@ -244,7 +244,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="orA-tI-roF" firstAttribute="top" secondItem="Byo-C4-j2V" secondAttribute="bottom" constant="8" symbolic="YES" id="FQF-fs-aDH"/>
+                            <constraint firstItem="orA-tI-roF" firstAttribute="top" secondItem="Byo-C4-j2V" secondAttribute="bottom" constant="495" id="FQF-fs-aDH"/>
                             <constraint firstItem="orA-tI-roF" firstAttribute="centerX" secondItem="5Lk-9Q-uQ9" secondAttribute="centerX" id="jOM-Sd-4pM"/>
                         </constraints>
                     </view>

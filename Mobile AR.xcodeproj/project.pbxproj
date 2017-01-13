@@ -25,12 +25,12 @@
 		2D5DFE4D1E284E54008A411B /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE4C1E284E54008A411B /* BoxView.m */; };
 		2D5DFE4E1E284E54008A411B /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE4C1E284E54008A411B /* BoxView.m */; };
 		2D5DFE4F1E284E54008A411B /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE4C1E284E54008A411B /* BoxView.m */; };
-		2D83B8E01E1DF76C00F1FFBB /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */; };
-		2D83B8E11E1DF76C00F1FFBB /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */; };
-		2D83B8E21E1DF76C00F1FFBB /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */; };
-		2D83B8E41E1DF78600F1FFBB /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8E31E1DF78600F1FFBB /* Vertex.swift */; };
-		2D83B8E51E1DF78600F1FFBB /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8E31E1DF78600F1FFBB /* Vertex.swift */; };
-		2D83B8E61E1DF78600F1FFBB /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8E31E1DF78600F1FFBB /* Vertex.swift */; };
+		2D5DFE6E1E2863FC008A411B /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE6C1E2863FC008A411B /* Cube.swift */; };
+		2D5DFE6F1E2863FC008A411B /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE6C1E2863FC008A411B /* Cube.swift */; };
+		2D5DFE701E2863FC008A411B /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE6C1E2863FC008A411B /* Cube.swift */; };
+		2D5DFE711E2863FC008A411B /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE6D1E2863FC008A411B /* Vertex.swift */; };
+		2D5DFE721E2863FC008A411B /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE6D1E2863FC008A411B /* Vertex.swift */; };
+		2D5DFE731E2863FC008A411B /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE6D1E2863FC008A411B /* Vertex.swift */; };
 		2D83B8E91E1DF7FA00F1FFBB /* VertexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8E81E1DF7FA00F1FFBB /* VertexTests.swift */; };
 		2D83B8EB1E1DFA1000F1FFBB /* CubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8EA1E1DFA1000F1FFBB /* CubeTests.swift */; };
 		2DC505D11E12EC7100EF4292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DC505D01E12EC7100EF4292 /* Assets.xcassets */; };
@@ -77,8 +77,8 @@
 		2D5DFE461E284CC4008A411B /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
 		2D5DFE4B1E284E54008A411B /* BoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxView.h; sourceTree = "<group>"; };
 		2D5DFE4C1E284E54008A411B /* BoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxView.m; sourceTree = "<group>"; };
-		2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
-		2D83B8E31E1DF78600F1FFBB /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		2D5DFE6C1E2863FC008A411B /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
+		2D5DFE6D1E2863FC008A411B /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
 		2D83B8E81E1DF7FA00F1FFBB /* VertexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VertexTests.swift; sourceTree = "<group>"; };
 		2D83B8EA1E1DFA1000F1FFBB /* CubeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubeTests.swift; sourceTree = "<group>"; };
 		2DA410591E1CB2270032FE76 /* FileBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileBrowser.framework; path = "DerivedData/Mobile AR/Build/Products/Debug-iphonesimulator/FileBrowser/FileBrowser.framework"; sourceTree = "<group>"; };
@@ -173,8 +173,8 @@
 		2D83B8DE1E1DF74E00F1FFBB /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */,
-				2D83B8E31E1DF78600F1FFBB /* Vertex.swift */,
+				2D5DFE6C1E2863FC008A411B /* Cube.swift */,
+				2D5DFE6D1E2863FC008A411B /* Vertex.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -537,11 +537,11 @@
 			files = (
 				2D5DFE4D1E284E54008A411B /* BoxView.m in Sources */,
 				2D1EBF631DED2A01002D6999 /* ViewController.swift in Sources */,
-				2D83B8E01E1DF76C00F1FFBB /* Cube.swift in Sources */,
 				2D5DFE471E284CC4008A411B /* OverlayViewController.m in Sources */,
 				2D1E76B61E1CBC8800F2003E /* CameraViewController.mm in Sources */,
-				2D83B8E41E1DF78600F1FFBB /* Vertex.swift in Sources */,
 				2D1EBF671DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
+				2D5DFE711E2863FC008A411B /* Vertex.swift in Sources */,
+				2D5DFE6E1E2863FC008A411B /* Cube.swift in Sources */,
 				2DDFBC8A1DEB510B00730E8B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,12 +551,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D1EBF641DED2A01002D6999 /* ViewController.swift in Sources */,
-				2D83B8E11E1DF76C00F1FFBB /* Cube.swift in Sources */,
 				2D1E76B71E1CBC8800F2003E /* CameraViewController.mm in Sources */,
-				2D83B8E51E1DF78600F1FFBB /* Vertex.swift in Sources */,
 				2D5DFE481E284CC4008A411B /* OverlayViewController.m in Sources */,
+				2D5DFE721E2863FC008A411B /* Vertex.swift in Sources */,
 				2D83B8EB1E1DFA1000F1FFBB /* CubeTests.swift in Sources */,
 				2D83B8E91E1DF7FA00F1FFBB /* VertexTests.swift in Sources */,
+				2D5DFE6F1E2863FC008A411B /* Cube.swift in Sources */,
 				2D1EBF681DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
 				2D5DFE4E1E284E54008A411B /* BoxView.m in Sources */,
 				2DDFBC9F1DEB510B00730E8B /* Mobile_ARTests.swift in Sources */,
@@ -569,11 +569,11 @@
 			files = (
 				2D5DFE4F1E284E54008A411B /* BoxView.m in Sources */,
 				2D1EBF651DED2A01002D6999 /* ViewController.swift in Sources */,
-				2D83B8E21E1DF76C00F1FFBB /* Cube.swift in Sources */,
 				2D5DFE491E284CC4008A411B /* OverlayViewController.m in Sources */,
 				2D1E76B81E1CBC8800F2003E /* CameraViewController.mm in Sources */,
-				2D83B8E61E1DF78600F1FFBB /* Vertex.swift in Sources */,
 				2D1EBF691DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
+				2D5DFE731E2863FC008A411B /* Vertex.swift in Sources */,
+				2D5DFE701E2863FC008A411B /* Cube.swift in Sources */,
 				2DDFBCAA1DEB510B00730E8B /* Mobile_ARUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -634,6 +634,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -680,6 +681,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -716,6 +718,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jean-pierredigital.Mobile-AR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "\"$(SRCROOT)/Mobile AR/Data Models\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile AR/View Controllers/Mobile AR-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -740,6 +743,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jean-pierredigital.Mobile-AR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "\"$(SRCROOT)/Mobile AR/Data Models\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile AR/View Controllers/Mobile AR-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
