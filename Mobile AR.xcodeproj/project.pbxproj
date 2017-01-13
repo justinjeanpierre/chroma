@@ -22,6 +22,9 @@
 		2D5DFE471E284CC4008A411B /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE461E284CC4008A411B /* OverlayViewController.m */; };
 		2D5DFE481E284CC4008A411B /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE461E284CC4008A411B /* OverlayViewController.m */; };
 		2D5DFE491E284CC4008A411B /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE461E284CC4008A411B /* OverlayViewController.m */; };
+		2D5DFE4D1E284E54008A411B /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE4C1E284E54008A411B /* BoxView.m */; };
+		2D5DFE4E1E284E54008A411B /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE4C1E284E54008A411B /* BoxView.m */; };
+		2D5DFE4F1E284E54008A411B /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE4C1E284E54008A411B /* BoxView.m */; };
 		2D83B8E01E1DF76C00F1FFBB /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */; };
 		2D83B8E11E1DF76C00F1FFBB /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */; };
 		2D83B8E21E1DF76C00F1FFBB /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */; };
@@ -72,6 +75,8 @@
 		2D5DFE421E284C9D008A411B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2D5DFE451E284CC4008A411B /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
 		2D5DFE461E284CC4008A411B /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
+		2D5DFE4B1E284E54008A411B /* BoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxView.h; sourceTree = "<group>"; };
+		2D5DFE4C1E284E54008A411B /* BoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxView.m; sourceTree = "<group>"; };
 		2D83B8DF1E1DF76C00F1FFBB /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		2D83B8E31E1DF78600F1FFBB /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		2D83B8E81E1DF7FA00F1FFBB /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
@@ -156,6 +161,15 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		2D5DFE4A1E284E3A008A411B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2D5DFE4B1E284E54008A411B /* BoxView.h */,
+				2D5DFE4C1E284E54008A411B /* BoxView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		2D83B8DE1E1DF74E00F1FFBB /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +215,7 @@
 			children = (
 				2D83B8DE1E1DF74E00F1FFBB /* Data Models */,
 				2D1EBF611DED2A01002D6999 /* View Controllers */,
+				2D5DFE4A1E284E3A008A411B /* Views */,
 				2DDFBC891DEB510B00730E8B /* AppDelegate.swift */,
 				2DC505D01E12EC7100EF4292 /* Assets.xcassets */,
 				2DDFBC8D1DEB510B00730E8B /* Main.storyboard */,
@@ -520,6 +535,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D5DFE4D1E284E54008A411B /* BoxView.m in Sources */,
 				2D1EBF631DED2A01002D6999 /* ViewController.swift in Sources */,
 				2D83B8E01E1DF76C00F1FFBB /* Cube.swift in Sources */,
 				2D5DFE471E284CC4008A411B /* OverlayViewController.m in Sources */,
@@ -542,6 +558,7 @@
 				2D83B8EB1E1DFA1000F1FFBB /* CubeTests.swift in Sources */,
 				2D83B8E91E1DF7FA00F1FFBB /* PointTests.swift in Sources */,
 				2D1EBF681DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
+				2D5DFE4E1E284E54008A411B /* BoxView.m in Sources */,
 				2DDFBC9F1DEB510B00730E8B /* Mobile_ARTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +567,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D5DFE4F1E284E54008A411B /* BoxView.m in Sources */,
 				2D1EBF651DED2A01002D6999 /* ViewController.swift in Sources */,
 				2D83B8E21E1DF76C00F1FFBB /* Cube.swift in Sources */,
 				2D5DFE491E284CC4008A411B /* OverlayViewController.m in Sources */,
