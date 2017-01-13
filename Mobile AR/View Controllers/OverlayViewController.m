@@ -62,14 +62,15 @@
     }
 
 
-    // add OpenGL overlay to the view here
+    // add OpenGL cube overlay to the view here
+    _glView = [[BoxView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.view addSubview:_glView];
 }
 
 #pragma mark AVCaptureFileOutputRecordingDelegate methods
 
 -(void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray *)connections error:(NSError *)error {
     NSLog(@"%s", __func__);
-
 }
 
 -(void)captureOutput:(AVCaptureFileOutput *)captureOutput didStartRecordingToOutputFileAtURL:(NSURL *)fileURL fromConnections:(NSArray *)connections {

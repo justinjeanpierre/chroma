@@ -47,7 +47,7 @@
 #pragma mark - OpenGL - run
 
 -(void)render:(CADisplayLink *)displayLink {
-    glClearColor(0, 104.0/255.0, 55.0/255.0, 1.0);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
 
@@ -83,7 +83,7 @@
 
 -(void)setupLayer {
     _eaglLayer = (CAEAGLLayer *)self.layer;
-    _eaglLayer.opaque = YES;
+    _eaglLayer.opaque = NO;
 }
 
 -(void)setupContext {

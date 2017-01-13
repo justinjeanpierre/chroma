@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "BoxView.h"
 
 @interface OverlayViewController : UIViewController <AVCaptureFileOutputRecordingDelegate>
+
+@property (nonatomic, retain) BoxView *glView;
 
 @end
