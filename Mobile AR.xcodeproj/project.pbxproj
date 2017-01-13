@@ -31,6 +31,24 @@
 		2D5DFE711E2863FC008A411B /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE6D1E2863FC008A411B /* Vertex.swift */; };
 		2D5DFE721E2863FC008A411B /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE6D1E2863FC008A411B /* Vertex.swift */; };
 		2D5DFE731E2863FC008A411B /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE6D1E2863FC008A411B /* Vertex.swift */; };
+		2D5DFEAB1E288417008A411B /* CC3Foundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFEA21E288417008A411B /* CC3Foundation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2D5DFEAC1E288417008A411B /* CC3Foundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFEA21E288417008A411B /* CC3Foundation.m */; };
+		2D5DFEAD1E288417008A411B /* CC3Foundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFEA21E288417008A411B /* CC3Foundation.m */; };
+		2D5DFEAE1E288417008A411B /* CC3GLMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFEA41E288417008A411B /* CC3GLMatrix.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2D5DFEAF1E288417008A411B /* CC3GLMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFEA41E288417008A411B /* CC3GLMatrix.m */; };
+		2D5DFEB01E288417008A411B /* CC3GLMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFEA41E288417008A411B /* CC3GLMatrix.m */; };
+		2D5DFEB11E288417008A411B /* CC3Kazmath.c in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFEA51E288417008A411B /* CC3Kazmath.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2D5DFEB21E288417008A411B /* CC3Kazmath.c in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFEA51E288417008A411B /* CC3Kazmath.c */; };
+		2D5DFEB31E288417008A411B /* CC3Kazmath.c in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFEA51E288417008A411B /* CC3Kazmath.c */; };
+		2D5DFEB41E288417008A411B /* CC3Math.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFEA91E288417008A411B /* CC3Math.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2D5DFEB51E288417008A411B /* CC3Math.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFEA91E288417008A411B /* CC3Math.m */; };
+		2D5DFEB61E288417008A411B /* CC3Math.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFEA91E288417008A411B /* CC3Math.m */; };
+		2D5DFEBB1E288687008A411B /* SimpleFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D5DFEB91E288687008A411B /* SimpleFragment.glsl */; };
+		2D5DFEBC1E288687008A411B /* SimpleFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D5DFEB91E288687008A411B /* SimpleFragment.glsl */; };
+		2D5DFEBD1E288687008A411B /* SimpleFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D5DFEB91E288687008A411B /* SimpleFragment.glsl */; };
+		2D5DFEBE1E288687008A411B /* SimpleVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D5DFEBA1E288687008A411B /* SimpleVertex.glsl */; };
+		2D5DFEBF1E288687008A411B /* SimpleVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D5DFEBA1E288687008A411B /* SimpleVertex.glsl */; };
+		2D5DFEC01E288687008A411B /* SimpleVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D5DFEBA1E288687008A411B /* SimpleVertex.glsl */; };
 		2D83B8E91E1DF7FA00F1FFBB /* VertexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8E81E1DF7FA00F1FFBB /* VertexTests.swift */; };
 		2D83B8EB1E1DFA1000F1FFBB /* CubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8EA1E1DFA1000F1FFBB /* CubeTests.swift */; };
 		2DC505D11E12EC7100EF4292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DC505D01E12EC7100EF4292 /* Assets.xcassets */; };
@@ -79,6 +97,19 @@
 		2D5DFE4C1E284E54008A411B /* BoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxView.m; sourceTree = "<group>"; };
 		2D5DFE6C1E2863FC008A411B /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		2D5DFE6D1E2863FC008A411B /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		2D5DFEA11E288417008A411B /* CC3Foundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CC3Foundation.h; sourceTree = "<group>"; };
+		2D5DFEA21E288417008A411B /* CC3Foundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CC3Foundation.m; sourceTree = "<group>"; };
+		2D5DFEA31E288417008A411B /* CC3GLMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CC3GLMatrix.h; sourceTree = "<group>"; };
+		2D5DFEA41E288417008A411B /* CC3GLMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CC3GLMatrix.m; sourceTree = "<group>"; };
+		2D5DFEA51E288417008A411B /* CC3Kazmath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CC3Kazmath.c; sourceTree = "<group>"; };
+		2D5DFEA61E288417008A411B /* CC3Kazmath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CC3Kazmath.h; sourceTree = "<group>"; };
+		2D5DFEA71E288417008A411B /* CC3Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CC3Logging.h; sourceTree = "<group>"; };
+		2D5DFEA81E288417008A411B /* CC3Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CC3Math.h; sourceTree = "<group>"; };
+		2D5DFEA91E288417008A411B /* CC3Math.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CC3Math.m; sourceTree = "<group>"; };
+		2D5DFEAA1E288417008A411B /* ccTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccTypes.h; sourceTree = "<group>"; };
+		2D5DFEB71E28853A008A411B /* Structures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Structures.h; sourceTree = "<group>"; };
+		2D5DFEB91E288687008A411B /* SimpleFragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleFragment.glsl; sourceTree = "<group>"; };
+		2D5DFEBA1E288687008A411B /* SimpleVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleVertex.glsl; sourceTree = "<group>"; };
 		2D83B8E81E1DF7FA00F1FFBB /* VertexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VertexTests.swift; sourceTree = "<group>"; };
 		2D83B8EA1E1DFA1000F1FFBB /* CubeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubeTests.swift; sourceTree = "<group>"; };
 		2DA410591E1CB2270032FE76 /* FileBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileBrowser.framework; path = "DerivedData/Mobile AR/Build/Products/Debug-iphonesimulator/FileBrowser/FileBrowser.framework"; sourceTree = "<group>"; };
@@ -170,11 +201,46 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		2D5DFE761E2883F4008A411B /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				2D5DFEA01E288417008A411B /* Cocos3DMathLib */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		2D5DFEA01E288417008A411B /* Cocos3DMathLib */ = {
+			isa = PBXGroup;
+			children = (
+				2D5DFEA11E288417008A411B /* CC3Foundation.h */,
+				2D5DFEA21E288417008A411B /* CC3Foundation.m */,
+				2D5DFEA31E288417008A411B /* CC3GLMatrix.h */,
+				2D5DFEA41E288417008A411B /* CC3GLMatrix.m */,
+				2D5DFEA51E288417008A411B /* CC3Kazmath.c */,
+				2D5DFEA61E288417008A411B /* CC3Kazmath.h */,
+				2D5DFEA71E288417008A411B /* CC3Logging.h */,
+				2D5DFEA81E288417008A411B /* CC3Math.h */,
+				2D5DFEA91E288417008A411B /* CC3Math.m */,
+				2D5DFEAA1E288417008A411B /* ccTypes.h */,
+			);
+			path = Cocos3DMathLib;
+			sourceTree = "<group>";
+		};
+		2D5DFEB81E288678008A411B /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				2D5DFEB91E288687008A411B /* SimpleFragment.glsl */,
+				2D5DFEBA1E288687008A411B /* SimpleVertex.glsl */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
 		2D83B8DE1E1DF74E00F1FFBB /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
 				2D5DFE6C1E2863FC008A411B /* Cube.swift */,
 				2D5DFE6D1E2863FC008A411B /* Vertex.swift */,
+				2D5DFEB71E28853A008A411B /* Structures.h */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -213,9 +279,11 @@
 		2DDFBC881DEB510B00730E8B /* Mobile AR */ = {
 			isa = PBXGroup;
 			children = (
+				2D5DFE761E2883F4008A411B /* Libraries */,
 				2D83B8DE1E1DF74E00F1FFBB /* Data Models */,
 				2D1EBF611DED2A01002D6999 /* View Controllers */,
 				2D5DFE4A1E284E3A008A411B /* Views */,
+				2D5DFEB81E288678008A411B /* Shaders */,
 				2DDFBC891DEB510B00730E8B /* AppDelegate.swift */,
 				2DC505D01E12EC7100EF4292 /* Assets.xcassets */,
 				2DDFBC8D1DEB510B00730E8B /* Main.storyboard */,
@@ -371,6 +439,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DDFBC941DEB510B00730E8B /* LaunchScreen.storyboard in Resources */,
+				2D5DFEBB1E288687008A411B /* SimpleFragment.glsl in Resources */,
+				2D5DFEBE1E288687008A411B /* SimpleVertex.glsl in Resources */,
 				2DC505D11E12EC7100EF4292 /* Assets.xcassets in Resources */,
 				2DDFBC8F1DEB510B00730E8B /* Main.storyboard in Resources */,
 			);
@@ -380,6 +450,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D5DFEBC1E288687008A411B /* SimpleFragment.glsl in Resources */,
+				2D5DFEBF1E288687008A411B /* SimpleVertex.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +459,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D5DFEBD1E288687008A411B /* SimpleFragment.glsl in Resources */,
+				2D5DFEC01E288687008A411B /* SimpleVertex.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,11 +612,15 @@
 				2D5DFE4D1E284E54008A411B /* BoxView.m in Sources */,
 				2D1EBF631DED2A01002D6999 /* ViewController.swift in Sources */,
 				2D5DFE471E284CC4008A411B /* OverlayViewController.m in Sources */,
+				2D5DFEB41E288417008A411B /* CC3Math.m in Sources */,
+				2D5DFEAE1E288417008A411B /* CC3GLMatrix.m in Sources */,
 				2D1E76B61E1CBC8800F2003E /* CameraViewController.mm in Sources */,
 				2D1EBF671DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
 				2D5DFE711E2863FC008A411B /* Vertex.swift in Sources */,
 				2D5DFE6E1E2863FC008A411B /* Cube.swift in Sources */,
 				2DDFBC8A1DEB510B00730E8B /* AppDelegate.swift in Sources */,
+				2D5DFEB11E288417008A411B /* CC3Kazmath.c in Sources */,
+				2D5DFEAB1E288417008A411B /* CC3Foundation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,10 +628,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D5DFEB21E288417008A411B /* CC3Kazmath.c in Sources */,
 				2D1EBF641DED2A01002D6999 /* ViewController.swift in Sources */,
 				2D1E76B71E1CBC8800F2003E /* CameraViewController.mm in Sources */,
 				2D5DFE481E284CC4008A411B /* OverlayViewController.m in Sources */,
+				2D5DFEAC1E288417008A411B /* CC3Foundation.m in Sources */,
+				2D5DFEB51E288417008A411B /* CC3Math.m in Sources */,
 				2D5DFE721E2863FC008A411B /* Vertex.swift in Sources */,
+				2D5DFEAF1E288417008A411B /* CC3GLMatrix.m in Sources */,
 				2D83B8EB1E1DFA1000F1FFBB /* CubeTests.swift in Sources */,
 				2D83B8E91E1DF7FA00F1FFBB /* VertexTests.swift in Sources */,
 				2D5DFE6F1E2863FC008A411B /* Cube.swift in Sources */,
@@ -570,11 +652,15 @@
 				2D5DFE4F1E284E54008A411B /* BoxView.m in Sources */,
 				2D1EBF651DED2A01002D6999 /* ViewController.swift in Sources */,
 				2D5DFE491E284CC4008A411B /* OverlayViewController.m in Sources */,
+				2D5DFEB61E288417008A411B /* CC3Math.m in Sources */,
+				2D5DFEB01E288417008A411B /* CC3GLMatrix.m in Sources */,
 				2D1E76B81E1CBC8800F2003E /* CameraViewController.mm in Sources */,
 				2D1EBF691DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
 				2D5DFE731E2863FC008A411B /* Vertex.swift in Sources */,
 				2D5DFE701E2863FC008A411B /* Cube.swift in Sources */,
 				2DDFBCAA1DEB510B00730E8B /* Mobile_ARUITests.swift in Sources */,
+				2D5DFEB31E288417008A411B /* CC3Kazmath.c in Sources */,
+				2D5DFEAD1E288417008A411B /* CC3Foundation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
