@@ -69,6 +69,13 @@
 
     glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
 
+    // uncomment this section to output the device's orientation
+    // according to CC3GL
+    /*
+    NSLog(@"(x: %f, y: %f, z: %f)", modelView.extractForwardDirection.x,
+          modelView.extractForwardDirection.y,
+          modelView.extractForwardDirection.z);
+    // */
     glViewport(0, 0, self.frame.size.width, self.frame.size.height);
 
     glVertexAttribPointer(_positionSlot, 3, GL_FLOAT, GL_FALSE, sizeof(BoxVertex), 0);
