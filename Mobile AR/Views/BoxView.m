@@ -6,6 +6,8 @@
 //  Copyright © 2017 Jean-Pierre Digital. All rights reserved.
 //
 
+#define PERSPECTIVE_INSIDE_CUBE false
+
 #import "BoxView.h"
 #import "CC3GLMatrix.h"
 #import <CoreMotion/CoreMotion.h>
@@ -53,29 +55,53 @@
 
     CC3GLMatrix *projection = [CC3GLMatrix matrix];
     float h = 4.0f * self.frame.size.height / self.frame.size.width;
-    [projection populateFromFrustumLeft:-2
-                               andRight:2
-                              andBottom:-h/2
-                                 andTop:h/2
-                                andNear:4
-                                 andFar:10];
-    glUniformMatrix4fv(_projectionUniform, 1, 0, projection.glMatrix);
 
-    CC3GLMatrix *modelView = [CC3GLMatrix matrix];
-    [modelView populateFromTranslation:CC3VectorMake(0, 0, -7)];
-    [modelView rotateBy:CC3VectorMake(-57 * manager.deviceMotion.attitude.pitch,
-                                      -57 * manager.deviceMotion.attitude.roll,
-                                      -57 * manager.deviceMotion.attitude.yaw)];
+    if (PERSPECTIVE_INSIDE_CUBE) {
+        [projection populateFromFrustumLeft:-3
+                                   andRight:3
+                                  andBottom:-3
+                                     andTop:3
+                                    andNear:4
+                                     andFar:12];
 
-    glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
+        glUniformMatrix4fv(_projectionUniform, 1, 0, projection.glMatrix);
+
+        CC3GLMatrix *modelView = [CC3GLMatrix matrix];
+        [modelView populateFromTranslation:CC3VectorMake(0, 0, -4)];
+        [modelView rotateBy:CC3VectorMake(-57 * manager.deviceMotion.attitude.pitch,
+                                          -57 * manager.deviceMotion.attitude.roll,
+                                          -57 * manager.deviceMotion.attitude.yaw)];
+        [modelView scaleBy:CC3VectorMake(3, 3, 6)];
+
+        glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
+    } else {
+        [projection populateFromFrustumLeft:-2
+                                   andRight:2
+                                  andBottom:-h/2
+                                     andTop:h/2
+                                    andNear:4
+                                     andFar:10];
+
+        glUniformMatrix4fv(_projectionUniform, 1, 0, projection.glMatrix);
+
+        CC3GLMatrix *modelView = [CC3GLMatrix matrix];
+        [modelView populateFromTranslation:CC3VectorMake(0, 0, -7)];
+        [modelView rotateBy:CC3VectorMake(-57 * manager.deviceMotion.attitude.pitch,
+                                          -57 * manager.deviceMotion.attitude.roll,
+                                          -57 * manager.deviceMotion.attitude.yaw)];
+        [modelView scaleByZ:2];
+
+        glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
+    }
 
     // uncomment this section to output the device's orientation
-    // according to CC3GL
+    // (according to CC3GL)
     /*
     NSLog(@"(x: %f, y: %f, z: %f)", modelView.extractForwardDirection.x,
           modelView.extractForwardDirection.y,
           modelView.extractForwardDirection.z);
     // */
+    
     glViewport(0, 0, self.frame.size.width, self.frame.size.height);
 
     glVertexAttribPointer(_positionSlot, 3, GL_FLOAT, GL_FALSE, sizeof(BoxVertex), 0);
@@ -115,6 +141,10 @@
 }
 
 -(void)setupDepthRenderBuffer {
+    if (PERSPECTIVE_INSIDE_CUBE) {
+        return;
+    }
+
     glGenRenderbuffers(1, &_depthRenderBuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, _depthRenderBuffer);
     glRenderbufferStorage(GL_RENDERBUFFER,
