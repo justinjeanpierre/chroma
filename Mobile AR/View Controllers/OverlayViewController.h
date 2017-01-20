@@ -13,5 +13,6 @@
 @interface OverlayViewController : UIViewController <AVCaptureFileOutputRecordingDelegate>
 
 @property (nonatomic, retain) BoxView *glView;
+@property (nonatomic, retain) IBOutlet UIButton *perspectiveButton;
 
 @end

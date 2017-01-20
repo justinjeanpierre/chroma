@@ -24,4 +24,6 @@
     GLuint _depthRenderBuffer;
 }
 
+-(void)changePerspective:(UIButton *)sender;
+
 @end

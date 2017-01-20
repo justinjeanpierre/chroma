@@ -61,10 +61,15 @@
         [session addOutput:output];
     }
 
-
     // add OpenGL cube overlay to the view here
     _glView = [[BoxView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.view addSubview:_glView];
+
+    [self.view bringSubviewToFront:_perspectiveButton];
+}
+
+-(IBAction)didPressPerspectiveButton:(id)sender {
+    [_glView changePerspective:sender];
 }
 
 #pragma mark AVCaptureFileOutputRecordingDelegate methods

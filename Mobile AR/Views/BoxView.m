@@ -6,7 +6,7 @@
 //  Copyright © 2017 Jean-Pierre Digital. All rights reserved.
 //
 
-#define PERSPECTIVE_INSIDE_CUBE false
+#define SHOW_FPS false
 
 #import "BoxView.h"
 #import "CC3GLMatrix.h"
@@ -17,7 +17,11 @@
     CMMotionManager *manager;
     GLuint vertexBuffer;
     GLuint indexBuffer;
+
+    int frameCount;
 }
+
+@property (nonatomic) bool isPerspectiveInsideCube;
 
 @end
 
@@ -26,6 +30,16 @@
 #pragma mark - Class methods
 +(Class)layerClass {
     return [CAEAGLLayer class];
+}
+
+-(void)displayFPSrate {
+    NSLog(@"%s ~%d FPS", __func__, frameCount);
+
+    frameCount = 0;
+}
+
+-(void)changePerspective:(UIButton *)sender {
+    _isPerspectiveInsideCube = !_isPerspectiveInsideCube;
 }
 
 #pragma mark - Instance methods
@@ -41,6 +55,13 @@
         [self setupVBOs];
         [self setupDisplayLink];
         [self setupMotion];
+
+        frameCount = 0;
+        if (SHOW_FPS) {
+            [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(displayFPSrate) userInfo:nil repeats:YES];
+        }
+
+        _isPerspectiveInsideCube = NO;
     }
 
     return self;
@@ -49,6 +70,8 @@
 #pragma mark - OpenGL - run
 
 -(void)render:(CADisplayLink *)displayLink {
+    frameCount++;
+
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
@@ -56,11 +79,11 @@
     CC3GLMatrix *projection = [CC3GLMatrix matrix];
     float h = 4.0f * self.frame.size.height / self.frame.size.width;
 
-    if (PERSPECTIVE_INSIDE_CUBE) {
+    if (_isPerspectiveInsideCube) {
         [projection populateFromFrustumLeft:-3
                                    andRight:3
-                                  andBottom:-3
-                                     andTop:3
+                                  andBottom:-6
+                                     andTop:2
                                     andNear:4
                                      andFar:12];
 
@@ -101,7 +124,7 @@
           modelView.extractForwardDirection.y,
           modelView.extractForwardDirection.z);
     // */
-    
+
     glViewport(0, 0, self.frame.size.width, self.frame.size.height);
 
     glVertexAttribPointer(_positionSlot, 3, GL_FLOAT, GL_FALSE, sizeof(BoxVertex), 0);
@@ -141,7 +164,7 @@
 }
 
 -(void)setupDepthRenderBuffer {
-    if (PERSPECTIVE_INSIDE_CUBE) {
+    if (_isPerspectiveInsideCube) {
         return;
     }
 
