@@ -19,9 +19,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRh-es-9ok">
-                                <rect key="frame" x="230" y="304" width="141" height="30"/>
+                                <rect key="frame" x="230" y="250" width="141" height="38"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="TcL-Qc-BsB"/>
+                                    <constraint firstAttribute="height" constant="38" id="TcL-Qc-BsB"/>
                                     <constraint firstAttribute="width" constant="141" id="ntx-oN-rz3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
@@ -31,7 +31,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cH8-4r-BwV">
-                                <rect key="frame" x="232" y="342" width="136" height="38"/>
+                                <rect key="frame" x="232" y="296" width="136" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="136" id="U8d-bP-8Dj"/>
                                 </constraints>
@@ -41,11 +41,22 @@
                                     <segue destination="ib7-yu-0vu" kind="show" id="o5w-kU-k9H"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHr-lC-8Da">
-                                <rect key="frame" x="234" y="266" width="132" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3y-qO-GKQ">
+                                <rect key="frame" x="232" y="342" width="136" height="38"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="132" id="UY6-kJ-esc"/>
-                                    <constraint firstAttribute="height" constant="30" id="s82-cF-52B"/>
+                                    <constraint firstAttribute="width" constant="136" id="eRe-rI-uQa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="OpenGL tool"/>
+                                <connections>
+                                    <segue destination="F34-u0-iu5" kind="show" id="fjg-mE-WI2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHr-lC-8Da">
+                                <rect key="frame" x="232" y="204" width="136" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="136" id="UY6-kJ-esc"/>
+                                    <constraint firstAttribute="height" constant="38" id="s82-cF-52B"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="show files"/>
@@ -58,10 +69,12 @@
                         <constraints>
                             <constraint firstItem="KHr-lC-8Da" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Mz7-Sx-xmQ"/>
                             <constraint firstItem="KHr-lC-8Da" firstAttribute="centerX" secondItem="pRh-es-9ok" secondAttribute="centerX" id="RHB-hT-p2u"/>
-                            <constraint firstItem="KHr-lC-8Da" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="202" id="Wum-ec-AYj"/>
+                            <constraint firstItem="KHr-lC-8Da" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="140" id="Wum-ec-AYj"/>
                             <constraint firstItem="pRh-es-9ok" firstAttribute="centerX" secondItem="cH8-4r-BwV" secondAttribute="centerX" id="Xif-yf-9qM"/>
                             <constraint firstItem="cH8-4r-BwV" firstAttribute="top" secondItem="pRh-es-9ok" secondAttribute="bottom" constant="8" symbolic="YES" id="bzB-W2-LKw"/>
                             <constraint firstItem="pRh-es-9ok" firstAttribute="top" secondItem="KHr-lC-8Da" secondAttribute="bottom" constant="8" symbolic="YES" id="h7T-lQ-Pym"/>
+                            <constraint firstItem="v3y-qO-GKQ" firstAttribute="top" secondItem="cH8-4r-BwV" secondAttribute="bottom" constant="8" symbolic="YES" id="ii1-Vx-nrj"/>
+                            <constraint firstItem="v3y-qO-GKQ" firstAttribute="leading" secondItem="cH8-4r-BwV" secondAttribute="leading" id="vE3-Mm-4cZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="l5V-AY-j4c"/>
@@ -206,6 +219,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nln-5U-MgK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1195" y="793"/>
+        </scene>
+        <!--Overlay View Controller-->
+        <scene sceneID="cOp-SS-3Fj">
+            <objects>
+                <viewController id="F34-u0-iu5" customClass="OverlayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Byo-C4-j2V"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ytl-Vt-dOS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5Lk-9Q-uQ9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLv-rL-8Ch">
+                                <rect key="frame" x="206" y="550" width="189" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="189" id="zEr-IG-bln"/>
+                                </constraints>
+                                <state key="normal" title="change perspective"/>
+                                <connections>
+                                    <action selector="didPressPerspectiveButton:" destination="F34-u0-iu5" eventType="touchUpInside" id="M8H-0R-h2j"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uLv-rL-8Ch" firstAttribute="centerX" secondItem="5Lk-9Q-uQ9" secondAttribute="centerX" id="FyJ-Jq-R97"/>
+                            <constraint firstAttribute="bottom" secondItem="uLv-rL-8Ch" secondAttribute="bottom" constant="20" symbolic="YES" id="mYq-7s-iPW"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="perspectiveButton" destination="uLv-rL-8Ch" id="Ckt-3N-m1M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TTF-sK-Q12" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1854" y="1159"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QnR-se-Ty7">
