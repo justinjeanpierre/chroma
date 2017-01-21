@@ -152,12 +152,21 @@
                                     <action selector="invertColors:" destination="ib7-yu-0vu" eventType="touchUpInside" id="0ge-P9-wjF"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWJ-dr-d91">
+                                <rect key="frame" x="263" y="550" width="75" height="30"/>
+                                <state key="normal" title="show cube"/>
+                                <connections>
+                                    <action selector="toggleCubeVisibility:" destination="ib7-yu-0vu" eventType="touchUpInside" id="Sac-EE-UOi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="KE1-hu-WFk" firstAttribute="top" secondItem="Me4-iR-rIL" secondAttribute="bottom" constant="20" id="55M-GV-PMb"/>
+                            <constraint firstItem="RWJ-dr-d91" firstAttribute="baseline" secondItem="KLK-Tx-cYM" secondAttribute="baseline" id="80I-aJ-B9c"/>
                             <constraint firstItem="Me4-iR-rIL" firstAttribute="top" secondItem="791-1B-OUJ" secondAttribute="bottom" constant="8" id="9pa-bR-QmQ"/>
                             <constraint firstItem="KLK-Tx-cYM" firstAttribute="trailing" secondItem="791-1B-OUJ" secondAttribute="trailing" id="AcG-ti-lsg"/>
+                            <constraint firstItem="RWJ-dr-d91" firstAttribute="centerX" secondItem="791-1B-OUJ" secondAttribute="centerX" id="HpX-hS-ojs"/>
                             <constraint firstItem="Me4-iR-rIL" firstAttribute="baseline" secondItem="KLK-Tx-cYM" secondAttribute="baseline" id="IqU-rc-TQQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="791-1B-OUJ" secondAttribute="trailing" id="fWx-ub-OHU"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="top" secondItem="GB6-D9-LSe" secondAttribute="bottom" constant="8" id="jJT-u1-IR1"/>
@@ -167,6 +176,7 @@
                     </view>
                     <connections>
                         <outlet property="cameraView" destination="791-1B-OUJ" id="jTj-1h-bMx"/>
+                        <outlet property="perspectiveButton" destination="RWJ-dr-d91" id="Son-Re-6ax"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSA-Aw-zmq" userLabel="First Responder" sceneMemberID="firstResponder"/>
