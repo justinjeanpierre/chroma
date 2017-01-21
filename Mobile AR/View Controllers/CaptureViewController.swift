@@ -35,7 +35,7 @@ class CaptureViewController: UIViewController, AVCaptureFileOutputRecordingDeleg
         super.viewDidLoad()
 
         // configure view
-        title = "Mobile AR"
+        title = "record video"
         toggleRecordingButton.setTitle("record", forState: .Normal)
 
         // configure capture devices

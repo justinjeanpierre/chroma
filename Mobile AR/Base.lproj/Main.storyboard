@@ -41,7 +41,7 @@
                                     <segue destination="ib7-yu-0vu" kind="show" id="o5w-kU-k9H"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3y-qO-GKQ">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3y-qO-GKQ">
                                 <rect key="frame" x="232" y="342" width="136" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="136" id="eRe-rI-uQa"/>

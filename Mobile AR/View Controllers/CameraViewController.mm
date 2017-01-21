@@ -24,20 +24,22 @@ using namespace cv;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self setTitle:@"Camera View Controller"];
+    [self setTitle:@"OpenCV tool"];
+    self.cameraView.clipsToBounds = YES;
 
     self.videoCamera = [[CvVideoCamera alloc] initWithParentView:self.cameraView];
     self.videoCamera.delegate = self;
-    self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
-    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
-    self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
-    self.videoCamera.defaultFPS = 30;
+    self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
+    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
+    self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationLandscapeLeft;
+    self.videoCamera.defaultFPS = 60;
     self.videoCamera.grayscaleMode = NO;
 
     _shouldInvertColors = _shouldDetectFeatures = _shouldShowCube = NO;
 
     [self.videoCamera start];
 
+    // configure virtual cube
     _glView = [[BoxView alloc] initWithFrame:self.view.frame];
     [self.cameraView addSubview:_glView];
     _glView.alpha = (_shouldShowCube == YES);
