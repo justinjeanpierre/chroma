@@ -135,43 +135,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLK-Tx-cYM">
-                                <rect key="frame" x="475" y="550" width="105" height="30"/>
-                                <state key="normal" title="detect features"/>
-                                <connections>
-                                    <action selector="detectFeatures:" destination="ib7-yu-0vu" eventType="touchUpInside" id="NfJ-xs-rgg"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="791-1B-OUJ">
-                                <rect key="frame" x="20" y="72" width="560" height="470"/>
+                                <rect key="frame" x="20" y="72" width="560" height="433"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Me4-iR-rIL">
-                                <rect key="frame" x="20" y="550" width="85" height="30"/>
-                                <state key="normal" title="invert colors"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Me4-iR-rIL">
+                                <rect key="frame" x="20" y="550" width="42" height="30"/>
+                                <state key="normal" title="colors"/>
                                 <connections>
                                     <action selector="invertColors:" destination="ib7-yu-0vu" eventType="touchUpInside" id="0ge-P9-wjF"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWJ-dr-d91">
-                                <rect key="frame" x="263" y="550" width="75" height="30"/>
+                                <rect key="frame" x="263" y="513" width="75" height="30"/>
                                 <state key="normal" title="show cube"/>
                                 <connections>
                                     <action selector="toggleCubeVisibility:" destination="ib7-yu-0vu" eventType="touchUpInside" id="Sac-EE-UOi"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p2f-St-xDV">
+                                <rect key="frame" x="260" y="551" width="81" height="30"/>
+                                <state key="normal" title="perspective"/>
+                                <connections>
+                                    <action selector="toggleCubePerpective:" destination="ib7-yu-0vu" eventType="touchUpInside" id="1v1-vK-c0C"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLK-Tx-cYM">
+                                <rect key="frame" x="523" y="550" width="57" height="30"/>
+                                <state key="normal" title="features"/>
+                                <connections>
+                                    <action selector="detectFeatures:" destination="ib7-yu-0vu" eventType="touchUpInside" id="NfJ-xs-rgg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="KE1-hu-WFk" firstAttribute="top" secondItem="Me4-iR-rIL" secondAttribute="bottom" constant="20" id="55M-GV-PMb"/>
-                            <constraint firstItem="RWJ-dr-d91" firstAttribute="baseline" secondItem="KLK-Tx-cYM" secondAttribute="baseline" id="80I-aJ-B9c"/>
-                            <constraint firstItem="Me4-iR-rIL" firstAttribute="top" secondItem="791-1B-OUJ" secondAttribute="bottom" constant="8" id="9pa-bR-QmQ"/>
-                            <constraint firstItem="KLK-Tx-cYM" firstAttribute="trailing" secondItem="791-1B-OUJ" secondAttribute="trailing" id="AcG-ti-lsg"/>
-                            <constraint firstItem="RWJ-dr-d91" firstAttribute="centerX" secondItem="791-1B-OUJ" secondAttribute="centerX" id="HpX-hS-ojs"/>
-                            <constraint firstItem="Me4-iR-rIL" firstAttribute="baseline" secondItem="KLK-Tx-cYM" secondAttribute="baseline" id="IqU-rc-TQQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="791-1B-OUJ" secondAttribute="trailing" id="fWx-ub-OHU"/>
-                            <constraint firstItem="791-1B-OUJ" firstAttribute="top" secondItem="GB6-D9-LSe" secondAttribute="bottom" constant="8" id="jJT-u1-IR1"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="791-1B-OUJ" secondAttribute="leading" id="laP-dm-LGy"/>
-                            <constraint firstItem="791-1B-OUJ" firstAttribute="leading" secondItem="Me4-iR-rIL" secondAttribute="trailing" constant="-85" id="xZp-9w-C2P"/>
+                            <constraint firstItem="791-1B-OUJ" firstAttribute="leading" secondItem="Me4-iR-rIL" secondAttribute="leading" id="13z-Z4-1Mz"/>
+                            <constraint firstItem="KE1-hu-WFk" firstAttribute="top" secondItem="p2f-St-xDV" secondAttribute="bottom" constant="19" id="8kg-Sd-I36"/>
+                            <constraint firstItem="791-1B-OUJ" firstAttribute="leading" secondItem="c3I-A4-Hfi" secondAttribute="leadingMargin" id="Jts-cA-TNq"/>
+                            <constraint firstItem="Me4-iR-rIL" firstAttribute="baseline" secondItem="KLK-Tx-cYM" secondAttribute="baseline" id="ZYZ-rN-hGk"/>
+                            <constraint firstItem="791-1B-OUJ" firstAttribute="trailing" secondItem="c3I-A4-Hfi" secondAttribute="trailingMargin" id="ZuJ-mA-sRd"/>
+                            <constraint firstAttribute="bottom" secondItem="Me4-iR-rIL" secondAttribute="bottom" constant="20" symbolic="YES" id="cZj-Mr-7K3"/>
+                            <constraint firstItem="RWJ-dr-d91" firstAttribute="centerX" secondItem="p2f-St-xDV" secondAttribute="centerX" id="clW-j9-fkw"/>
+                            <constraint firstItem="791-1B-OUJ" firstAttribute="trailing" secondItem="KLK-Tx-cYM" secondAttribute="trailing" id="dhc-LF-s1w"/>
+                            <constraint firstItem="p2f-St-xDV" firstAttribute="top" secondItem="RWJ-dr-d91" secondAttribute="bottom" constant="8" symbolic="YES" id="esF-Xl-vUf"/>
+                            <constraint firstItem="RWJ-dr-d91" firstAttribute="top" secondItem="791-1B-OUJ" secondAttribute="bottom" constant="8" symbolic="YES" id="h0S-Gv-rNs"/>
+                            <constraint firstItem="791-1B-OUJ" firstAttribute="top" secondItem="GB6-D9-LSe" secondAttribute="bottom" constant="8" symbolic="YES" id="k9u-Kl-od4"/>
+                            <constraint firstItem="791-1B-OUJ" firstAttribute="centerX" secondItem="RWJ-dr-d91" secondAttribute="centerX" id="mDf-4h-qgD"/>
                         </constraints>
                     </view>
                     <connections>
