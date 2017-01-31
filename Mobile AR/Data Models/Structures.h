@@ -10,7 +10,7 @@
 #define Structures_h
 
 #define RED     {1, 0, 0, 0.8}
-#define GREEN   {0, 1, 0, 0.8}
+#define GREEN   {0, 1, 0, 0.3}
 #define BLUE    {0, 0, 1, 0.8}
 #define WHITE   {1, 1, 1, 0.8}
 
@@ -22,12 +22,12 @@ typedef struct {
 const BoxVertex BoxVertices[] = {
     {{1, -1, 0},    RED},
     {{1, 1, 0},     RED},
-    {{-1, 1, 0},    BLUE},
-    {{-1, -1, 0},   BLUE},
-    {{1, -1, -1},   WHITE},
-    {{1, 1, -1},    WHITE},
-    {{-1, 1, -1},   BLUE},
-    {{-1, -1, -1},  BLUE}
+    {{-1, 1, 0},    GREEN},
+    {{-1, -1, 0},   GREEN},
+    {{1, -1, -1},   RED},
+    {{1, 1, -1},    RED},
+    {{-1, 1, -1},   GREEN},
+    {{-1, -1, -1},  GREEN}
 };
 
 const GLubyte BoxIndices[] = {
