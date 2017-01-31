@@ -19,9 +19,6 @@
 		2D1EBF691DED2A2C002D6999 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1EBF661DED2A2C002D6999 /* CaptureViewController.swift */; };
 		2D5DFE431E284C9D008A411B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5DFE411E284C9D008A411B /* OpenGLES.framework */; };
 		2D5DFE441E284C9D008A411B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5DFE421E284C9D008A411B /* QuartzCore.framework */; };
-		2D5DFE471E284CC4008A411B /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE461E284CC4008A411B /* OverlayViewController.m */; };
-		2D5DFE481E284CC4008A411B /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE461E284CC4008A411B /* OverlayViewController.m */; };
-		2D5DFE491E284CC4008A411B /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE461E284CC4008A411B /* OverlayViewController.m */; };
 		2D5DFE4D1E284E54008A411B /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE4C1E284E54008A411B /* BoxView.m */; };
 		2D5DFE4E1E284E54008A411B /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE4C1E284E54008A411B /* BoxView.m */; };
 		2D5DFE4F1E284E54008A411B /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DFE4C1E284E54008A411B /* BoxView.m */; };
@@ -91,8 +88,6 @@
 		2D1EBF661DED2A2C002D6999 /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
 		2D5DFE411E284C9D008A411B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		2D5DFE421E284C9D008A411B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		2D5DFE451E284CC4008A411B /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
-		2D5DFE461E284CC4008A411B /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
 		2D5DFE4B1E284E54008A411B /* BoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxView.h; sourceTree = "<group>"; };
 		2D5DFE4C1E284E54008A411B /* BoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxView.m; sourceTree = "<group>"; };
 		2D5DFE6C1E2863FC008A411B /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
@@ -186,8 +181,6 @@
 				2D1E76B11E1CBC8700F2003E /* Mobile AR-Bridging-Header.h */,
 				2D1E76B21E1CBC8700F2003E /* Mobile ARTests-Bridging-Header.h */,
 				2D1E76B31E1CBC8800F2003E /* Mobile ARUITests-Bridging-Header.h */,
-				2D5DFE451E284CC4008A411B /* OverlayViewController.h */,
-				2D5DFE461E284CC4008A411B /* OverlayViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -611,7 +604,6 @@
 			files = (
 				2D5DFE4D1E284E54008A411B /* BoxView.m in Sources */,
 				2D1EBF631DED2A01002D6999 /* ViewController.swift in Sources */,
-				2D5DFE471E284CC4008A411B /* OverlayViewController.m in Sources */,
 				2D5DFEB41E288417008A411B /* CC3Math.m in Sources */,
 				2D5DFEAE1E288417008A411B /* CC3GLMatrix.m in Sources */,
 				2D1E76B61E1CBC8800F2003E /* CameraViewController.mm in Sources */,
@@ -631,7 +623,6 @@
 				2D5DFEB21E288417008A411B /* CC3Kazmath.c in Sources */,
 				2D1EBF641DED2A01002D6999 /* ViewController.swift in Sources */,
 				2D1E76B71E1CBC8800F2003E /* CameraViewController.mm in Sources */,
-				2D5DFE481E284CC4008A411B /* OverlayViewController.m in Sources */,
 				2D5DFEAC1E288417008A411B /* CC3Foundation.m in Sources */,
 				2D5DFEB51E288417008A411B /* CC3Math.m in Sources */,
 				2D5DFE721E2863FC008A411B /* Vertex.swift in Sources */,
@@ -651,7 +642,6 @@
 			files = (
 				2D5DFE4F1E284E54008A411B /* BoxView.m in Sources */,
 				2D1EBF651DED2A01002D6999 /* ViewController.swift in Sources */,
-				2D5DFE491E284CC4008A411B /* OverlayViewController.m in Sources */,
 				2D5DFEB61E288417008A411B /* CC3Math.m in Sources */,
 				2D5DFEB01E288417008A411B /* CC3GLMatrix.m in Sources */,
 				2D1E76B81E1CBC8800F2003E /* CameraViewController.mm in Sources */,
