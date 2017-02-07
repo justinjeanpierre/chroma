@@ -16,6 +16,7 @@ using namespace cv;
 @property (nonatomic) BOOL shouldInvertColors;
 @property (nonatomic) BOOL shouldDetectFeatures;
 @property (nonatomic) BOOL shouldShowCube;
+@property (nonatomic) BOOL isTracking;
 
 @end
 
@@ -35,7 +36,7 @@ using namespace cv;
     self.videoCamera.defaultFPS = 60;
     self.videoCamera.grayscaleMode = NO;
 
-    _shouldInvertColors = _shouldDetectFeatures = _shouldShowCube = NO;
+    _shouldInvertColors = _shouldDetectFeatures = _shouldShowCube = _isTracking = NO;
 
     [self.videoCamera start];
 
@@ -77,6 +78,12 @@ using namespace cv;
     _shouldShowCube = !_shouldShowCube;
 
     _glView.alpha = (_shouldShowCube == YES);
+}
+
+-(IBAction)toggleTracking:(UIButton *)sender {
+    _isTracking = !_isTracking;
+
+    NSLog(@"%s isTracking: %d", __func__, _isTracking);
 }
 
 #pragma mark - CvVideoCameraDelegate methods
