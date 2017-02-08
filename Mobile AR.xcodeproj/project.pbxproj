@@ -54,6 +54,10 @@
 		2DDFBC941DEB510B00730E8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DDFBC921DEB510B00730E8B /* LaunchScreen.storyboard */; };
 		2DDFBC9F1DEB510B00730E8B /* Mobile_ARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFBC9E1DEB510B00730E8B /* Mobile_ARTests.swift */; };
 		2DDFBCAA1DEB510B00730E8B /* Mobile_ARUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFBCA91DEB510B00730E8B /* Mobile_ARUITests.swift */; };
+		2DF118DF1E4AE34800B5FE92 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF118DE1E4AE34800B5FE92 /* opencv2.framework */; };
+		2DF118E01E4AE34800B5FE92 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF118DE1E4AE34800B5FE92 /* opencv2.framework */; };
+		2DF118E11E4AE34800B5FE92 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF118DE1E4AE34800B5FE92 /* opencv2.framework */; };
+		2DF118E31E4AE3EC00B5FE92 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF118E21E4AE3EC00B5FE92 /* AssetsLibrary.framework */; };
 		B04A8F7B9A17A430B8026FC0 /* Pods_Mobile_AR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC9D8F0E13D3F009717B0B9 /* Pods_Mobile_AR.framework */; };
 		E027BD10D510B6ED06966419 /* Pods_Mobile_ARUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8177B8646972657628AE5BD0 /* Pods_Mobile_ARUITests.framework */; };
 /* End PBXBuildFile section */
@@ -120,6 +124,8 @@
 		2DDFBCA51DEB510B00730E8B /* Mobile ARUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mobile ARUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DDFBCA91DEB510B00730E8B /* Mobile_ARUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mobile_ARUITests.swift; sourceTree = "<group>"; };
 		2DDFBCAB1DEB510B00730E8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2DF118DE1E4AE34800B5FE92 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		2DF118E21E4AE3EC00B5FE92 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4B8DE4C39BD299FB6D198023 /* Pods-Mobile ARTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobile ARTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mobile ARTests/Pods-Mobile ARTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4CA61F6D298B57E99EBE28A8 /* Pods-Mobile ARUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobile ARUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mobile ARUITests/Pods-Mobile ARUITests.release.xcconfig"; sourceTree = "<group>"; };
 		658BF187817CE9C4FDCF4E9D /* Pods-Mobile ARTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobile ARTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mobile ARTests/Pods-Mobile ARTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -133,8 +139,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DF118E31E4AE3EC00B5FE92 /* AssetsLibrary.framework in Frameworks */,
 				2D5DFE431E284C9D008A411B /* OpenGLES.framework in Frameworks */,
 				2D5DFE441E284C9D008A411B /* QuartzCore.framework in Frameworks */,
+				2DF118DF1E4AE34800B5FE92 /* opencv2.framework in Frameworks */,
 				B04A8F7B9A17A430B8026FC0 /* Pods_Mobile_AR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DF118E01E4AE34800B5FE92 /* opencv2.framework in Frameworks */,
 				2119C7A849FE81CC62503A47 /* Pods_Mobile_ARTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DF118E11E4AE34800B5FE92 /* opencv2.framework in Frameworks */,
 				E027BD10D510B6ED06966419 /* Pods_Mobile_ARUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,6 +171,7 @@
 		2D1245858680E00BAD0969E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2DF118E21E4AE3EC00B5FE92 /* AssetsLibrary.framework */,
 				2D5DFE411E284C9D008A411B /* OpenGLES.framework */,
 				2D5DFE421E284C9D008A411B /* QuartzCore.framework */,
 				2DA410591E1CB2270032FE76 /* FileBrowser.framework */,
@@ -250,6 +261,7 @@
 		2DDFBC7D1DEB510B00730E8B = {
 			isa = PBXGroup;
 			children = (
+				2DF118DE1E4AE34800B5FE92 /* opencv2.framework */,
 				2DDFBC881DEB510B00730E8B /* Mobile AR */,
 				2DDFBC9D1DEB510B00730E8B /* Mobile ARTests */,
 				2DDFBCA81DEB510B00730E8B /* Mobile ARUITests */,
@@ -788,6 +800,7 @@
 					"AR/Build/Products/Debug-iphonesimulator/FileBrowser",
 					"$(PROJECT_DIR)/DerivedData/Mobile",
 					"AR/Build/Products/Debug-iphonesimulator/FileBrowser",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Mobile AR/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -813,6 +826,7 @@
 					"AR/Build/Products/Debug-iphonesimulator/FileBrowser",
 					"$(PROJECT_DIR)/DerivedData/Mobile",
 					"AR/Build/Products/Debug-iphonesimulator/FileBrowser",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Mobile AR/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -831,6 +845,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Mobile ARTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jean-pierredigital.Mobile-ARTests";
@@ -847,6 +865,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Mobile ARTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jean-pierredigital.Mobile-ARTests";
@@ -861,6 +883,10 @@
 			baseConfigurationReference = 286FE18F9CDAE357880A3740 /* Pods-Mobile ARUITests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Mobile ARUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jean-pierredigital.Mobile-ARUITests";
@@ -876,6 +902,10 @@
 			baseConfigurationReference = 4CA61F6D298B57E99EBE28A8 /* Pods-Mobile ARUITests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Mobile ARUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jean-pierredigital.Mobile-ARUITests";

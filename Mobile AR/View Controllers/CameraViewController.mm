@@ -103,6 +103,10 @@ using namespace cv;
         // TODO: edge detection code goes here
         Canny(image, image_copy, 100, 200);
     }
+
+    if (_isTracking == YES) {
+        Rect2d roi;
+    }
 }
 
 #pragma mark - BoxView
