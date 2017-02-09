@@ -8,6 +8,7 @@
 
 #import "CameraViewController.h"
 
+using namespace std;
 using namespace cv;
 
 @interface CameraViewController ()
@@ -17,6 +18,7 @@ using namespace cv;
 @property (nonatomic) BOOL shouldDetectFeatures;
 @property (nonatomic) BOOL shouldShowCube;
 @property (nonatomic) BOOL isTracking;
+@property (nonatomic) UIView *trackerView;
 
 @end
 
@@ -84,6 +86,22 @@ using namespace cv;
     _isTracking = !_isTracking;
 
     NSLog(@"%s isTracking: %d", __func__, _isTracking);
+
+    if (_isTracking == YES) { // show default outline
+        if (self.trackerView == nil) {
+            self.trackerView = [[UIView alloc] initWithFrame:CGRectMake(self.cameraView.bounds.size.width/2 - 50,
+                                                                        self.cameraView.bounds.size.height/2 - 100,
+                                                                        100,
+                                                                        200)];
+        }
+
+        self.trackerView.layer.borderWidth = 2.0f;
+        self.trackerView.layer.borderColor = [[UIColor redColor] CGColor];
+        self.trackerView.layer.cornerRadius = 4.0f;
+        [self.cameraView addSubview:self.trackerView];
+    } else {
+        [self.trackerView removeFromSuperview];
+    }
 }
 
 #pragma mark - CvVideoCameraDelegate methods
@@ -105,7 +123,25 @@ using namespace cv;
     }
 
     if (_isTracking == YES) {
+        /*
+        // source: http://docs.opencv.org/3.1.0/d2/d0a/tutorial_introduction_to_tracker.html
+
         Rect2d roi;
+        Ptr<Tracker> tracker = Tracker::create("KCF");
+        // ...
+
+        selectROI("tracker", image);
+
+        if (roi.width == 0 || roi.height == 0) {
+            return;
+        }
+
+        tracker->init(image, roi);
+
+        tracker->update(image, roi);
+        // update trackerView coordinates.
+
+        */
     }
 }
 
