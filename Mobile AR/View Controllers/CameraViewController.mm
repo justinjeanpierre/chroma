@@ -20,6 +20,8 @@ using namespace cv;
 @property (nonatomic) BOOL isTracking;
 @property (nonatomic) UIView *trackerView;
 
+@property (nonatomic) Ptr<Tracker> tracker;
+
 @end
 
 @implementation CameraViewController
@@ -99,6 +101,9 @@ using namespace cv;
         self.trackerView.layer.borderColor = [[UIColor redColor] CGColor];
         self.trackerView.layer.cornerRadius = 4.0f;
         [self.cameraView addSubview:self.trackerView];
+
+        // create a tracker object
+        self.tracker = Tracker::create("MIL");
     } else {
         [self.trackerView removeFromSuperview];
     }
@@ -123,25 +128,25 @@ using namespace cv;
     }
 
     if (_isTracking == YES) {
-        /*
         // source: http://docs.opencv.org/3.1.0/d2/d0a/tutorial_introduction_to_tracker.html
 
+        // set input video frame
+        VideoCapture(image);
         Rect2d roi;
-        Ptr<Tracker> tracker = Tracker::create("KCF");
-        // ...
+        roi.x = self.trackerView.bounds.origin.x;
+        roi.y = self.trackerView.bounds.origin.y;
+        roi.width = self.trackerView.bounds.size.width;
+        roi.height = self.trackerView.bounds.size.height;
 
-        selectROI("tracker", image);
+        // initialize tracker with image containing
+        // performer.
+        self.tracker->init(image_copy, roi);
 
-        if (roi.width == 0 || roi.height == 0) {
-            return;
+        // update tracker
+        if (self.tracker->update(image_copy, roi) == YES) {
+            CGRect roiFrame = CGRectMake(CGFloat(roi.x), CGFloat(roi.y), CGFloat(roi.width), CGFloat(roi.height));
+            self.trackerView.frame = roiFrame;
         }
-
-        tracker->init(image, roi);
-
-        tracker->update(image, roi);
-        // update trackerView coordinates.
-
-        */
     }
 }
 
