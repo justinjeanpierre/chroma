@@ -21,6 +21,7 @@ using namespace cv;
 @property (nonatomic) UIView *trackerView;
 
 @property (nonatomic) Ptr<Tracker> tracker;
+@property (nonatomic) Rect2d roi;
 
 @end
 
@@ -37,7 +38,7 @@ using namespace cv;
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
     self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationLandscapeLeft;
-    self.videoCamera.defaultFPS = 60;
+    self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
 
     _shouldInvertColors = _shouldDetectFeatures = _shouldShowCube = _isTracking = NO;
@@ -53,6 +54,12 @@ using namespace cv;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+
+    // turn off image processing
+    _shouldInvertColors = _shouldDetectFeatures = _shouldShowCube = _isTracking = NO;
+
+    // destroy tracker
+    _tracker->~Tracker();
 }
 
 /*
@@ -87,13 +94,11 @@ using namespace cv;
 -(IBAction)toggleTracking:(UIButton *)sender {
     _isTracking = !_isTracking;
 
-    NSLog(@"%s isTracking: %d", __func__, _isTracking);
-
     if (_isTracking == YES) { // show default outline
         if (self.trackerView == nil) {
-            self.trackerView = [[UIView alloc] initWithFrame:CGRectMake(self.cameraView.bounds.size.width/2 - 50,
+            self.trackerView = [[UIView alloc] initWithFrame:CGRectMake(self.cameraView.bounds.size.width/2 - 100,
                                                                         self.cameraView.bounds.size.height/2 - 100,
-                                                                        100,
+                                                                        200,
                                                                         200)];
         }
 
@@ -103,16 +108,23 @@ using namespace cv;
         [self.cameraView addSubview:self.trackerView];
 
         // create a tracker object
-        self.tracker = Tracker::create("MIL");
+        _tracker = Tracker::create("KCF");
+
+        _roi = Rect2d();
+        _roi.x = self.cameraView.bounds.origin.x;
+        _roi.y = self.cameraView.bounds.origin.y;
+        _roi.width = self.cameraView.bounds.size.width;
+        _roi.height = self.cameraView.bounds.size.height;
     } else {
         [self.trackerView removeFromSuperview];
+
+        // destroy tracker
+        _tracker->~Tracker();
     }
 }
 
 #pragma mark - CvVideoCameraDelegate methods
 -(void)processImage:(cv::Mat &)image {
-//    NSLog(@"%s", __func__);
-
     Mat image_copy;
     cvtColor(image, image_copy, CV_BGRA2BGR);
 
@@ -130,23 +142,26 @@ using namespace cv;
     if (_isTracking == YES) {
         // source: http://docs.opencv.org/3.1.0/d2/d0a/tutorial_introduction_to_tracker.html
 
-        // set input video frame
-        VideoCapture(image);
-        Rect2d roi;
-        roi.x = self.trackerView.bounds.origin.x;
-        roi.y = self.trackerView.bounds.origin.y;
-        roi.width = self.trackerView.bounds.size.width;
-        roi.height = self.trackerView.bounds.size.height;
-
-        // initialize tracker with image containing
-        // performer.
-        self.tracker->init(image_copy, roi);
+        // create 3-channel copy of source image
+        Mat targetImage;
+        cvtColor(image, targetImage, CV_BGRA2BGR);
 
         // update tracker
-        if (self.tracker->update(image_copy, roi) == YES) {
-            CGRect roiFrame = CGRectMake(CGFloat(roi.x), CGFloat(roi.y), CGFloat(roi.width), CGFloat(roi.height));
-            self.trackerView.frame = roiFrame;
-        }
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            // initialize tracker
+            _tracker->init(targetImage, _roi);
+
+            // update tracker
+            if (_tracker->update(targetImage, _roi) == YES) {
+                CGRect roiFrame = CGRectMake(CGFloat(_roi.x), CGFloat(_roi.y), CGFloat(_roi.width), CGFloat(_roi.height));
+//                NSLog(@"(%f, %f, %f, %f)", roiFrame.origin.x, roiFrame.origin.y, roiFrame.size.width, roiFrame.size.width);
+
+                // update bounds (on main thread)
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    _trackerView.frame = roiFrame;
+                });
+            }
+        });
     }
 }
 
