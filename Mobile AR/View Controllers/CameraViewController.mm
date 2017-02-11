@@ -13,19 +13,20 @@ using namespace cv;
 
 @interface CameraViewController ()
 
-@property (nonatomic, retain) CvVideoCamera *videoCamera;
+@property (nonatomic, strong) CvVideoCamera *videoCamera;
 @property (nonatomic) BOOL shouldInvertColors;
 @property (nonatomic) BOOL shouldDetectFeatures;
 @property (nonatomic) BOOL shouldShowCube;
 @property (nonatomic) BOOL isTracking;
-@property (nonatomic) UIView *trackerView;
-
+@property (nonatomic, strong) UIButton *boundingBox;
 @property (nonatomic) Ptr<Tracker> tracker;
-@property (nonatomic) Rect2d roi;
+@property (nonatomic, strong) NSTimer *uiTimer;
 
 @end
 
 @implementation CameraViewController
+
+Rect2d regionOfInterest;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,16 +63,6 @@ using namespace cv;
     _tracker->~Tracker();
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 #pragma mark - Button actions
 - (IBAction)invertColors:(UIButton *)button {
     _shouldInvertColors = !_shouldInvertColors;
@@ -95,31 +86,34 @@ using namespace cv;
     _isTracking = !_isTracking;
 
     if (_isTracking == YES) { // show default outline
-        if (self.trackerView == nil) {
-            self.trackerView = [[UIView alloc] initWithFrame:CGRectMake(self.cameraView.bounds.size.width/2 - 100,
-                                                                        self.cameraView.bounds.size.height/2 - 100,
-                                                                        200,
-                                                                        200)];
+        if (self.boundingBox == nil) {
+            self.boundingBox = [[UIButton alloc] init];
         }
 
-        self.trackerView.layer.borderWidth = 2.0f;
-        self.trackerView.layer.borderColor = [[UIColor redColor] CGColor];
-        self.trackerView.layer.cornerRadius = 4.0f;
-        [self.cameraView addSubview:self.trackerView];
+        [self.boundingBox setFrame:CGRectMake(self.cameraView.bounds.size.width/2 - 100,
+                                             self.cameraView.bounds.size.height/2 - 100,
+                                             200,
+                                             200)];
+        self.boundingBox.layer.borderWidth = 2.0f;
+        self.boundingBox.layer.borderColor = [[UIColor redColor] CGColor];
+        self.boundingBox.layer.cornerRadius = 4.0f;
+        [self.cameraView addSubview:self.boundingBox];
 
         // create a tracker object
         _tracker = Tracker::create("KCF");
 
-        _roi = Rect2d();
-        _roi.x = self.cameraView.bounds.origin.x;
-        _roi.y = self.cameraView.bounds.origin.y;
-        _roi.width = self.cameraView.bounds.size.width;
-        _roi.height = self.cameraView.bounds.size.height;
-    } else {
-        [self.trackerView removeFromSuperview];
+        // create ROI
+        regionOfInterest = Rect2d();
+        regionOfInterest.x = 0;
+        regionOfInterest.y = 0;
+        regionOfInterest.width = 640;
+        regionOfInterest.height = 480;
 
-        // destroy tracker
-        _tracker->~Tracker();
+        self.uiTimer = [NSTimer scheduledTimerWithTimeInterval:(NSTimeInterval)0.1 target:self selector:@selector(updateUIElements) userInfo:NULL repeats:YES];
+
+    } else {
+        [self.uiTimer invalidate];
+        [self.boundingBox removeFromSuperview];
     }
 }
 
@@ -136,7 +130,6 @@ using namespace cv;
 
     if (_shouldDetectFeatures == YES) {
         // TODO: edge detection code goes here
-        Canny(image, image_copy, 100, 200);
     }
 
     if (_isTracking == YES) {
@@ -146,23 +139,34 @@ using namespace cv;
         Mat targetImage;
         cvtColor(image, targetImage, CV_BGRA2BGR);
 
+        // initialize tracker
+        _tracker->init(targetImage, regionOfInterest);
+
         // update tracker
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            // initialize tracker
-            _tracker->init(targetImage, _roi);
-
-            // update tracker
-            if (_tracker->update(targetImage, _roi) == YES) {
-                CGRect roiFrame = CGRectMake(CGFloat(_roi.x), CGFloat(_roi.y), CGFloat(_roi.width), CGFloat(_roi.height));
-//                NSLog(@"(%f, %f, %f, %f)", roiFrame.origin.x, roiFrame.origin.y, roiFrame.size.width, roiFrame.size.width);
-
-                // update bounds (on main thread)
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    _trackerView.frame = roiFrame;
-                });
-            }
-        });
+        if (_tracker->update(targetImage, regionOfInterest) == YES) {
+            CGRect roiFrame = CGRectMake(CGFloat(regionOfInterest.x),
+                                         CGFloat(regionOfInterest.y),
+                                         CGFloat(regionOfInterest.width),
+                                         CGFloat(regionOfInterest.height));
+            NSLog(@"rFrame(%.0f, %.0f, %.0f, %.0f), tFrame(%.0f, %.0f, %.0f, %.0f)",
+                  roiFrame.origin.x,
+                  roiFrame.origin.y,
+                  roiFrame.size.width,
+                  roiFrame.size.width,
+                  self.boundingBox.frame.origin.x,
+                  self.boundingBox.frame.origin.y,
+                  self.boundingBox.frame.size.width,
+                  self.boundingBox.frame.size.width);
+        }
     }
+}
+
+-(void)updateUIElements {
+    [self.boundingBox setFrame:CGRectMake(CGFloat(regionOfInterest.x),
+                                          CGFloat(regionOfInterest.y),
+                                          CGFloat(regionOfInterest.width),
+                                          CGFloat(regionOfInterest.height))];
+    [self.boundingBox setNeedsDisplay];
 }
 
 #pragma mark - BoxView
