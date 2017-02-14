@@ -91,19 +91,24 @@ Rect2d regionOfInterest;
             self.boundingBox = [[UIButton alloc] init];
         }
 
-        [self.boundingBox setFrame:CGRectMake(self.cameraView.bounds.size.width/2 - 100,
-                                             self.cameraView.bounds.size.height/2 - 100,
-                                             200,
-                                             200)];
+//        [self.boundingBox setFrame:CGRectMake(self.cameraView.bounds.size.width/2 - 100,
+//                                             self.cameraView.bounds.size.height/2 - 100,
+//                                             200,
+//                                             200)];
+        [self.boundingBox setFrame:CGRectZero];
         self.boundingBox.layer.borderWidth = 2.0f;
         self.boundingBox.layer.borderColor = [[UIColor redColor] CGColor];
         self.boundingBox.layer.cornerRadius = 4.0f;
         [self.cameraView addSubview:self.boundingBox];
 
+
         // create a tracker object
         _tracker = Tracker::create("KCF");
 
-        // create ROI
+        // disabled while implemented selectable ROI
+        /*
+        
+         // create ROI
         regionOfInterest = Rect2d();
         regionOfInterest.x = 0;
         regionOfInterest.y = 0;
@@ -111,7 +116,8 @@ Rect2d regionOfInterest;
         regionOfInterest.height = 480;
 
         self.uiTimer = [NSTimer scheduledTimerWithTimeInterval:(NSTimeInterval)0.1 target:self selector:@selector(updateUIElements) userInfo:NULL repeats:YES];
-
+        
+        // */
     } else {
         [self.uiTimer invalidate];
         [self.boundingBox removeFromSuperview];
@@ -133,7 +139,8 @@ Rect2d regionOfInterest;
         // TODO: edge detection code goes here
     }
 
-    if (_isTracking == YES) {
+    if (_isTracking == YES && _tracker != nil) {
+
         // source: http://docs.opencv.org/3.1.0/d2/d0a/tutorial_introduction_to_tracker.html
 
         // create 3-channel copy of source image
@@ -144,6 +151,7 @@ Rect2d regionOfInterest;
         _tracker->init(targetImage, regionOfInterest);
 
         // update tracker
+        /*
         if (_tracker->update(targetImage, regionOfInterest) == YES) {
             CGRect roiFrame = CGRectMake(CGFloat(regionOfInterest.x),
                                          CGFloat(regionOfInterest.y),
@@ -159,6 +167,7 @@ Rect2d regionOfInterest;
                   self.boundingBox.frame.size.width,
                   self.boundingBox.frame.size.width);
         }
+        // */
     }
 }
 
@@ -175,6 +184,42 @@ Rect2d regionOfInterest;
     NSLog(@"%s", __func__);
 
     [_glView changePerspective:button];
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    CGRect startRect = CGRectMake([event.allTouches.anyObject locationInView:self.cameraView].x, [event.allTouches.anyObject locationInView:self.cameraView].y, 44, 44);
+    if (_isTracking == YES) {
+        self.boundingBox.frame = startRect;
+    }
+}
+
+-(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    CGRect endRect = CGRectMake(self.boundingBox.frame.origin.x,
+                                self.boundingBox.frame.origin.y,
+                                [event.allTouches.anyObject locationInView:self.cameraView].x - self.boundingBox.frame.origin.x,
+                                [event.allTouches.anyObject locationInView:self.cameraView].y - self.boundingBox.frame.origin.y);
+    if (_isTracking == YES) {
+        self.boundingBox.frame = endRect;
+    }
+}
+
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    CGRect endRect = CGRectMake(self.boundingBox.frame.origin.x,
+                                self.boundingBox.frame.origin.y,
+                                [event.allTouches.anyObject locationInView:self.cameraView].x - self.boundingBox.frame.origin.x,
+                                [event.allTouches.anyObject locationInView:self.cameraView].y - self.boundingBox.frame.origin.y);
+    if (_isTracking == YES) {
+        self.boundingBox.frame = endRect;
+        NSLog(@"selected image coords: (%.0f, %.0f, %.0f, %.0f)",
+              self.boundingBox.frame.origin.x,
+              self.boundingBox.frame.origin.y,
+              self.boundingBox.frame.size.width,
+              self.boundingBox.frame.size.height);
+
+        // get image from coordinates
+        //  set as ROI?
+        //  convert to Rect2d?
+    }
 }
 
 @end
