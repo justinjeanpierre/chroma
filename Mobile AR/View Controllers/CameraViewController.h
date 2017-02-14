@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *cameraView;
 @property (nonatomic, retain) BoxView *glView;
 @property (nonatomic, retain) IBOutlet UIButton *perspectiveButton;
+@property (nonatomic, retain) IBOutlet UIButton *toggleTrackingButton;
 
 -(IBAction)invertColors:(UIButton *)sender;
 -(IBAction)detectFeatures:(UIButton *)sender;

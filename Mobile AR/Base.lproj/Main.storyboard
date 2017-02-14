@@ -167,8 +167,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uMk-OV-MZg">
-                                <rect key="frame" x="20" y="551" width="35" height="30"/>
-                                <state key="normal" title="track"/>
+                                <rect key="frame" x="20" y="551" width="92" height="30"/>
+                                <state key="normal" title="start tracking"/>
                                 <connections>
                                     <action selector="toggleTracking:" destination="ib7-yu-0vu" eventType="touchUpInside" id="T8a-0y-4vq"/>
                                 </connections>
@@ -195,6 +195,7 @@
                     <connections>
                         <outlet property="cameraView" destination="791-1B-OUJ" id="jTj-1h-bMx"/>
                         <outlet property="perspectiveButton" destination="RWJ-dr-d91" id="Son-Re-6ax"/>
+                        <outlet property="toggleTrackingButton" destination="uMk-OV-MZg" id="NwT-8C-dLa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSA-Aw-zmq" userLabel="First Responder" sceneMemberID="firstResponder"/>

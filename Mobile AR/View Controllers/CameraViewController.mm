@@ -14,14 +14,17 @@ using namespace cv;
 @interface CameraViewController ()
 
 @property (nonatomic, strong) CvVideoCamera *videoCamera;
-@property (nonatomic, strong) UIButton *boundingBox;
+@property (nonatomic, strong) UIView *boundingBox;
 @property (nonatomic) Ptr<Tracker> tracker;
+
+@property (nonatomic, strong) NSTimer *boxTimer;
 
 @property (nonatomic) BOOL shouldInvertColors;
 @property (nonatomic) BOOL shouldDetectFeatures;
 @property (nonatomic) BOOL shouldShowCube;
 @property (nonatomic) BOOL isTracking;
 @property (nonatomic) BOOL isTrackerInitialized;
+@property (nonatomic) BOOL isRegionSpecified;
 
 @end
 
@@ -39,11 +42,11 @@ Rect2d regionOfInterest;
     self.videoCamera.delegate = self;
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
     self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
-    self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationLandscapeLeft;
+    self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
 
-    _shouldInvertColors = _shouldDetectFeatures = _shouldShowCube = _isTracking = _isTrackerInitialized = NO;
+    _shouldInvertColors = _shouldDetectFeatures = _shouldShowCube = _isTracking = _isTrackerInitialized = _isRegionSpecified = NO;
 
     [self.videoCamera start];
 
@@ -58,7 +61,7 @@ Rect2d regionOfInterest;
     // Dispose of any resources that can be recreated.
 
     // turn off image processing
-    _shouldInvertColors = _shouldDetectFeatures = _shouldShowCube = _isTracking = _isTrackerInitialized = NO;
+    _shouldInvertColors = _shouldDetectFeatures = _shouldShowCube = _isTracking = _isTrackerInitialized = _isRegionSpecified = NO;
 
     // destroy tracker
     _tracker->~Tracker();
@@ -96,23 +99,31 @@ Rect2d regionOfInterest;
     _isTracking = !_isTracking;
 
     if (_isTracking == YES) {
-        if (self.boundingBox == nil) {
-            self.boundingBox = [[UIButton alloc] initWithFrame:CGRectZero];
+        [_toggleTrackingButton setTitle:@"stop tracking" forState:UIControlStateNormal];
+        if (_boundingBox == nil) {
+            _boundingBox = [[UIView alloc] initWithFrame:CGRectZero];
         }
 
-        [self.boundingBox setFrame:CGRectZero];
-        self.boundingBox.layer.borderWidth = 2.0f;
-        self.boundingBox.layer.borderColor = [[UIColor redColor] CGColor];
-        self.boundingBox.layer.cornerRadius = 4.0f;
+        [_boundingBox setFrame:CGRectZero];
+        _boundingBox.layer.borderWidth = 2.0f;
+        _boundingBox.layer.borderColor = [[UIColor redColor] CGColor];
+        _boundingBox.layer.cornerRadius = 4.0f;
 
-        [self.cameraView addSubview:self.boundingBox];
+        [self.cameraView addSubview:_boundingBox];
 
         // create a tracker object
         if (_tracker == nil) {
             _tracker = Tracker::create("MIL");
+            /* // some other trackers
+            _tracker = Tracker::create("KCF"); // crashes
+            _tracker = Tracker::create("BOOSTING");
+            // */
         }
     } else {
-        [self.boundingBox removeFromSuperview];
+        [_toggleTrackingButton setTitle:@"start tracking" forState:UIControlStateNormal];
+        [_boxTimer invalidate];
+        [_boundingBox removeFromSuperview];
+        _isTrackerInitialized = _isRegionSpecified = NO;
     }
 }
 
@@ -139,33 +150,22 @@ Rect2d regionOfInterest;
         cvtColor(image, targetImage, CV_BGRA2BGR);
 
         // check whether touchesEnded:withEvent was called and produced a non-zero ROI
-        if (regionOfInterest.width != 0 && regionOfInterest.height != 0) {
+        if (_isRegionSpecified == YES) {
             if (_isTrackerInitialized == NO) {
                 _isTrackerInitialized = _tracker->init(targetImage, regionOfInterest);
-            }
-
-            // update ROI from tracker
-            if (_tracker->update(targetImage, regionOfInterest) == YES) {
-                CGRect roiFrame = CGRectMake(CGFloat(regionOfInterest.x),
-                                             CGFloat(regionOfInterest.y),
-                                             CGFloat(regionOfInterest.width),
-                                             CGFloat(regionOfInterest.height));
-
-                // updated displayed bounding box
-                self.boundingBox.frame = roiFrame;
-
-                NSLog(@"roi frame(%.0f, %.0f, %.0f, %.0f), new box frame(%.0f, %.0f, %.0f, %.0f)",
-                      roiFrame.origin.x,
-                      roiFrame.origin.y,
-                      roiFrame.size.width,
-                      roiFrame.size.height,
-                      self.boundingBox.frame.origin.x,
-                      self.boundingBox.frame.origin.y,
-                      self.boundingBox.frame.size.width,
-                      self.boundingBox.frame.size.height);
+            } else {
+                // update ROI from tracker
+                _tracker->update(targetImage, regionOfInterest);
             }
         }
     }
+}
+
+-(void)updateBoundingBox {
+    _boundingBox.frame = CGRectMake(CGFloat(regionOfInterest.x),
+                                        CGFloat(regionOfInterest.y),
+                                        CGFloat(regionOfInterest.width),
+                                        CGFloat(regionOfInterest.height));
 }
 
 #pragma mark - Touch handling
@@ -174,7 +174,7 @@ Rect2d regionOfInterest;
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if (_isTrackerInitialized == NO) {
         if (_isTracking == YES) {
-            self.boundingBox.frame = CGRectMake([event.allTouches.anyObject locationInView:self.cameraView].x,
+            _boundingBox.frame = CGRectMake([event.allTouches.anyObject locationInView:self.cameraView].x,
                                                 [event.allTouches.anyObject locationInView:self.cameraView].y,
                                                 0,
                                                 0);
@@ -185,10 +185,10 @@ Rect2d regionOfInterest;
 -(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if (_isTrackerInitialized == NO) {
         if (_isTracking == YES) {
-            self.boundingBox.frame = CGRectMake(self.boundingBox.frame.origin.x,
-                                                self.boundingBox.frame.origin.y,
-                                                [event.allTouches.anyObject locationInView:self.cameraView].x - self.boundingBox.frame.origin.x,
-                                                [event.allTouches.anyObject locationInView:self.cameraView].y - self.boundingBox.frame.origin.y);
+            _boundingBox.frame = CGRectMake(_boundingBox.frame.origin.x,
+                                                _boundingBox.frame.origin.y,
+                                                [event.allTouches.anyObject locationInView:self.cameraView].x - _boundingBox.frame.origin.x,
+                                                [event.allTouches.anyObject locationInView:self.cameraView].y - _boundingBox.frame.origin.y);
         }
     }
 }
@@ -196,22 +196,21 @@ Rect2d regionOfInterest;
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if (_isTrackerInitialized == NO) {
         if (_isTracking == YES) {
-            self.boundingBox.frame = CGRectMake(self.boundingBox.frame.origin.x,
-                                                self.boundingBox.frame.origin.y,
-                                                [event.allTouches.anyObject locationInView:self.cameraView].x - self.boundingBox.frame.origin.x,
-                                                [event.allTouches.anyObject locationInView:self.cameraView].y - self.boundingBox.frame.origin.y);
-
-            NSLog(@"selected image location: (%.0f, %.0f, %.0f, %.0f)",
-                  self.boundingBox.frame.origin.x,
-                  self.boundingBox.frame.origin.y,
-                  self.boundingBox.frame.size.width,
-                  self.boundingBox.frame.size.height);
+            _boundingBox.frame = CGRectMake(_boundingBox.frame.origin.x,
+                                                _boundingBox.frame.origin.y,
+                                                [event.allTouches.anyObject locationInView:self.cameraView].x - _boundingBox.frame.origin.x,
+                                                [event.allTouches.anyObject locationInView:self.cameraView].y - _boundingBox.frame.origin.y);
 
             // get coordinates from bounding box, set as ROI
-            regionOfInterest.x = self.boundingBox.frame.origin.x;
-            regionOfInterest.y = self.boundingBox.frame.origin.y;
-            regionOfInterest.width = self.boundingBox.frame.size.width;
-            regionOfInterest.height = self.boundingBox.frame.size.height;
+            regionOfInterest.x = _boundingBox.frame.origin.x;
+            regionOfInterest.y = _boundingBox.frame.origin.y;
+            regionOfInterest.width = _boundingBox.frame.size.width;
+            regionOfInterest.height = _boundingBox.frame.size.height;
+
+            // let tracker start tracking
+            _isRegionSpecified = YES;
+            // update UI from time to time (every ~3ms)
+            _boxTimer = [NSTimer scheduledTimerWithTimeInterval:0.003 target:self selector:@selector(updateBoundingBox) userInfo:nil repeats:YES];
         }
     }
 }
