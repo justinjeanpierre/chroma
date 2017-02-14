@@ -100,6 +100,7 @@ Rect2d regionOfInterest;
 
     if (_isTracking == YES) {
         [_toggleTrackingButton setTitle:@"stop tracking" forState:UIControlStateNormal];
+        
         if (_boundingBox == nil) {
             _boundingBox = [[UIView alloc] initWithFrame:CGRectZero];
         }
@@ -115,7 +116,7 @@ Rect2d regionOfInterest;
         if (_tracker == nil) {
             _tracker = Tracker::create("MIL");
             /* // some other trackers
-            _tracker = Tracker::create("KCF"); // crashes
+            _tracker = Tracker::create("KCF");  // crashes
             _tracker = Tracker::create("BOOSTING");
             // */
         }
@@ -163,9 +164,9 @@ Rect2d regionOfInterest;
 
 -(void)updateBoundingBox {
     _boundingBox.frame = CGRectMake(CGFloat(regionOfInterest.x),
-                                        CGFloat(regionOfInterest.y),
-                                        CGFloat(regionOfInterest.width),
-                                        CGFloat(regionOfInterest.height));
+                                    CGFloat(regionOfInterest.y),
+                                    CGFloat(regionOfInterest.width),
+                                    CGFloat(regionOfInterest.height));
 }
 
 #pragma mark - Touch handling
@@ -175,9 +176,9 @@ Rect2d regionOfInterest;
     if (_isTrackerInitialized == NO) {
         if (_isTracking == YES) {
             _boundingBox.frame = CGRectMake([event.allTouches.anyObject locationInView:self.cameraView].x,
-                                                [event.allTouches.anyObject locationInView:self.cameraView].y,
-                                                0,
-                                                0);
+                                            [event.allTouches.anyObject locationInView:self.cameraView].y,
+                                            0,
+                                            0);
         }
     }
 }
@@ -186,9 +187,9 @@ Rect2d regionOfInterest;
     if (_isTrackerInitialized == NO) {
         if (_isTracking == YES) {
             _boundingBox.frame = CGRectMake(_boundingBox.frame.origin.x,
-                                                _boundingBox.frame.origin.y,
-                                                [event.allTouches.anyObject locationInView:self.cameraView].x - _boundingBox.frame.origin.x,
-                                                [event.allTouches.anyObject locationInView:self.cameraView].y - _boundingBox.frame.origin.y);
+                                            _boundingBox.frame.origin.y,
+                                            [event.allTouches.anyObject locationInView:self.cameraView].x - _boundingBox.frame.origin.x,
+                                            [event.allTouches.anyObject locationInView:self.cameraView].y - _boundingBox.frame.origin.y);
         }
     }
 }
@@ -197,9 +198,9 @@ Rect2d regionOfInterest;
     if (_isTrackerInitialized == NO) {
         if (_isTracking == YES) {
             _boundingBox.frame = CGRectMake(_boundingBox.frame.origin.x,
-                                                _boundingBox.frame.origin.y,
-                                                [event.allTouches.anyObject locationInView:self.cameraView].x - _boundingBox.frame.origin.x,
-                                                [event.allTouches.anyObject locationInView:self.cameraView].y - _boundingBox.frame.origin.y);
+                                            _boundingBox.frame.origin.y,
+                                            [event.allTouches.anyObject locationInView:self.cameraView].x - _boundingBox.frame.origin.x,
+                                            [event.allTouches.anyObject locationInView:self.cameraView].y - _boundingBox.frame.origin.y);
 
             // get coordinates from bounding box, set as ROI
             regionOfInterest.x = _boundingBox.frame.origin.x;
