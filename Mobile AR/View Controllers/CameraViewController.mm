@@ -7,6 +7,7 @@
 //
 
 #import "CameraViewController.h"
+#include "roi.hpp"
 
 using namespace std;
 using namespace cv;

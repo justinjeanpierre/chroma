@@ -48,6 +48,9 @@
 		2D5DFEC01E288687008A411B /* SimpleVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D5DFEBA1E288687008A411B /* SimpleVertex.glsl */; };
 		2D83B8E91E1DF7FA00F1FFBB /* VertexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8E81E1DF7FA00F1FFBB /* VertexTests.swift */; };
 		2D83B8EB1E1DFA1000F1FFBB /* CubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83B8EA1E1DFA1000F1FFBB /* CubeTests.swift */; };
+		2D8DD8C11E4EC0ED001D17A4 /* roi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D8DD8BF1E4EC0ED001D17A4 /* roi.cpp */; };
+		2D8DD8C21E4EC0ED001D17A4 /* roi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D8DD8BF1E4EC0ED001D17A4 /* roi.cpp */; };
+		2D8DD8C31E4EC0ED001D17A4 /* roi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D8DD8BF1E4EC0ED001D17A4 /* roi.cpp */; };
 		2DC505D11E12EC7100EF4292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DC505D01E12EC7100EF4292 /* Assets.xcassets */; };
 		2DDFBC8A1DEB510B00730E8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFBC891DEB510B00730E8B /* AppDelegate.swift */; };
 		2DDFBC8F1DEB510B00730E8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DDFBC8D1DEB510B00730E8B /* Main.storyboard */; };
@@ -111,6 +114,8 @@
 		2D5DFEBA1E288687008A411B /* SimpleVertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleVertex.glsl; sourceTree = "<group>"; };
 		2D83B8E81E1DF7FA00F1FFBB /* VertexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VertexTests.swift; sourceTree = "<group>"; };
 		2D83B8EA1E1DFA1000F1FFBB /* CubeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubeTests.swift; sourceTree = "<group>"; };
+		2D8DD8BF1E4EC0ED001D17A4 /* roi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = roi.cpp; sourceTree = "<group>"; };
+		2D8DD8C01E4EC0ED001D17A4 /* roi.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = roi.hpp; sourceTree = "<group>"; };
 		2DA410591E1CB2270032FE76 /* FileBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileBrowser.framework; path = "DerivedData/Mobile AR/Build/Products/Debug-iphonesimulator/FileBrowser/FileBrowser.framework"; sourceTree = "<group>"; };
 		2DC505D01E12EC7100EF4292 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DDFBC861DEB510B00730E8B /* Mobile AR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mobile AR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,6 +214,8 @@
 			isa = PBXGroup;
 			children = (
 				2D5DFEA01E288417008A411B /* Cocos3DMathLib */,
+				2D8DD8BF1E4EC0ED001D17A4 /* roi.cpp */,
+				2D8DD8C01E4EC0ED001D17A4 /* roi.hpp */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -620,6 +627,7 @@
 				2D5DFEAE1E288417008A411B /* CC3GLMatrix.m in Sources */,
 				2D1E76B61E1CBC8800F2003E /* CameraViewController.mm in Sources */,
 				2D1EBF671DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
+				2D8DD8C11E4EC0ED001D17A4 /* roi.cpp in Sources */,
 				2D5DFE711E2863FC008A411B /* Vertex.swift in Sources */,
 				2D5DFE6E1E2863FC008A411B /* Cube.swift in Sources */,
 				2DDFBC8A1DEB510B00730E8B /* AppDelegate.swift in Sources */,
@@ -636,6 +644,7 @@
 				2D1EBF641DED2A01002D6999 /* ViewController.swift in Sources */,
 				2D1E76B71E1CBC8800F2003E /* CameraViewController.mm in Sources */,
 				2D5DFEAC1E288417008A411B /* CC3Foundation.m in Sources */,
+				2D8DD8C21E4EC0ED001D17A4 /* roi.cpp in Sources */,
 				2D5DFEB51E288417008A411B /* CC3Math.m in Sources */,
 				2D5DFE721E2863FC008A411B /* Vertex.swift in Sources */,
 				2D5DFEAF1E288417008A411B /* CC3GLMatrix.m in Sources */,
@@ -658,6 +667,7 @@
 				2D5DFEB01E288417008A411B /* CC3GLMatrix.m in Sources */,
 				2D1E76B81E1CBC8800F2003E /* CameraViewController.mm in Sources */,
 				2D1EBF691DED2A2C002D6999 /* CaptureViewController.swift in Sources */,
+				2D8DD8C31E4EC0ED001D17A4 /* roi.cpp in Sources */,
 				2D5DFE731E2863FC008A411B /* Vertex.swift in Sources */,
 				2D5DFE701E2863FC008A411B /* Cube.swift in Sources */,
 				2DDFBCAA1DEB510B00730E8B /* Mobile_ARUITests.swift in Sources */,
