@@ -12,6 +12,7 @@
 #include <opencv2/tracking.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/highgui.hpp>
+#include <opencv2/imgcodecs/ios.h>
 #include <iostream>
 #include <cstring>
 #import <UIKit/UIKit.h>
