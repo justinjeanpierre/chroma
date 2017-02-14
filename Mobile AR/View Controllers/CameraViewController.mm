@@ -114,10 +114,10 @@ Rect2d regionOfInterest;
 
         // create a tracker object
         if (_tracker == nil) {
-            _tracker = Tracker::create("MIL");
-            /* // some other trackers
-            _tracker = Tracker::create("KCF");  // crashes
-            _tracker = Tracker::create("BOOSTING");
+            //_tracker = Tracker::create("MIL");
+            // some other trackers
+            _tracker = Tracker::create("KCF");
+            //_tracker = Tracker::create("BOOSTING");
             // */
         }
     } else {
@@ -207,6 +207,12 @@ Rect2d regionOfInterest;
             regionOfInterest.y = _boundingBox.frame.origin.y;
             regionOfInterest.width = _boundingBox.frame.size.width;
             regionOfInterest.height = _boundingBox.frame.size.height;
+
+            NSLog(@"selected image location: (%.0f, %.0f, %.0f, %.0f)",
+                  regionOfInterest.x,
+                  regionOfInterest.y,
+                  regionOfInterest.width,
+                  regionOfInterest.height);
 
             // let tracker start tracking
             _isRegionSpecified = YES;
