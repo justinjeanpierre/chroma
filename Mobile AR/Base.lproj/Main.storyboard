@@ -139,7 +139,7 @@
                                 <rect key="frame" x="20" y="72" width="560" height="433"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Me4-iR-rIL">
-                                <rect key="frame" x="20" y="550" width="42" height="30"/>
+                                <rect key="frame" x="538" y="513" width="42" height="30"/>
                                 <state key="normal" title="colors"/>
                                 <connections>
                                     <action selector="invertColors:" destination="ib7-yu-0vu" eventType="touchUpInside" id="0ge-P9-wjF"/>
@@ -166,15 +166,24 @@
                                     <action selector="detectFeatures:" destination="ib7-yu-0vu" eventType="touchUpInside" id="NfJ-xs-rgg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uMk-OV-MZg">
+                                <rect key="frame" x="20" y="551" width="92" height="30"/>
+                                <state key="normal" title="start tracking"/>
+                                <connections>
+                                    <action selector="toggleTracking:" destination="ib7-yu-0vu" eventType="touchUpInside" id="T8a-0y-4vq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="791-1B-OUJ" firstAttribute="leading" secondItem="Me4-iR-rIL" secondAttribute="leading" id="13z-Z4-1Mz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Me4-iR-rIL" secondAttribute="trailing" id="03b-Fe-Gtd"/>
                             <constraint firstItem="KE1-hu-WFk" firstAttribute="top" secondItem="p2f-St-xDV" secondAttribute="bottom" constant="19" id="8kg-Sd-I36"/>
+                            <constraint firstItem="uMk-OV-MZg" firstAttribute="baseline" secondItem="p2f-St-xDV" secondAttribute="baseline" id="DHe-tS-KUj"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="leading" secondItem="c3I-A4-Hfi" secondAttribute="leadingMargin" id="Jts-cA-TNq"/>
-                            <constraint firstItem="Me4-iR-rIL" firstAttribute="baseline" secondItem="KLK-Tx-cYM" secondAttribute="baseline" id="ZYZ-rN-hGk"/>
+                            <constraint firstItem="uMk-OV-MZg" firstAttribute="leading" secondItem="791-1B-OUJ" secondAttribute="leading" id="Yam-N3-EAd"/>
+                            <constraint firstItem="Me4-iR-rIL" firstAttribute="baseline" secondItem="KLK-Tx-cYM" secondAttribute="baseline" constant="-37" id="ZYZ-rN-hGk"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="trailing" secondItem="c3I-A4-Hfi" secondAttribute="trailingMargin" id="ZuJ-mA-sRd"/>
-                            <constraint firstAttribute="bottom" secondItem="Me4-iR-rIL" secondAttribute="bottom" constant="20" symbolic="YES" id="cZj-Mr-7K3"/>
+                            <constraint firstAttribute="bottom" secondItem="Me4-iR-rIL" secondAttribute="bottom" constant="57" id="cZj-Mr-7K3"/>
                             <constraint firstItem="RWJ-dr-d91" firstAttribute="centerX" secondItem="p2f-St-xDV" secondAttribute="centerX" id="clW-j9-fkw"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="trailing" secondItem="KLK-Tx-cYM" secondAttribute="trailing" id="dhc-LF-s1w"/>
                             <constraint firstItem="p2f-St-xDV" firstAttribute="top" secondItem="RWJ-dr-d91" secondAttribute="bottom" constant="8" symbolic="YES" id="esF-Xl-vUf"/>
@@ -186,6 +195,7 @@
                     <connections>
                         <outlet property="cameraView" destination="791-1B-OUJ" id="jTj-1h-bMx"/>
                         <outlet property="perspectiveButton" destination="RWJ-dr-d91" id="Son-Re-6ax"/>
+                        <outlet property="toggleTrackingButton" destination="uMk-OV-MZg" id="NwT-8C-dLa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSA-Aw-zmq" userLabel="First Responder" sceneMemberID="firstResponder"/>
