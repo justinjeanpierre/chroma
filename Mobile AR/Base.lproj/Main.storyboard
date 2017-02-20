@@ -9,7 +9,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Mobile_AR" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -61,7 +61,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="show files"/>
                                 <connections>
-                                    <action selector="didPressShowFilesButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qN3-Bu-w9g"/>
+                                    <action selector="didPressShowFilesButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gwx-sp-3o8"/>
                                 </connections>
                             </button>
                         </subviews>
