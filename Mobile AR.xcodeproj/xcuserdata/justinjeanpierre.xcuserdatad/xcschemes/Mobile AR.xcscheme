@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2DDFBC851DEB510B00730E8B"
+               BlueprintIdentifier = "2D1BC9971E5AA614000D5CB7"
                BuildableName = "Mobile AR.app"
                BlueprintName = "Mobile AR"
-               ReferencedContainer = "container:Mobile AR.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2DDFBC991DEB510B00730E8B"
-               BuildableName = "Mobile ARTests.xctest"
-               BlueprintName = "Mobile ARTests"
                ReferencedContainer = "container:Mobile AR.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,14 +26,13 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2DDFBC991DEB510B00730E8B"
+               BlueprintIdentifier = "2D1BC9B01E5AA615000D5CB7"
                BuildableName = "Mobile ARTests.xctest"
                BlueprintName = "Mobile ARTests"
                ReferencedContainer = "container:Mobile AR.xcodeproj">
@@ -57,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2DDFBCA41DEB510B00730E8B"
+               BlueprintIdentifier = "2D1BC9BB1E5AA615000D5CB7"
                BuildableName = "Mobile ARUITests.xctest"
                BlueprintName = "Mobile ARUITests"
                ReferencedContainer = "container:Mobile AR.xcodeproj">
@@ -67,7 +52,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2DDFBC851DEB510B00730E8B"
+            BlueprintIdentifier = "2D1BC9971E5AA614000D5CB7"
             BuildableName = "Mobile AR.app"
             BlueprintName = "Mobile AR"
             ReferencedContainer = "container:Mobile AR.xcodeproj">
@@ -90,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2DDFBC851DEB510B00730E8B"
+            BlueprintIdentifier = "2D1BC9971E5AA614000D5CB7"
             BuildableName = "Mobile AR.app"
             BlueprintName = "Mobile AR"
             ReferencedContainer = "container:Mobile AR.xcodeproj">
@@ -109,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2DDFBC851DEB510B00730E8B"
+            BlueprintIdentifier = "2D1BC9971E5AA614000D5CB7"
             BuildableName = "Mobile AR.app"
             BlueprintName = "Mobile AR"
             ReferencedContainer = "container:Mobile AR.xcodeproj">
