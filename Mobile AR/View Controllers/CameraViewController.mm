@@ -112,7 +112,9 @@ Rect2d regionOfInterest;
 -(IBAction)updateCube:(UIButton *)sender {
     NSLog(@"%s", __func__);
 
-    [_glView updateBoxWithPoint:CGPoint3DMake(2, 2, 0)];
+    // need a reliable way to determine which
+    // of the box's corners should be updated.
+    [_glView updateBoxWithPoint:CGPoint3DMake(2, 2, 2)];
 }
 
 #pragma mark - Button actions - Tracker
