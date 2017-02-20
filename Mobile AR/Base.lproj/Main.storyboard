@@ -173,6 +173,13 @@
                                     <action selector="toggleTracking:" destination="ib7-yu-0vu" eventType="touchUpInside" id="T8a-0y-4vq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYQ-ZC-4bx">
+                                <rect key="frame" x="20" y="513" width="86" height="30"/>
+                                <state key="normal" title="update cube"/>
+                                <connections>
+                                    <action selector="updateCube:" destination="ib7-yu-0vu" eventType="touchUpInside" id="8PF-On-zKn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -180,6 +187,7 @@
                             <constraint firstItem="KE1-hu-WFk" firstAttribute="top" secondItem="p2f-St-xDV" secondAttribute="bottom" constant="19" id="8kg-Sd-I36"/>
                             <constraint firstItem="uMk-OV-MZg" firstAttribute="baseline" secondItem="p2f-St-xDV" secondAttribute="baseline" id="DHe-tS-KUj"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="leading" secondItem="c3I-A4-Hfi" secondAttribute="leadingMargin" id="Jts-cA-TNq"/>
+                            <constraint firstItem="WYQ-ZC-4bx" firstAttribute="leading" secondItem="uMk-OV-MZg" secondAttribute="leading" id="YOV-pd-0RF"/>
                             <constraint firstItem="uMk-OV-MZg" firstAttribute="leading" secondItem="791-1B-OUJ" secondAttribute="leading" id="Yam-N3-EAd"/>
                             <constraint firstItem="Me4-iR-rIL" firstAttribute="baseline" secondItem="KLK-Tx-cYM" secondAttribute="baseline" constant="-37" id="ZYZ-rN-hGk"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="trailing" secondItem="c3I-A4-Hfi" secondAttribute="trailingMargin" id="ZuJ-mA-sRd"/>
@@ -187,6 +195,7 @@
                             <constraint firstItem="RWJ-dr-d91" firstAttribute="centerX" secondItem="p2f-St-xDV" secondAttribute="centerX" id="clW-j9-fkw"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="trailing" secondItem="KLK-Tx-cYM" secondAttribute="trailing" id="dhc-LF-s1w"/>
                             <constraint firstItem="p2f-St-xDV" firstAttribute="top" secondItem="RWJ-dr-d91" secondAttribute="bottom" constant="8" symbolic="YES" id="esF-Xl-vUf"/>
+                            <constraint firstItem="WYQ-ZC-4bx" firstAttribute="baseline" secondItem="RWJ-dr-d91" secondAttribute="baseline" id="gS1-Hs-5fG"/>
                             <constraint firstItem="RWJ-dr-d91" firstAttribute="top" secondItem="791-1B-OUJ" secondAttribute="bottom" constant="8" symbolic="YES" id="h0S-Gv-rNs"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="top" secondItem="GB6-D9-LSe" secondAttribute="bottom" constant="8" symbolic="YES" id="k9u-Kl-od4"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="centerX" secondItem="RWJ-dr-d91" secondAttribute="centerX" id="mDf-4h-qgD"/>

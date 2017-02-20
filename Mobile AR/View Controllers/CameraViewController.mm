@@ -49,22 +49,24 @@ Rect2d regionOfInterest;
     _shouldInvertColors = _shouldDetectFeatures = _shouldShowCube = _isTracking = _isTrackerInitialized = _isRegionSpecified = NO;
 
     [self.videoCamera start];
-
-    // configure virtual cube
-    _glView = [[BoxView alloc] initWithFrame:self.view.frame];
-    [self.cameraView addSubview:_glView];
-    _glView.alpha = (_shouldShowCube == YES);
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 
     // turn off image processing
-    _shouldInvertColors = _shouldDetectFeatures = _shouldShowCube = _isTracking = _isTrackerInitialized = _isRegionSpecified = NO;
+    _shouldInvertColors = _shouldDetectFeatures = NO;
+
+    // turn off cube
+    _shouldShowCube = NO;
+
+    // turn off tracker
+    _isTracking = _isTrackerInitialized = _isRegionSpecified = NO;
 
     // destroy tracker
-    _tracker->~Tracker();
+    if (_tracker) {
+        _tracker->~Tracker();
+    }
 }
 
 #pragma mark - Button actions - Image colour
@@ -86,12 +88,31 @@ Rect2d regionOfInterest;
     _shouldShowCube = !_shouldShowCube;
 
     _glView.alpha = (_shouldShowCube == YES);
+
+    // configure virtual cube
+    if (_shouldShowCube == YES) {
+        if (!_glView) {
+            _glView = [[BoxView alloc] initWithFrame:self.cameraView.frame];
+        } else {
+            [_glView setFrame:self.cameraView.frame];
+        }
+
+        [self.cameraView addSubview:_glView];
+    } else {
+        [_glView removeFromSuperview];
+    }
 }
 
 -(IBAction)toggleCubePerpective:(UIButton *)button {
     NSLog(@"%s", __func__);
 
     [_glView changePerspective:button];
+}
+
+-(IBAction)updateCube:(UIButton *)sender {
+    NSLog(@"%s", __func__);
+
+    [_glView updateBoxWithPoint:CGPoint3DMake(2, 2, 0)];
 }
 
 #pragma mark - Button actions - Tracker
@@ -115,10 +136,8 @@ Rect2d regionOfInterest;
         // create a tracker object
         if (_tracker == nil) {
             _tracker = Tracker::create("MIL");
-            // some other trackers
 //            _tracker = Tracker::create("KCF");
-            //_tracker = Tracker::create("BOOSTING");
-            // */
+//            _tracker = Tracker::create("BOOSTING");
         }
     } else {
         [_toggleTrackingButton setTitle:@"start tracking" forState:UIControlStateNormal];

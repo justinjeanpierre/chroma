@@ -17,7 +17,7 @@
 #include <cstring>
 #import <UIKit/UIKit.h>
 #import "BoxView.h"
-
+#import "CGPoint_Extensions.h"
 
 @interface CameraViewController : UIViewController <CvVideoCameraDelegate>
 

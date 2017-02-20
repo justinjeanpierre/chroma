@@ -19,7 +19,7 @@ typedef struct {
     float Color[4];
 } BoxVertex;
 
-const BoxVertex BoxVertices[] = {
+BoxVertex BoxVertices[] = {
     {{1, -1, 0},    RED},
     {{1, 1, 0},     RED},
     {{-1, 1, 0},    GREEN},
