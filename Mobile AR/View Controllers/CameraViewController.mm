@@ -64,7 +64,9 @@ Rect2d regionOfInterest;
     _shouldInvertColors = _shouldDetectFeatures = _shouldShowCube = _isTracking = _isTrackerInitialized = _isRegionSpecified = NO;
 
     // destroy tracker
-    _tracker->~Tracker();
+    if (_tracker) {
+        _tracker->~Tracker();
+    }
 }
 
 #pragma mark - Button actions - Image colour

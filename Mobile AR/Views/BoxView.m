@@ -14,7 +14,7 @@
 #import "Structures.h"
 
 @interface BoxView () {
-    CMMotionManager *manager;
+    CMMotionManager *motionManager;
     GLuint vertexBuffer;
     GLuint indexBuffer;
 
@@ -58,7 +58,11 @@
 
         frameCount = 0;
         if (SHOW_FPS) {
-            [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(displayFPSrate) userInfo:nil repeats:YES];
+            [NSTimer scheduledTimerWithTimeInterval:1
+                                             target:self
+                                           selector:@selector(displayFPSrate)
+                                           userInfo:nil
+                                            repeats:YES];
         }
 
         _isPerspectiveInsideCube = NO;
@@ -70,8 +74,10 @@
 #pragma mark - OpenGL - run
 
 -(void)render:(CADisplayLink *)displayLink {
+    // for fps counter
     frameCount++;
 
+    // clear colours
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
@@ -79,7 +85,7 @@
     CC3GLMatrix *projection = [CC3GLMatrix matrix];
     float h = 4.0f * self.frame.size.height / self.frame.size.width;
 
-    if (_isPerspectiveInsideCube) {
+    if (_isPerspectiveInsideCube) { // inside box looking out
         [projection populateFromFrustumLeft:-3
                                    andRight:3
                                   andBottom:-6
@@ -91,13 +97,14 @@
 
         CC3GLMatrix *modelView = [CC3GLMatrix matrix];
         [modelView populateFromTranslation:CC3VectorMake(0, 0, -4)];
-        [modelView rotateBy:CC3VectorMake(-57 * manager.deviceMotion.attitude.pitch,
-                                          -57 * manager.deviceMotion.attitude.roll,
-                                          -57 * manager.deviceMotion.attitude.yaw)];
+        // use device attitude to rotate box:
+        [modelView rotateBy:CC3VectorMake(-57 * motionManager.deviceMotion.attitude.pitch,
+                                          -57 * motionManager.deviceMotion.attitude.roll,
+                                          -57 * motionManager.deviceMotion.attitude.yaw)];
         [modelView scaleBy:CC3VectorMake(3, 3, 6)];
 
         glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
-    } else {
+    } else { // outside box looking in
         [projection populateFromFrustumLeft:-2
                                    andRight:2
                                   andBottom:-h/2
@@ -109,28 +116,34 @@
 
         CC3GLMatrix *modelView = [CC3GLMatrix matrix];
         [modelView populateFromTranslation:CC3VectorMake(0, 0, -7)];
-        [modelView rotateBy:CC3VectorMake(-57 * manager.deviceMotion.attitude.pitch,
-                                          -57 * manager.deviceMotion.attitude.roll,
-                                          -57 * manager.deviceMotion.attitude.yaw)];
+        // use device attitude to rotate box:
+        [modelView rotateBy:CC3VectorMake(-57 * motionManager.deviceMotion.attitude.pitch,
+                                          -57 * motionManager.deviceMotion.attitude.roll,
+                                          -57 * motionManager.deviceMotion.attitude.yaw)];
         [modelView scaleByZ:2];
 
         glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
     }
 
-    // uncomment this section to output the device's orientation
-    // (according to CC3GL)
-    /*
-    NSLog(@"(x: %f, y: %f, z: %f)", modelView.extractForwardDirection.x,
-          modelView.extractForwardDirection.y,
-          modelView.extractForwardDirection.z);
-    // */
-
     glViewport(0, 0, self.frame.size.width, self.frame.size.height);
 
-    glVertexAttribPointer(_positionSlot, 3, GL_FLOAT, GL_FALSE, sizeof(BoxVertex), 0);
-    glVertexAttribPointer(_colorSlot, 4, GL_FLOAT, GL_FALSE, sizeof(BoxVertex), (GLvoid *) (sizeof(float)*3));
+    glVertexAttribPointer(_positionSlot,
+                          3,
+                          GL_FLOAT,
+                          GL_FALSE,
+                          sizeof(BoxVertex),
+                          0);
+    glVertexAttribPointer(_colorSlot,
+                          4,
+                          GL_FLOAT,
+                          GL_FALSE,
+                          sizeof(BoxVertex),
+                          (GLvoid *) (sizeof(float)*3));
 
-    glDrawElements(GL_TRIANGLES, sizeof(BoxIndices)/sizeof(BoxIndices[0]), GL_UNSIGNED_BYTE, 0);
+    glDrawElements(GL_TRIANGLES,
+                   sizeof(BoxIndices)/sizeof(BoxIndices[0]),
+                   GL_UNSIGNED_BYTE,
+                   0);
 
     [_context presentRenderbuffer:GL_RENDERBUFFER];
 }
@@ -180,9 +193,15 @@
     GLuint framebuffer;
     glGenFramebuffers(1, &framebuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, _colorRenderBuffer);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER,
+                              GL_COLOR_ATTACHMENT0,
+                              GL_RENDERBUFFER,
+                              _colorRenderBuffer);
 
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthRenderBuffer);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER,
+                              GL_DEPTH_ATTACHMENT,
+                              GL_RENDERBUFFER,
+                              _depthRenderBuffer);
 }
 
 -(void)setupVBOs {
@@ -204,9 +223,12 @@
 #pragma mark - OpenGL methods - shader
 
 -(GLuint)compileShader:(NSString*)shaderName withType:(GLenum)shaderType {
-    NSString *shaderPath = [[NSBundle mainBundle] pathForResource:shaderName ofType:@"glsl"];
+    NSString *shaderPath = [[NSBundle mainBundle] pathForResource:shaderName
+                                                           ofType:@"glsl"];
     NSError *error;
-    NSString *shaderString = [NSString stringWithContentsOfFile:shaderPath encoding:NSUTF8StringEncoding error:&error];
+    NSString *shaderString = [NSString stringWithContentsOfFile:shaderPath
+                                                       encoding:NSUTF8StringEncoding
+                                                          error:&error];
 
     if (!shaderString) {
         NSLog(@"Error loading shader: %@", error.localizedDescription);
@@ -266,8 +288,8 @@
 
 #pragma mark - CoreMotion - setup
 -(void)setupMotion {
-    manager = [[CMMotionManager alloc] init];
-    [manager startDeviceMotionUpdates];
+    motionManager = [[CMMotionManager alloc] init];
+    [motionManager startDeviceMotionUpdates];
 }
 
 @end
