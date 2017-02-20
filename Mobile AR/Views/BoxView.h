@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
+#import "CGPoint_Extensions.h"
 
 @interface BoxView : UIView {
     CAEAGLLayer *_eaglLayer;
@@ -25,5 +26,7 @@
 }
 
 -(void)changePerspective:(UIButton *)sender;
+-(void)updateBoxWithPoint:(CGPoint3D)newPoint;
+-(void)updateVertexAtPoint:(CGPoint3D)oldPoint toPoint:(CGPoint3D)newPoint;
 
 @end

@@ -214,6 +214,29 @@
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(BoxIndices), BoxIndices, GL_STATIC_DRAW);
 }
 
+-(void)updateBoxWithPoint:(CGPoint3D)newPoint {
+    NSLog(@"%s (%.0f, %.0f, %.0f)", __func__, newPoint.x, newPoint.y, newPoint.z);
+
+    // (determine which vertex to update ... ?)
+
+    // change to new value
+    BoxVertices[1].Position[0] = newPoint.x;
+    BoxVertices[1].Position[1] = newPoint.y;
+    BoxVertices[1].Position[2] = newPoint.z;
+
+    // update buffer
+    glBufferData(GL_ARRAY_BUFFER,
+                 sizeof(BoxVertices),
+                 BoxVertices,
+                 GL_STATIC_DRAW);
+}
+
+-(void)updateVertexAtPoint:(CGPoint3D)oldPoint toPoint:(CGPoint3D)newPoint {
+    // call this when updating a vertex at a specified 3d-coordinate point
+    // to newPoint's 3d coordinates.
+    NSLog(@"%s", __func__);
+}
+
 -(void)setupDisplayLink {
     CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self
                                                              selector:@selector(render:)];
