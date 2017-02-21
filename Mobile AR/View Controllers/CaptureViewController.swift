@@ -19,14 +19,14 @@ class CaptureViewController: UIViewController, AVCaptureFileOutputRecordingDeleg
     var isRecording = false;
     var output: AVCaptureMovieFileOutput?
 
-    @IBAction func toggleRecordStopState(sender: UIButton) {
+    @IBAction func toggleRecordStopState(_ sender: UIButton) {
         isRecording = !isRecording
 
         if isRecording {
-            toggleRecordingButton.setTitle("stop", forState: .Normal)
+            toggleRecordingButton.setTitle("stop", for: UIControlState())
             startRecording()
         } else {
-            toggleRecordingButton.setTitle("record", forState: .Normal)
+            toggleRecordingButton.setTitle("record", for: UIControlState())
             stopRecording()
         }
     }
@@ -36,15 +36,15 @@ class CaptureViewController: UIViewController, AVCaptureFileOutputRecordingDeleg
 
         // configure view
         title = "record video"
-        toggleRecordingButton.setTitle("record", forState: .Normal)
+        toggleRecordingButton.setTitle("record", for: UIControlState())
 
         // configure capture devices
         captureSession.sessionPreset = AVCaptureSessionPreset640x480
 
         for device in AVCaptureDevice.devices() {
-            if device.hasMediaType(AVMediaTypeVideo)
-                && device.position == AVCaptureDevicePosition.Back
-                && device.supportsAVCaptureSessionPreset(AVCaptureSessionPreset1920x1080) {
+            if (device as AnyObject).hasMediaType(AVMediaTypeVideo)
+                && (device as AnyObject).position == AVCaptureDevicePosition.back
+                && (device as AnyObject).supportsAVCaptureSessionPreset(AVCaptureSessionPreset1920x1080) {
                 do {
                     let videoInput = try AVCaptureDeviceInput.init(device: device as! AVCaptureDevice)
                     if self.captureSession.canAddInput(videoInput) {
@@ -53,7 +53,7 @@ class CaptureViewController: UIViewController, AVCaptureFileOutputRecordingDeleg
                 } catch let error as NSError {
                     print(error.localizedDescription)
                 }
-            } else if device.hasMediaType(AVMediaTypeAudio) {
+            } else if (device as AnyObject).hasMediaType(AVMediaTypeAudio) {
                 do {
                     let audioInput = try AVCaptureDeviceInput.init(device: device as! AVCaptureDevice)
                     if self.captureSession.canAddInput(audioInput) {
@@ -70,10 +70,10 @@ class CaptureViewController: UIViewController, AVCaptureFileOutputRecordingDeleg
         // add the overlay to the view
         let viewFinder = AVCaptureVideoPreviewLayer(session: captureSession)
         let targetView = view
-        let viewLayer  = targetView.layer
+        let viewLayer  = targetView?.layer
 
-        viewFinder.frame = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)
-        viewLayer.addSublayer(viewFinder)
+        viewFinder?.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        viewLayer?.addSublayer(viewFinder!)
 
         // configure AVCaptureMovieOutput object here
         output = AVCaptureMovieFileOutput()
@@ -87,11 +87,11 @@ class CaptureViewController: UIViewController, AVCaptureFileOutputRecordingDeleg
         captureSession.startRunning()
 
         // generate path to file
-        let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         let documentsDirectory = paths[0]
-        let fileURL = NSURL(fileURLWithPath: documentsDirectory.stringByAppendingString("/\(NSDate()).mov"), isDirectory: false)
+        let fileURL = URL(fileURLWithPath: documentsDirectory + "/\(Date()).mov", isDirectory: false)
 
-        output?.startRecordingToOutputFileURL(fileURL, recordingDelegate: self)
+        output?.startRecording(toOutputFileURL: fileURL, recordingDelegate: self)
     }
 
     func stopRecording() {
@@ -101,7 +101,7 @@ class CaptureViewController: UIViewController, AVCaptureFileOutputRecordingDeleg
 
     //  MARK: AVCaptureFileOutputRecordingDelegate methods
 
-    func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
+    func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
         print(#function)
     }
 }
