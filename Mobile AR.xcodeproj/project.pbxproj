@@ -44,9 +44,6 @@
 		2D249B741E5AA88500FA012F /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B591E5AA88500FA012F /* CaptureViewController.swift */; };
 		2D249B751E5AA88500FA012F /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B591E5AA88500FA012F /* CaptureViewController.swift */; };
 		2D249B761E5AA88500FA012F /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B591E5AA88500FA012F /* CaptureViewController.swift */; };
-		2D249B771E5AA88500FA012F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B5B1E5AA88500FA012F /* ViewController.m */; };
-		2D249B781E5AA88500FA012F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B5B1E5AA88500FA012F /* ViewController.m */; };
-		2D249B791E5AA88500FA012F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B5B1E5AA88500FA012F /* ViewController.m */; };
 		2D249B7A1E5AA88500FA012F /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B5E1E5AA88500FA012F /* BoxView.m */; };
 		2D249B7B1E5AA88500FA012F /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B5E1E5AA88500FA012F /* BoxView.m */; };
 		2D249B7C1E5AA88500FA012F /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B5E1E5AA88500FA012F /* BoxView.m */; };
@@ -111,8 +108,6 @@
 		2D249B571E5AA88500FA012F /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		2D249B581E5AA88500FA012F /* CameraViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraViewController.mm; sourceTree = "<group>"; };
 		2D249B591E5AA88500FA012F /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
-		2D249B5A1E5AA88500FA012F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		2D249B5B1E5AA88500FA012F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		2D249B5D1E5AA88500FA012F /* BoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxView.h; sourceTree = "<group>"; };
 		2D249B5E1E5AA88500FA012F /* BoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxView.m; sourceTree = "<group>"; };
 		2DC9F7B01E5AB3110076F562 /* CGPoint_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPoint_Extensions.h; sourceTree = "<group>"; };
@@ -308,8 +303,6 @@
 				2D249B571E5AA88500FA012F /* CameraViewController.h */,
 				2D249B581E5AA88500FA012F /* CameraViewController.mm */,
 				2D249B591E5AA88500FA012F /* CaptureViewController.swift */,
-				2D249B5A1E5AA88500FA012F /* ViewController.h */,
-				2D249B5B1E5AA88500FA012F /* ViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -644,7 +637,6 @@
 				2D249B651E5AA88500FA012F /* CC3Kazmath.c in Sources */,
 				2D1BC9A01E5AA614000D5CB7 /* AppDelegate.m in Sources */,
 				2D249B5F1E5AA88500FA012F /* CC3Foundation.m in Sources */,
-				2D249B771E5AA88500FA012F /* ViewController.m in Sources */,
 				2D249B741E5AA88500FA012F /* CaptureViewController.swift in Sources */,
 				2D249B621E5AA88500FA012F /* CC3GLMatrix.m in Sources */,
 				2D249B681E5AA88500FA012F /* CC3Math.m in Sources */,
@@ -660,7 +652,6 @@
 				2D249B7B1E5AA88500FA012F /* BoxView.m in Sources */,
 				2D249B601E5AA88500FA012F /* CC3Foundation.m in Sources */,
 				2D1BC9B61E5AA615000D5CB7 /* Mobile_ARTests.m in Sources */,
-				2D249B781E5AA88500FA012F /* ViewController.m in Sources */,
 				2D249B751E5AA88500FA012F /* CaptureViewController.swift in Sources */,
 				2D249B661E5AA88500FA012F /* CC3Kazmath.c in Sources */,
 				2D249B691E5AA88500FA012F /* CC3Math.m in Sources */,
@@ -676,7 +667,6 @@
 				2D249B7C1E5AA88500FA012F /* BoxView.m in Sources */,
 				2D249B611E5AA88500FA012F /* CC3Foundation.m in Sources */,
 				2D1BC9C11E5AA615000D5CB7 /* Mobile_ARUITests.m in Sources */,
-				2D249B791E5AA88500FA012F /* ViewController.m in Sources */,
 				2D249B761E5AA88500FA012F /* CaptureViewController.swift in Sources */,
 				2D249B671E5AA88500FA012F /* CC3Kazmath.c in Sources */,
 				2D249B6A1E5AA88500FA012F /* CC3Math.m in Sources */,

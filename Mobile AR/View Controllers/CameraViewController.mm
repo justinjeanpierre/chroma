@@ -7,6 +7,7 @@
 //
 
 #import "CameraViewController.h"
+#import "FileBrowser-swift.h"
 
 using namespace std;
 using namespace cv;
@@ -35,7 +36,13 @@ Rect2d regionOfInterest;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self setTitle:@"OpenCV tool"];
+    [self setTitle:@"Mobile AR"];
+
+    if (self.navigationItem.rightBarButtonItem != nil) {
+        [self.navigationItem.rightBarButtonItem setTarget:self];
+        [self.navigationItem.rightBarButtonItem setAction:@selector(didPressShowFilesButton:)];
+    }
+
     self.cameraView.clipsToBounds = YES;
 
     self.videoCamera = [[CvVideoCamera alloc] initWithParentView:self.cameraView];
@@ -67,6 +74,11 @@ Rect2d regionOfInterest;
     if (_tracker) {
         _tracker->~Tracker();
     }
+}
+
+#pragma mark - Button actions - Show files
+-(IBAction)didPressShowFilesButton:(UIButton *) sender {
+    [self presentViewController:[[FileBrowser alloc] init] animated:NO completion:^{}];
 }
 
 #pragma mark - Button actions - Image colour
