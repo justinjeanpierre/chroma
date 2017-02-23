@@ -19,6 +19,11 @@
     [super viewDidLoad];
 
     [self setTitle:@"Mobile AR"];
+
+    if (self.navigationItem.rightBarButtonItem != nil) {
+        [self.navigationItem.rightBarButtonItem setTarget:self];
+        [self.navigationItem.rightBarButtonItem setAction:@selector(didPressShowFilesButton:)];
+    }
 }
 
 -(IBAction)didPressShowFilesButton:(UIButton *) sender {
