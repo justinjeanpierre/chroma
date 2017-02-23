@@ -20,14 +20,14 @@ typedef struct {
 } BoxVertex;
 
 BoxVertex BoxVertices[] = {
-    {{1, -1, 0},    RED},
-    {{1, 1, 0},     RED},
-    {{-1, 1, 0},    GREEN},
-    {{-1, -1, 0},   GREEN},
-    {{1, -1, -1},   RED},
-    {{1, 1, -1},    RED},
-    {{-1, 1, -1},   GREEN},
-    {{-1, -1, -1},  GREEN}
+    {{1,  -1,  0},   RED},   //
+    {{1,   1,  0},   RED},   //
+    {{-1,  1,  0},   GREEN}, //
+    {{-1, -1,  0},   GREEN}, //
+    {{1,  -1, -1},   RED},   //
+    {{1,   1, -1},   RED},   //
+    {{-1,  1, -1},   GREEN}, //
+    {{-1, -1, -1},   GREEN}  //
 };
 
 const GLubyte BoxIndices[] = {

@@ -207,7 +207,7 @@
 -(void)setupVBOs {
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(BoxVertices), BoxVertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(BoxVertices), BoxVertices, GL_DYNAMIC_DRAW);
 
     glGenBuffers(1, &indexBuffer);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
@@ -218,17 +218,17 @@
     NSLog(@"%s (%.0f, %.0f, %.0f)", __func__, newPoint.x, newPoint.y, newPoint.z);
 
     // (determine which vertex to update ... ?)
+    int vertexSize = sizeof(BoxVertices)/sizeof(BoxVertex); // size of each array within BoxVertices[]
+    int vertexIndex = vertexSize * 5;                       // which (0-indexed) point in BoxVertices[]?
 
-    // change to new value
-    BoxVertices[1].Position[0] = newPoint.x;
-    BoxVertices[1].Position[1] = newPoint.y;
-    BoxVertices[1].Position[2] = newPoint.z;
+    // new data
+    BoxVertex newVertexData = {{newPoint.x, newPoint.y, -1}, BLUE}; // shows changed vertex in blue
 
-    // update buffer
-    glBufferData(GL_ARRAY_BUFFER,
-                 sizeof(BoxVertices),
-                 BoxVertices,
-                 GL_STATIC_DRAW);
+    // update buffer with new data
+    glBufferSubData(GL_ARRAY_BUFFER,        // target
+                    vertexIndex,            // offset
+                    sizeof(newVertexData),  // size of new data
+                    &newVertexData);        // pointer to new data
 }
 
 -(void)updateVertexAtPoint:(CGPoint3D)oldPoint toPoint:(CGPoint3D)newPoint {
