@@ -23,6 +23,11 @@
     GLuint _modelViewUniform;
     float _currentRotation;
     GLuint _depthRenderBuffer;
+
+    // texture
+    GLuint _floorTexture;
+    GLuint _textureCoordinateSlot;
+    GLuint _textureUniform;
 }
 
 -(void)changePerspective:(UIButton *)sender;
