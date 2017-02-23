@@ -17,17 +17,18 @@
 typedef struct {
     float Position[3];
     float Color[4];
+    float TextureCoordinate[2];
 } BoxVertex;
 
 BoxVertex BoxVertices[] = {
-    {{1, -1, 0},    RED},
-    {{1, 1, 0},     RED},
-    {{-1, 1, 0},    GREEN},
-    {{-1, -1, 0},   GREEN},
-    {{1, -1, -1},   RED},
-    {{1, 1, -1},    RED},
-    {{-1, 1, -1},   GREEN},
-    {{-1, -1, -1},  GREEN}
+    {{1, -1, 0},    RED,    {1, 0}},
+    {{1, 1, 0},     RED,    {1, 1}},
+    {{-1, 1, 0},    GREEN,  {0, 1}},
+    {{-1, -1, 0},   GREEN,  {0, 0}},
+    {{1, -1, -1},   RED,    {1, 0}},
+    {{1, 1, -1},    RED,    {1, 1}},
+    {{-1, 1, -1},   GREEN,  {0, 1}},
+    {{-1, -1, -1},  GREEN,  {0, 0}}
 };
 
 const GLubyte BoxIndices[] = {

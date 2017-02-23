@@ -103,6 +103,7 @@ Rect2d regionOfInterest;
 
     // configure virtual cube
     if (_shouldShowCube == YES) {
+        [button setTitle:@"hide cube" forState:UIControlStateNormal];
         if (!_glView) {
             _glView = [[BoxView alloc] initWithFrame:self.cameraView.frame];
         } else {
@@ -111,6 +112,7 @@ Rect2d regionOfInterest;
 
         [self.cameraView addSubview:_glView];
     } else {
+        [button setTitle:@"show cube" forState:UIControlStateNormal];
         [_glView removeFromSuperview];
     }
 }
