@@ -126,8 +126,6 @@ Rect2d regionOfInterest;
 -(IBAction)updateCube:(UIButton *)sender {
     NSLog(@"%s", __func__);
 
-    // need a reliable way to determine which
-    // of the box's corners should be updated.
     [_glView updateBoxWithPoint:CGPoint3DMake(2, 2, 2)];
 }
 
@@ -252,7 +250,11 @@ Rect2d regionOfInterest;
             // let tracker start tracking
             _isRegionSpecified = YES;
             // update UI from time to time (every ~3ms)
-            _boxTimer = [NSTimer scheduledTimerWithTimeInterval:0.003 target:self selector:@selector(updateBoundingBox) userInfo:nil repeats:YES];
+            _boxTimer = [NSTimer scheduledTimerWithTimeInterval:0.003
+                                                         target:self
+                                                       selector:@selector(updateBoundingBox)
+                                                       userInfo:nil
+                                                        repeats:YES];
         }
     }
 }
