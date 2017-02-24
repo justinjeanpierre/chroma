@@ -164,7 +164,15 @@ Rect2d regionOfInterest;
 #pragma mark - CvVideoCameraDelegate methods
 -(void)processImage:(cv::Mat &)image {
     Mat image_copy;
+    Mat gray_image;
+    Mat edges;
     cvtColor(image, image_copy, CV_BGRA2BGR);
+    cvtColor(image, gray_image, CV_BGR2GRAY);
+    vector<vector<cv::Point> > contours;
+    vector<Vec4i> hierarchy;
+    int largest_area=0;
+    int largest_contour_index=0;
+    cv::Rect bounding_rect;
 
     if (_shouldInvertColors == YES) {
         // invert image
@@ -173,7 +181,30 @@ Rect2d regionOfInterest;
     }
 
     if (_shouldDetectFeatures == YES) {
-        // TODO: edge detection code goes here
+        // edge detection code
+        Canny(gray_image, edges, 5, 200, 3);
+        
+        // Find the contours in the image
+        findContours( edges, contours, hierarchy,CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
+        
+        
+        for( int i = 0; i< contours.size(); i++ ) // iterate through each contour.
+        {
+            double a=contourArea( contours[i],false);  //  Find the area of contour
+            
+            if(a>largest_area){
+                largest_area=a;
+                largest_contour_index=i;  //index of largest contour
+                
+                // bounding rectangle for biggest contour
+                bounding_rect=boundingRect(contours[i]);
+            }
+        }
+        
+        //for testing purposes
+        cout << "index"<< largest_contour_index<< endl;
+        
+
     }
 
     if (_isTracking == YES && _tracker != nil) {
