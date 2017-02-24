@@ -17,6 +17,7 @@
 typedef struct {
     float Position[3];
     float Color[4];
+    float TextureCoordinate[2];
 } BoxVertex;
 
 BoxVertex BoxVertices[] = {

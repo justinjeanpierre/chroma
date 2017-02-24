@@ -6,7 +6,8 @@
 //  Copyright © 2017 Jean-Pierre Digital. All rights reserved.
 //
 
-#define SHOW_FPS false
+#define SHOW_FPS        false
+#define SHOW_TEXTURE    true
 
 #import "BoxView.h"
 #import "CC3GLMatrix.h"
@@ -55,6 +56,10 @@
         [self setupVBOs];
         [self setupDisplayLink];
         [self setupMotion];
+
+        if (SHOW_TEXTURE) {
+            _floorTexture = [self setupTexture:@"tile_floor_1"];
+        }
 
         frameCount = 0;
         if (SHOW_FPS) {
@@ -152,7 +157,20 @@
                           GL_FLOAT,
                           GL_FALSE,
                           sizeof(BoxVertex),
-                          (GLvoid *) (sizeof(float)*3));
+                          (GLvoid *) (sizeof(float) * 3));
+
+    if (SHOW_TEXTURE) {
+        glVertexAttribPointer(_textureCoordinateSlot,
+                              2,
+                              GL_FLOAT,
+                              GL_FALSE,
+                              sizeof(BoxVertex),
+                              (GLvoid *)(sizeof(float) * 7));
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, _floorTexture);
+        glUniform1i(_textureUniform, 0);
+    }
 
     glDrawElements(GL_TRIANGLES,
                    sizeof(BoxIndices)/sizeof(BoxIndices[0]),
@@ -268,7 +286,8 @@
 -(void)setupDisplayLink {
     CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self
                                                              selector:@selector(render:)];
-    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [displayLink addToRunLoop:[NSRunLoop currentRunLoop]
+                      forMode:NSDefaultRunLoopMode];
 }
 
 #pragma mark - OpenGL methods - shader
@@ -335,12 +354,62 @@
 
     _projectionUniform = glGetUniformLocation(programHandle, "Projection");
     _modelViewUniform = glGetUniformLocation(programHandle, "Modelview");
+
+    if (SHOW_TEXTURE) {
+        _textureCoordinateSlot = glGetAttribLocation(programHandle, "TextureCoordinateIn");
+        glEnableVertexAttribArray(_textureCoordinateSlot);
+        _textureUniform = glGetUniformLocation(programHandle, "Texture");
+    }
 }
 
 #pragma mark - CoreMotion - setup
 -(void)setupMotion {
     motionManager = [[CMMotionManager alloc] init];
     [motionManager startDeviceMotionUpdates];
+}
+
+#pragma mark - Texture - setup
+-(GLuint)setupTexture:(NSString *)fileName {
+    UIImage *srcImg = [UIImage imageNamed:fileName];
+    CGImageRef image = srcImg.CGImage;
+
+    if (!image) {
+        NSLog(@"Failed to load image %@", fileName);
+        exit(1);
+    }
+
+    size_t width = CGImageGetWidth(image);
+    size_t height = CGImageGetHeight(image);
+
+    GLubyte *imageData = (GLubyte *)calloc(width * height * 4, sizeof(GLubyte));
+    CGContextRef imageContext = CGBitmapContextCreate(imageData,    // void * __nullable data
+                                                      width,        // size_t width
+                                                      height,       // size_t height
+                                                      8,            // size_t bitsPerComponent
+                                                      width * 1,    // size_t bytesPerRow
+                                                      CGImageGetColorSpace(image),  // CGColorSpaceRef cg_nullable space
+                                                      kCGImageAlphaNone);           // uint32_t bitmapInfo
+
+    CGContextDrawImage(imageContext, CGRectMake(0, 0, width, height), image);
+    CGContextRelease(imageContext);
+
+    GLuint textureName;
+    glGenTextures(1, &textureName);
+    glBindTexture(GL_TEXTURE_2D, textureName);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D,
+                 0,
+                 GL_RGBA,
+                 (GLsizei)width,
+                 (GLsizei)height,
+                 0,
+                 GL_RGBA,
+                 GL_UNSIGNED_BYTE,
+                 imageData);
+
+    free(imageData);
+    return textureName;
 }
 
 @end
