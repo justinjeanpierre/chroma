@@ -149,8 +149,8 @@ Rect2d regionOfInterest;
 
         // create a tracker object
         if (_tracker == nil) {
-            _tracker = Tracker::create("MIL");
-//            _tracker = Tracker::create("KCF");
+//            _tracker = Tracker::create("MIL");
+            _tracker = Tracker::create("KCF");
 //            _tracker = Tracker::create("BOOSTING");
         }
     } else {
