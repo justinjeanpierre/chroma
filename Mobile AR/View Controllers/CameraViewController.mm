@@ -55,15 +55,15 @@ Rect2d regionOfInterest;
     self.videoCamera.grayscaleMode = NO;
 
     // initialize all settings to NO
-    _shouldInvertColors = \
+    _shouldInvertColors =   \
     _shouldDetectFeatures = \
-    _shouldShowCube = \
-    _shouldShowTexture = NO;
+    _shouldShowCube =       \
+    _shouldShowTexture =    NO;
 
     // initial tracker state to NO
-    _isTracking = \
+    _isTracking =           \
     _isTrackerInitialized = \
-    _isRegionSpecified = NO;
+    _isRegionSpecified =    NO;
 
     [self.videoCamera start];
 }
@@ -150,44 +150,34 @@ Rect2d regionOfInterest;
     UIAlertController *textureMenuActions = [UIAlertController alertControllerWithTitle:@"Texture menu" message:@"message" preferredStyle:UIAlertControllerStyleActionSheet];
 
     UIAlertAction *texture1 = [UIAlertAction actionWithTitle:@"texture 1 - pebbles" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"texture 1 selected");
         _shouldShowTexture = YES;
 
         [_glView updateTextureWithShaderIndex:1];
     }];
 
     UIAlertAction *texture2 = [UIAlertAction actionWithTitle:@"texture 2 - stones" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"texture 2 selected");
-
         _shouldShowTexture = YES;
 
         [_glView updateTextureWithShaderIndex:2];
     }];
 
     UIAlertAction *texture3 = [UIAlertAction actionWithTitle:@"texture 3 - bricks" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"texture 3 selected");
-
         _shouldShowTexture = YES;
 
         [_glView updateTextureWithShaderIndex:3];
     }];
 
     NSString *toggleMenuOptionString;
-    if (_shouldShowTexture == YES) {
-        toggleMenuOptionString = @"hide texture";
-    } else {
-        toggleMenuOptionString = @"show texture";
-    }
+    _shouldShowTexture == YES ? toggleMenuOptionString = @"hide texture" : toggleMenuOptionString = @"show texture";
+
 
     UIAlertAction *texturetoggle = [UIAlertAction actionWithTitle:toggleMenuOptionString style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"texture toggle selected");
         _shouldShowTexture = !_shouldShowTexture;
-
         [_glView updateTextureWithShaderIndex:(int)_shouldShowTexture];
     }];
 
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"canceled");
+        _shouldShowTexture == YES ? [_glView updateTextureWithShaderIndex:(int)_shouldShowTexture] : [_glView updateTextureWithShaderIndex:0];
     }];
 
     [textureMenuActions addAction:texture1];

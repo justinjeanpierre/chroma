@@ -361,10 +361,12 @@
 -(void)updateTextureWithShaderIndex:(int)shaderIndex {
     NSLog(@"%s", __func__);
 
-    // assumes shaderIndex will not be nil or larger
-    // than # of textures in asset catalog
-    NSString *tileName = [NSString stringWithFormat:@"tile_%d", shaderIndex];
-    _floorTexture = [self setupTexture:tileName];
+    if (shaderIndex != 0) {
+        // assumes shaderIndex will not be larger
+        // than # of textures in asset catalog
+        NSString *tileName = [NSString stringWithFormat:@"tile_%d", shaderIndex];
+        _floorTexture = [self setupTexture:tileName];
+    }
 
     // get handle for the program in use
     GLint programHandle;
