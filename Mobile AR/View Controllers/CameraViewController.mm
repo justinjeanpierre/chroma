@@ -173,6 +173,7 @@ Rect2d regionOfInterest;
     int largest_area=0;
     int largest_contour_index=0;
     cv::Rect bounding_rect;
+    int corner1_x, corner1_y, corner2_x, corner2_y, corner3_x, corner3_y, corner4_x, corner4_y;
 
     if (_shouldInvertColors == YES) {
         // invert image
@@ -195,10 +196,19 @@ Rect2d regionOfInterest;
             if(a>largest_area){
                 largest_area=a;
                 largest_contour_index=i;  //index of largest contour
-                
                 // bounding rectangle for biggest contour
                 bounding_rect=boundingRect(contours[i]);
             }
+            
+        //coordinates of all corners going clockwise:
+            corner1_x = bounding_rect.x;
+            corner1_y = bounding_rect.y;
+            corner2_x = corner1_x + bounding_rect.width;
+            corner2_y = corner1_y;
+            corner3_x = corner2_x;
+            corner3_y = corner2_y - bounding_rect.height;
+            corner4_x = corner1_x;
+            corner4_y = corner3_y;
         }
         
         //for testing purposes
