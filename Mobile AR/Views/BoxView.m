@@ -362,6 +362,62 @@
     }
 }
 
+-(void)updateTextureWithShaderIndex:(int)shaderIndex {
+    NSLog(@"%s", __func__);
+
+    // get handle for the program in use
+    GLint programHandle;
+    glGetIntegerv(GL_CURRENT_PROGRAM, &programHandle);
+
+    // get attached shaders
+    GLuint shaders[2];
+    GLsizei maxShaderCount = 2;
+    GLsizei shaderCount;
+    glGetAttachedShaders(programHandle, maxShaderCount, &shaderCount, shaders);
+
+    // detach shaders
+    for (int i = (int)shaderCount; i > 0; i--) {
+        glDetachShader(programHandle, shaders[i-1]);
+        glDeleteShader(i);
+    }
+
+    GLuint vertexShader;
+    GLuint fragmentShader;
+
+    // compile shaders depending on value of shaderIndex
+    switch (shaderIndex) {
+        case 0:
+            vertexShader = [self compileShader:@"SimpleVertex" withType:GL_VERTEX_SHADER];
+            fragmentShader = [self compileShader:@"SimpleFragment" withType:GL_FRAGMENT_SHADER];
+            break;
+
+        default:
+            vertexShader = [self compileShader:@"SimpleVertexTexture" withType:GL_VERTEX_SHADER];
+            fragmentShader = [self compileShader:@"SimpleFragmentTexture" withType:GL_FRAGMENT_SHADER];
+            break;
+    }
+
+    // attach the new shaders
+    glAttachShader(programHandle, vertexShader);
+    glAttachShader(programHandle, fragmentShader);
+    glLinkProgram(programHandle);
+
+    // pass in the colour, position, projection, and texture values
+    _positionSlot = glGetAttribLocation(programHandle, "Position");
+    _colorSlot = glGetAttribLocation(programHandle, "SourceColor");
+    glEnableVertexAttribArray(_positionSlot);
+    glEnableVertexAttribArray(_colorSlot);
+
+    _projectionUniform = glGetUniformLocation(programHandle, "Projection");
+    _modelViewUniform = glGetUniformLocation(programHandle, "Modelview");
+
+    if (SHOW_TEXTURE) {
+        _textureCoordinateSlot = glGetAttribLocation(programHandle, "TextureCoordinateIn");
+        glEnableVertexAttribArray(_textureCoordinateSlot);
+        _textureUniform = glGetUniformLocation(programHandle, "Texture");
+    }
+}
+
 #pragma mark - CoreMotion - setup
 -(void)setupMotion {
     motionManager = [[CMMotionManager alloc] init];
