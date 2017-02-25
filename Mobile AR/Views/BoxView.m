@@ -113,7 +113,7 @@
         [modelView rotateBy:CC3VectorMake(-57 * motionManager.deviceMotion.attitude.pitch,
                                           -57 * motionManager.deviceMotion.attitude.roll,
                                           -57 * motionManager.deviceMotion.attitude.yaw)];
-        [modelView scaleBy:CC3VectorMake(3, 3, 3)];
+//        [modelView scaleBy:CC3VectorMake(3, 3, 3)];
 
         glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
     } else { // outside box looking in
@@ -426,8 +426,7 @@
 
 #pragma mark - Texture - setup
 -(GLuint)setupTexture:(NSString *)fileName {
-    UIImage *srcImg = [UIImage imageNamed:fileName];
-    CGImageRef image = srcImg.CGImage;
+    CGImageRef image = [UIImage imageNamed:fileName].CGImage;
 
     if (!image) {
         NSLog(@"Failed to load image %@", fileName);
@@ -441,10 +440,10 @@
     CGContextRef imageContext = CGBitmapContextCreate(imageData,    // void * __nullable data
                                                       width,        // size_t width
                                                       height,       // size_t height
-                                                      8,            // size_t bitsPerComponent
-                                                      width * 1,    // size_t bytesPerRow
+                                                      32,           // size_t bitsPerComponent
+                                                      width * 4,    // size_t bytesPerRow
                                                       CGImageGetColorSpace(image),  // CGColorSpaceRef cg_nullable space
-                                                      kCGImageAlphaNone);           // uint32_t bitmapInfo
+                                                      kCGImageAlphaNone|kCGBitmapFloatComponents);  // uint32_t bitmapInfo
 
     CGContextDrawImage(imageContext, CGRectMake(0, 0, width, height), image);
     CGContextRelease(imageContext);

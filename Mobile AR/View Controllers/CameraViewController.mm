@@ -23,6 +23,7 @@ using namespace cv;
 @property (nonatomic) BOOL shouldInvertColors;
 @property (nonatomic) BOOL shouldDetectFeatures;
 @property (nonatomic) BOOL shouldShowCube;
+@property (nonatomic) BOOL shouldShowTexture;
 @property (nonatomic) BOOL isTracking;
 @property (nonatomic) BOOL isTrackerInitialized;
 @property (nonatomic) BOOL isRegionSpecified;
@@ -53,7 +54,16 @@ Rect2d regionOfInterest;
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
 
-    _shouldInvertColors = _shouldDetectFeatures = _shouldShowCube = _isTracking = _isTrackerInitialized = _isRegionSpecified = NO;
+    // initialize all settings to NO
+    _shouldInvertColors = \
+    _shouldDetectFeatures = \
+    _shouldShowCube = \
+    _shouldShowTexture = NO;
+
+    // initial tracker state to NO
+    _isTracking = \
+    _isTrackerInitialized = \
+    _isRegionSpecified = NO;
 
     [self.videoCamera start];
 }
@@ -126,7 +136,12 @@ Rect2d regionOfInterest;
 -(IBAction)updateCube:(UIButton *)sender {
     NSLog(@"%s", __func__);
 
-    [_glView updateBoxWithPoint:CGPoint3DMake(2, 2, 2)];
+    // toggle one of the cube's points
+//    [_glView updateBoxWithPoint:CGPoint3DMake(2, 2, 2)];
+
+    // toggle cube texture
+    _shouldShowTexture = !_shouldShowTexture;
+    [_glView updateTextureWithShaderIndex:(int)_shouldShowTexture];
 }
 
 #pragma mark - Button actions - Tracker
