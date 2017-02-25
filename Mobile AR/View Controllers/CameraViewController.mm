@@ -149,14 +149,14 @@ Rect2d regionOfInterest;
 -(IBAction)showTextureMenu:(UIButton *)sender {
     UIAlertController *textureMenuActions = [UIAlertController alertControllerWithTitle:@"Texture menu" message:@"message" preferredStyle:UIAlertControllerStyleActionSheet];
 
-    UIAlertAction *texture1 = [UIAlertAction actionWithTitle:@"texture 1" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *texture1 = [UIAlertAction actionWithTitle:@"texture 1 - pebbles" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"texture 1 selected");
         _shouldShowTexture = YES;
 
         [_glView updateTextureWithShaderIndex:1];
     }];
 
-    UIAlertAction *texture2 = [UIAlertAction actionWithTitle:@"texture 2" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *texture2 = [UIAlertAction actionWithTitle:@"texture 2 - stones" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"texture 2 selected");
 
         _shouldShowTexture = YES;
@@ -164,7 +164,7 @@ Rect2d regionOfInterest;
         [_glView updateTextureWithShaderIndex:2];
     }];
 
-    UIAlertAction *texture3 = [UIAlertAction actionWithTitle:@"texture 3" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *texture3 = [UIAlertAction actionWithTitle:@"texture 3 - bricks" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"texture 3 selected");
 
         _shouldShowTexture = YES;
