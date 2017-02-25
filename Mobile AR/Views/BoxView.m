@@ -7,7 +7,7 @@
 //
 
 #define SHOW_FPS        false
-#define SHOW_TEXTURE    true
+//#define SHOW_TEXTURE    true
 
 #import "BoxView.h"
 #import "CC3GLMatrix.h"
@@ -57,9 +57,7 @@
         [self setupDisplayLink];
         [self setupMotion];
 
-        if (SHOW_TEXTURE) {
-            _floorTexture = [self setupTexture:@"tile_floor_1"];
-        }
+        _floorTexture = [self setupTexture:@"tile_floor_1"];
 
         frameCount = 0;
         if (SHOW_FPS) {
@@ -159,18 +157,17 @@
                           sizeof(BoxVertex),
                           (GLvoid *) (sizeof(float) * 3));
 
-    if (SHOW_TEXTURE) {
-        glVertexAttribPointer(_textureCoordinateSlot,
-                              2,
-                              GL_FLOAT,
-                              GL_FALSE,
-                              sizeof(BoxVertex),
-                              (GLvoid *)(sizeof(float) * 7));
+    // texture
+    glVertexAttribPointer(_textureCoordinateSlot,
+                          2,
+                          GL_FLOAT,
+                          GL_FALSE,
+                          sizeof(BoxVertex),
+                          (GLvoid *)(sizeof(float) * 7));
 
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, _floorTexture);
-        glUniform1i(_textureUniform, 0);
-    }
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, _floorTexture);
+    glUniform1i(_textureUniform, 0);
 
     glDrawElements(GL_TRIANGLES,
                    sizeof(BoxIndices)/sizeof(BoxIndices[0]),
@@ -355,11 +352,10 @@
     _projectionUniform = glGetUniformLocation(programHandle, "Projection");
     _modelViewUniform = glGetUniformLocation(programHandle, "Modelview");
 
-    if (SHOW_TEXTURE) {
-        _textureCoordinateSlot = glGetAttribLocation(programHandle, "TextureCoordinateIn");
-        glEnableVertexAttribArray(_textureCoordinateSlot);
-        _textureUniform = glGetUniformLocation(programHandle, "Texture");
-    }
+    // texture
+    _textureCoordinateSlot = glGetAttribLocation(programHandle, "TextureCoordinateIn");
+    glEnableVertexAttribArray(_textureCoordinateSlot);
+    _textureUniform = glGetUniformLocation(programHandle, "Texture");
 }
 
 -(void)updateTextureWithShaderIndex:(int)shaderIndex {
@@ -411,11 +407,9 @@
     _projectionUniform = glGetUniformLocation(programHandle, "Projection");
     _modelViewUniform = glGetUniformLocation(programHandle, "Modelview");
 
-    if (SHOW_TEXTURE) {
-        _textureCoordinateSlot = glGetAttribLocation(programHandle, "TextureCoordinateIn");
-        glEnableVertexAttribArray(_textureCoordinateSlot);
-        _textureUniform = glGetUniformLocation(programHandle, "Texture");
-    }
+    _textureCoordinateSlot = glGetAttribLocation(programHandle, "TextureCoordinateIn");
+    glEnableVertexAttribArray(_textureCoordinateSlot);
+    _textureUniform = glGetUniformLocation(programHandle, "Texture");
 }
 
 #pragma mark - CoreMotion - setup
