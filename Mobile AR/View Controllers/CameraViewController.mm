@@ -41,7 +41,7 @@ Rect2d regionOfInterest;
 
     if (self.navigationItem.rightBarButtonItem != nil) {
         [self.navigationItem.rightBarButtonItem setTarget:self];
-        [self.navigationItem.rightBarButtonItem setAction:@selector(didPressShowFilesButton:)];
+        [self.navigationItem.rightBarButtonItem setAction:@selector(showFiles:)];
     }
 
     self.cameraView.clipsToBounds = YES;
@@ -86,8 +86,13 @@ Rect2d regionOfInterest;
     }
 }
 
+#pragma mark - Button actions - Switch cameras
+-(IBAction)switchCameras:(id)sender {
+    [self.videoCamera switchCameras];
+}
+
 #pragma mark - Button actions - Show files
--(IBAction)didPressShowFilesButton:(UIButton *) sender {
+-(IBAction)showFiles:(UIButton *) sender {
     [self presentViewController:[[FileBrowser alloc] init] animated:NO completion:^{}];
 }
 
@@ -141,6 +146,13 @@ Rect2d regionOfInterest;
 
     // toggle cube texture
     _shouldShowTexture = !_shouldShowTexture;
+
+    if (_shouldShowTexture == YES) {
+        [sender setTitle:@"hide texture" forState:UIControlStateNormal];
+    } else {
+        [sender setTitle:@"show texture" forState:UIControlStateNormal];
+    }
+
     [_glView updateTextureWithShaderIndex:(int)_shouldShowTexture];
 }
 

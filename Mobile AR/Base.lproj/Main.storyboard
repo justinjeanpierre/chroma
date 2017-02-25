@@ -60,8 +60,8 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYQ-ZC-4bx">
-                                            <rect key="frame" x="8" y="11" width="86" height="30"/>
-                                            <state key="normal" title="update cube"/>
+                                            <rect key="frame" x="8" y="11" width="89" height="30"/>
+                                            <state key="normal" title="show texture"/>
                                             <connections>
                                                 <action selector="updateCube:" destination="ib7-yu-0vu" eventType="touchUpInside" id="8PF-On-zKn"/>
                                             </connections>
@@ -91,6 +91,14 @@
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6J-MJ-FH6">
+                                <rect key="frame" x="16" y="72" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="SwitchCamera"/>
+                                <connections>
+                                    <action selector="switchCameras:" destination="ib7-yu-0vu" eventType="touchUpInside" id="0iM-Kn-vYz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -134,4 +142,7 @@
             <point key="canvasLocation" x="332" y="122"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="SwitchCamera" width="50" height="50"/>
+    </resources>
 </document>
