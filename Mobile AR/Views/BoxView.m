@@ -57,7 +57,7 @@
         [self setupDisplayLink];
         [self setupMotion];
 
-        _floorTexture = [self setupTexture:@"tile_floor_1"];
+        _floorTexture = [self setupTexture:@"tile_1"];
 
         frameCount = 0;
         if (SHOW_FPS) {
@@ -361,6 +361,11 @@
 -(void)updateTextureWithShaderIndex:(int)shaderIndex {
     NSLog(@"%s", __func__);
 
+    // assumes shaderIndex will not be nil or larger
+    // than # of textures in asset catalog
+    NSString *tileName = [NSString stringWithFormat:@"tile_%d", shaderIndex];
+    _floorTexture = [self setupTexture:tileName];
+
     // get handle for the program in use
     GLint programHandle;
     glGetIntegerv(GL_CURRENT_PROGRAM, &programHandle);
@@ -381,16 +386,12 @@
     GLuint fragmentShader;
 
     // compile shaders depending on value of shaderIndex
-    switch (shaderIndex) {
-        case 0:
-            vertexShader = [self compileShader:@"SimpleVertex" withType:GL_VERTEX_SHADER];
-            fragmentShader = [self compileShader:@"SimpleFragment" withType:GL_FRAGMENT_SHADER];
-            break;
-
-        default:
-            vertexShader = [self compileShader:@"SimpleVertexTexture" withType:GL_VERTEX_SHADER];
-            fragmentShader = [self compileShader:@"SimpleFragmentTexture" withType:GL_FRAGMENT_SHADER];
-            break;
+    if (shaderIndex == 0) {
+        vertexShader = [self compileShader:@"SimpleVertex" withType:GL_VERTEX_SHADER];
+        fragmentShader = [self compileShader:@"SimpleFragment" withType:GL_FRAGMENT_SHADER];
+    } else {
+        vertexShader = [self compileShader:@"SimpleVertexTexture" withType:GL_VERTEX_SHADER];
+        fragmentShader = [self compileShader:@"SimpleFragmentTexture" withType:GL_FRAGMENT_SHADER];
     }
 
     // attach the new shaders
