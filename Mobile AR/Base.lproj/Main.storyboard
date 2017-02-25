@@ -59,11 +59,11 @@
                                                 <action selector="invertColors:" destination="ib7-yu-0vu" eventType="touchUpInside" id="0ge-P9-wjF"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYQ-ZC-4bx">
-                                            <rect key="frame" x="8" y="11" width="89" height="30"/>
-                                            <state key="normal" title="show texture"/>
+                                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYQ-ZC-4bx">
+                                            <rect key="frame" x="8" y="11" width="91" height="30"/>
+                                            <state key="normal" title="texture menu"/>
                                             <connections>
-                                                <action selector="updateCube:" destination="ib7-yu-0vu" eventType="touchUpInside" id="8PF-On-zKn"/>
+                                                <action selector="showTextureMenu:" destination="ib7-yu-0vu" eventType="touchUpInside" id="GJx-Lq-3Jt"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLK-Tx-cYM">
@@ -118,6 +118,7 @@
                     <connections>
                         <outlet property="cameraView" destination="791-1B-OUJ" id="jTj-1h-bMx"/>
                         <outlet property="perspectiveButton" destination="RWJ-dr-d91" id="Son-Re-6ax"/>
+                        <outlet property="textureMenuButton" destination="WYQ-ZC-4bx" id="8ah-RE-g4Y"/>
                         <outlet property="toggleTrackingButton" destination="uMk-OV-MZg" id="NwT-8C-dLa"/>
                     </connections>
                 </viewController>

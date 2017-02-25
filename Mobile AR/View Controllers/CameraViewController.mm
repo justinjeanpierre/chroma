@@ -114,8 +114,6 @@ Rect2d regionOfInterest;
 -(IBAction)toggleCubeVisibility:(UIButton *)button {
     _shouldShowCube = !_shouldShowCube;
 
-    _glView.alpha = (_shouldShowCube == YES);
-
     // configure virtual cube
     if (_shouldShowCube == YES) {
         [button setTitle:@"hide cube" forState:UIControlStateNormal];
@@ -130,6 +128,9 @@ Rect2d regionOfInterest;
         [button setTitle:@"show cube" forState:UIControlStateNormal];
         [_glView removeFromSuperview];
     }
+
+    _glView.alpha = (_shouldShowCube == YES);
+    _textureMenuButton.alpha = (_shouldShowCube == YES);
 }
 
 -(IBAction)toggleCubePerpective:(UIButton *)button {
@@ -142,18 +143,60 @@ Rect2d regionOfInterest;
     NSLog(@"%s", __func__);
 
     // toggle one of the cube's points
-//    [_glView updateBoxWithPoint:CGPoint3DMake(2, 2, 2)];
+    [_glView updateBoxWithPoint:CGPoint3DMake(2, 2, 2)];
+}
 
-    // toggle cube texture
-    _shouldShowTexture = !_shouldShowTexture;
+-(IBAction)showTextureMenu:(UIButton *)sender {
+    UIAlertController *textureMenuActions = [UIAlertController alertControllerWithTitle:@"Texture menu" message:@"message" preferredStyle:UIAlertControllerStyleActionSheet];
 
+    UIAlertAction *texture1 = [UIAlertAction actionWithTitle:@"texture 1" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"texture 1 selected");
+        _shouldShowTexture = YES;
+
+        [_glView updateTextureWithShaderIndex:1];
+    }];
+
+    UIAlertAction *texture2 = [UIAlertAction actionWithTitle:@"texture 2" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"texture 2 selected");
+
+        _shouldShowTexture = YES;
+
+        [_glView updateTextureWithShaderIndex:2];
+    }];
+
+    UIAlertAction *texture3 = [UIAlertAction actionWithTitle:@"texture 3" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"texture 3 selected");
+
+        _shouldShowTexture = YES;
+
+        [_glView updateTextureWithShaderIndex:3];
+    }];
+
+    NSString *toggleMenuOptionString;
     if (_shouldShowTexture == YES) {
-        [sender setTitle:@"hide texture" forState:UIControlStateNormal];
+        toggleMenuOptionString = @"hide texture";
     } else {
-        [sender setTitle:@"show texture" forState:UIControlStateNormal];
+        toggleMenuOptionString = @"show texture";
     }
 
-    [_glView updateTextureWithShaderIndex:(int)_shouldShowTexture];
+    UIAlertAction *texturetoggle = [UIAlertAction actionWithTitle:toggleMenuOptionString style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"texture toggle selected");
+        _shouldShowTexture = !_shouldShowTexture;
+
+        [_glView updateTextureWithShaderIndex:(int)_shouldShowTexture];
+    }];
+
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"canceled");
+    }];
+
+    [textureMenuActions addAction:texture1];
+    [textureMenuActions addAction:texture2];
+    [textureMenuActions addAction:texture3];
+    [textureMenuActions addAction:texturetoggle];
+    [textureMenuActions addAction:cancelAction];
+
+    [self presentViewController:textureMenuActions animated:YES completion:^{}];
 }
 
 #pragma mark - Button actions - Tracker
