@@ -7,7 +7,7 @@
 //
 
 #define SHOW_FPS        false
-#define SHOW_TEXTURE    true
+//#define SHOW_TEXTURE    true
 
 #import "BoxView.h"
 #import "CC3GLMatrix.h"
@@ -57,9 +57,7 @@
         [self setupDisplayLink];
         [self setupMotion];
 
-        if (SHOW_TEXTURE) {
-            _floorTexture = [self setupTexture:@"tile_floor_1"];
-        }
+        _floorTexture = [self setupTexture:@"tile_1"];
 
         frameCount = 0;
         if (SHOW_FPS) {
@@ -113,7 +111,7 @@
         [modelView rotateBy:CC3VectorMake(-57 * motionManager.deviceMotion.attitude.pitch,
                                           -57 * motionManager.deviceMotion.attitude.roll,
                                           -57 * motionManager.deviceMotion.attitude.yaw)];
-        [modelView scaleBy:CC3VectorMake(3, 3, 3)];
+//        [modelView scaleBy:CC3VectorMake(3, 3, 3)];
 
         glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
     } else { // outside box looking in
@@ -159,18 +157,17 @@
                           sizeof(BoxVertex),
                           (GLvoid *) (sizeof(float) * 3));
 
-    if (SHOW_TEXTURE) {
-        glVertexAttribPointer(_textureCoordinateSlot,
-                              2,
-                              GL_FLOAT,
-                              GL_FALSE,
-                              sizeof(BoxVertex),
-                              (GLvoid *)(sizeof(float) * 7));
+    // texture
+    glVertexAttribPointer(_textureCoordinateSlot,
+                          2,
+                          GL_FLOAT,
+                          GL_FALSE,
+                          sizeof(BoxVertex),
+                          (GLvoid *)(sizeof(float) * 7));
 
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, _floorTexture);
-        glUniform1i(_textureUniform, 0);
-    }
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, _floorTexture);
+    glUniform1i(_textureUniform, 0);
 
     glDrawElements(GL_TRIANGLES,
                    sizeof(BoxIndices)/sizeof(BoxIndices[0]),
@@ -355,11 +352,67 @@
     _projectionUniform = glGetUniformLocation(programHandle, "Projection");
     _modelViewUniform = glGetUniformLocation(programHandle, "Modelview");
 
-    if (SHOW_TEXTURE) {
-        _textureCoordinateSlot = glGetAttribLocation(programHandle, "TextureCoordinateIn");
-        glEnableVertexAttribArray(_textureCoordinateSlot);
-        _textureUniform = glGetUniformLocation(programHandle, "Texture");
+    // texture
+    _textureCoordinateSlot = glGetAttribLocation(programHandle, "TextureCoordinateIn");
+    glEnableVertexAttribArray(_textureCoordinateSlot);
+    _textureUniform = glGetUniformLocation(programHandle, "Texture");
+}
+
+-(void)updateTextureWithShaderIndex:(int)shaderIndex {
+    NSLog(@"%s", __func__);
+
+    if (shaderIndex != 0) {
+        // assumes shaderIndex will not be larger
+        // than # of textures in asset catalog
+        NSString *tileName = [NSString stringWithFormat:@"tile_%d", shaderIndex];
+        _floorTexture = [self setupTexture:tileName];
     }
+
+    // get handle for the program in use
+    GLint programHandle;
+    glGetIntegerv(GL_CURRENT_PROGRAM, &programHandle);
+
+    // get attached shaders
+    GLuint shaders[2];
+    GLsizei maxShaderCount = 2;
+    GLsizei shaderCount;
+    glGetAttachedShaders(programHandle, maxShaderCount, &shaderCount, shaders);
+
+    // detach shaders
+    for (int i = (int)shaderCount; i > 0; i--) {
+        glDetachShader(programHandle, shaders[i-1]);
+        glDeleteShader(i);
+    }
+
+    GLuint vertexShader;
+    GLuint fragmentShader;
+
+    // compile shaders depending on value of shaderIndex
+    if (shaderIndex == 0) {
+        vertexShader = [self compileShader:@"SimpleVertex" withType:GL_VERTEX_SHADER];
+        fragmentShader = [self compileShader:@"SimpleFragment" withType:GL_FRAGMENT_SHADER];
+    } else {
+        vertexShader = [self compileShader:@"SimpleVertexTexture" withType:GL_VERTEX_SHADER];
+        fragmentShader = [self compileShader:@"SimpleFragmentTexture" withType:GL_FRAGMENT_SHADER];
+    }
+
+    // attach the new shaders
+    glAttachShader(programHandle, vertexShader);
+    glAttachShader(programHandle, fragmentShader);
+    glLinkProgram(programHandle);
+
+    // pass in the colour, position, projection, and texture values
+    _positionSlot = glGetAttribLocation(programHandle, "Position");
+    _colorSlot = glGetAttribLocation(programHandle, "SourceColor");
+    glEnableVertexAttribArray(_positionSlot);
+    glEnableVertexAttribArray(_colorSlot);
+
+    _projectionUniform = glGetUniformLocation(programHandle, "Projection");
+    _modelViewUniform = glGetUniformLocation(programHandle, "Modelview");
+
+    _textureCoordinateSlot = glGetAttribLocation(programHandle, "TextureCoordinateIn");
+    glEnableVertexAttribArray(_textureCoordinateSlot);
+    _textureUniform = glGetUniformLocation(programHandle, "Texture");
 }
 
 #pragma mark - CoreMotion - setup
@@ -370,8 +423,7 @@
 
 #pragma mark - Texture - setup
 -(GLuint)setupTexture:(NSString *)fileName {
-    UIImage *srcImg = [UIImage imageNamed:fileName];
-    CGImageRef image = srcImg.CGImage;
+    CGImageRef image = [UIImage imageNamed:fileName].CGImage;
 
     if (!image) {
         NSLog(@"Failed to load image %@", fileName);
@@ -385,10 +437,10 @@
     CGContextRef imageContext = CGBitmapContextCreate(imageData,    // void * __nullable data
                                                       width,        // size_t width
                                                       height,       // size_t height
-                                                      8,            // size_t bitsPerComponent
-                                                      width * 1,    // size_t bytesPerRow
+                                                      32,           // size_t bitsPerComponent
+                                                      width * 4,    // size_t bytesPerRow
                                                       CGImageGetColorSpace(image),  // CGColorSpaceRef cg_nullable space
-                                                      kCGImageAlphaNone);           // uint32_t bitmapInfo
+                                                      kCGImageAlphaNone|kCGBitmapFloatComponents);  // uint32_t bitmapInfo
 
     CGContextDrawImage(imageContext, CGRectMake(0, 0, width, height), image);
     CGContextRelease(imageContext);

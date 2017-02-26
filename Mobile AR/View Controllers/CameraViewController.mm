@@ -23,6 +23,7 @@ using namespace cv;
 @property (nonatomic) BOOL shouldInvertColors;
 @property (nonatomic) BOOL shouldDetectFeatures;
 @property (nonatomic) BOOL shouldShowCube;
+@property (nonatomic) BOOL shouldShowTexture;
 @property (nonatomic) BOOL isTracking;
 @property (nonatomic) BOOL isTrackerInitialized;
 @property (nonatomic) BOOL isRegionSpecified;
@@ -40,7 +41,7 @@ Rect2d regionOfInterest;
 
     if (self.navigationItem.rightBarButtonItem != nil) {
         [self.navigationItem.rightBarButtonItem setTarget:self];
-        [self.navigationItem.rightBarButtonItem setAction:@selector(didPressShowFilesButton:)];
+        [self.navigationItem.rightBarButtonItem setAction:@selector(showFiles:)];
     }
 
     self.cameraView.clipsToBounds = YES;
@@ -53,7 +54,16 @@ Rect2d regionOfInterest;
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
 
-    _shouldInvertColors = _shouldDetectFeatures = _shouldShowCube = _isTracking = _isTrackerInitialized = _isRegionSpecified = NO;
+    // initialize all settings to NO
+    _shouldInvertColors =   \
+    _shouldDetectFeatures = \
+    _shouldShowCube =       \
+    _shouldShowTexture =    NO;
+
+    // initial tracker state to NO
+    _isTracking =           \
+    _isTrackerInitialized = \
+    _isRegionSpecified =    NO;
 
     [self.videoCamera start];
 }
@@ -76,8 +86,13 @@ Rect2d regionOfInterest;
     }
 }
 
+#pragma mark - Button actions - Switch cameras
+-(IBAction)switchCameras:(id)sender {
+    [self.videoCamera switchCameras];
+}
+
 #pragma mark - Button actions - Show files
--(IBAction)didPressShowFilesButton:(UIButton *) sender {
+-(IBAction)showFiles:(UIButton *) sender {
     [self presentViewController:[[FileBrowser alloc] init] animated:NO completion:^{}];
 }
 
@@ -99,8 +114,6 @@ Rect2d regionOfInterest;
 -(IBAction)toggleCubeVisibility:(UIButton *)button {
     _shouldShowCube = !_shouldShowCube;
 
-    _glView.alpha = (_shouldShowCube == YES);
-
     // configure virtual cube
     if (_shouldShowCube == YES) {
         [button setTitle:@"hide cube" forState:UIControlStateNormal];
@@ -115,6 +128,9 @@ Rect2d regionOfInterest;
         [button setTitle:@"show cube" forState:UIControlStateNormal];
         [_glView removeFromSuperview];
     }
+
+    _glView.alpha = (_shouldShowCube == YES);
+    _textureMenuButton.alpha = (_shouldShowCube == YES);
 }
 
 -(IBAction)toggleCubePerpective:(UIButton *)button {
@@ -126,7 +142,51 @@ Rect2d regionOfInterest;
 -(IBAction)updateCube:(UIButton *)sender {
     NSLog(@"%s", __func__);
 
+    // toggle one of the cube's points
     [_glView updateBoxWithPoint:CGPoint3DMake(2, 2, 2)];
+}
+
+-(IBAction)showTextureMenu:(UIButton *)sender {
+    UIAlertController *textureMenuActions = [UIAlertController alertControllerWithTitle:@"Texture menu" message:@"message" preferredStyle:UIAlertControllerStyleActionSheet];
+
+    UIAlertAction *texture1 = [UIAlertAction actionWithTitle:@"texture 1 - pebbles" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        _shouldShowTexture = YES;
+
+        [_glView updateTextureWithShaderIndex:1];
+    }];
+
+    UIAlertAction *texture2 = [UIAlertAction actionWithTitle:@"texture 2 - stones" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        _shouldShowTexture = YES;
+
+        [_glView updateTextureWithShaderIndex:2];
+    }];
+
+    UIAlertAction *texture3 = [UIAlertAction actionWithTitle:@"texture 3 - bricks" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        _shouldShowTexture = YES;
+
+        [_glView updateTextureWithShaderIndex:3];
+    }];
+
+    NSString *toggleMenuOptionString;
+    _shouldShowTexture == YES ? toggleMenuOptionString = @"hide texture" : toggleMenuOptionString = @"show texture";
+
+
+    UIAlertAction *texturetoggle = [UIAlertAction actionWithTitle:toggleMenuOptionString style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        _shouldShowTexture = !_shouldShowTexture;
+        [_glView updateTextureWithShaderIndex:(int)_shouldShowTexture];
+    }];
+
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        _shouldShowTexture == YES ? [_glView updateTextureWithShaderIndex:(int)_shouldShowTexture] : [_glView updateTextureWithShaderIndex:0];
+    }];
+
+    [textureMenuActions addAction:texture1];
+    [textureMenuActions addAction:texture2];
+    [textureMenuActions addAction:texture3];
+    [textureMenuActions addAction:texturetoggle];
+    [textureMenuActions addAction:cancelAction];
+
+    [self presentViewController:textureMenuActions animated:YES completion:^{}];
 }
 
 #pragma mark - Button actions - Tracker
@@ -149,8 +209,8 @@ Rect2d regionOfInterest;
 
         // create a tracker object
         if (_tracker == nil) {
-            _tracker = Tracker::create("MIL");
-//            _tracker = Tracker::create("KCF");
+//            _tracker = Tracker::create("MIL");
+            _tracker = Tracker::create("KCF");
 //            _tracker = Tracker::create("BOOSTING");
         }
     } else {
