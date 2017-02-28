@@ -19,7 +19,8 @@ using namespace cv;
 @property (nonatomic, strong) UIView *contourBoundingBox;
 @property (nonatomic) Ptr<Tracker> tracker;
 
-@property (nonatomic, strong) NSTimer *boxTimer;
+@property (nonatomic, strong) NSTimer *trackerOutlineTimer;
+@property (nonatomic, strong) NSTimer *contourOutlineTimer;
 
 @property (nonatomic) BOOL shouldInvertColors;
 @property (nonatomic) BOOL shouldDetectFeatures;
@@ -103,8 +104,7 @@ cv::Rect bounding_rect;
         }
 
         // make it really small...
-//        [_contourBoundingBox setFrame:CGRectZero];
-        _contourBoundingBox = [[UIView alloc] initWithFrame:CGRectMake(5, 5, 20, 20)];
+        [_contourBoundingBox setFrame:CGRectZero];
 
         // set up the border width, colour, and radius
         _contourBoundingBox.layer.borderWidth = 2.0f;
@@ -117,18 +117,16 @@ cv::Rect bounding_rect;
         // UI update timer was triggered by the tracker.
         // we need to let the contour detector start the
         // timer as well
-        if (_boxTimer == nil) {
-            _boxTimer = [NSTimer scheduledTimerWithTimeInterval:0.003
-                                                         target:self
-                                                       selector:@selector(updateBoundingBox)
-                                                       userInfo:nil
-                                                        repeats:YES];
-        }
-
+        _contourOutlineTimer = [NSTimer scheduledTimerWithTimeInterval:0.03
+                                                     target:self
+                                                   selector:@selector(updateContourBoundingBox)
+                                                   userInfo:nil
+                                                    repeats:YES];
     } else {
         // someone turned off the contour detection,
         // so we don't need the box on screen anymore.
         [_contourBoundingBox removeFromSuperview];
+        [_contourOutlineTimer invalidate];
     }
 }
 
@@ -192,7 +190,7 @@ cv::Rect bounding_rect;
         }
     } else {
         [_toggleTrackingButton setTitle:@"start tracking" forState:UIControlStateNormal];
-        [_boxTimer invalidate];
+        [_trackerOutlineTimer invalidate];
         [_trackerBoundingBox removeFromSuperview];
         _isTrackerInitialized = _isRegionSpecified = NO;
     }
@@ -271,12 +269,13 @@ cv::Rect bounding_rect;
     }
 }
 
--(void)updateBoundingBox {
+-(void)updateTrackerBoundingBox {
     _trackerBoundingBox.frame = CGRectMake(CGFloat(regionOfInterest.x),
                                     CGFloat(regionOfInterest.y),
                                     CGFloat(regionOfInterest.width),
                                     CGFloat(regionOfInterest.height));
-
+}
+-(void)updateContourBoundingBox {
     _contourBoundingBox.frame = CGRectMake(bounding_rect.x,
                                            bounding_rect.y,
                                            bounding_rect.width,
@@ -331,13 +330,11 @@ cv::Rect bounding_rect;
             // let tracker start tracking
             _isRegionSpecified = YES;
             // update UI from time to time (every ~3ms)
-            if (!_boxTimer) {
-                _boxTimer = [NSTimer scheduledTimerWithTimeInterval:0.003
-                                                             target:self
-                                                           selector:@selector(updateBoundingBox)
-                                                           userInfo:nil
-                                                            repeats:YES];
-            }
+            _trackerOutlineTimer = [NSTimer scheduledTimerWithTimeInterval:0.03
+                                                         target:self
+                                                       selector:@selector(updateTrackerBoundingBox)
+                                                       userInfo:nil
+                                                        repeats:YES];
         }
     }
 }
