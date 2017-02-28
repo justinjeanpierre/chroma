@@ -95,8 +95,8 @@ Rect2d regionOfInterest;
     _useKCFTracker = !_useKCFTracker;
 
     _useKCFTracker == YES?
-        [sender setTitle:@"to MIL" forState:UIControlStateNormal]:
-        [sender setTitle:@"to KCF" forState:UIControlStateNormal];
+        [sender setTitle:@"use MIL" forState:UIControlStateNormal]:
+        [sender setTitle:@"use KCF" forState:UIControlStateNormal];
 }
 
 #pragma mark - Button actions - Switch cameras
@@ -160,28 +160,28 @@ Rect2d regionOfInterest;
 }
 
 -(IBAction)showTextureMenu:(UIButton *)sender {
-    UIAlertController *textureMenuActions = [UIAlertController alertControllerWithTitle:@"Texture menu" message:@"message" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *textureMenuActions = [UIAlertController alertControllerWithTitle:@"Filter options" message:@"Select a filter to apply to the scene" preferredStyle:UIAlertControllerStyleActionSheet];
 
-    UIAlertAction *texture1 = [UIAlertAction actionWithTitle:@"texture 1 - pebbles" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *texture1 = [UIAlertAction actionWithTitle:@"pebbles" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         _shouldShowTexture = YES;
 
         [_glView updateTextureWithShaderIndex:1];
     }];
 
-    UIAlertAction *texture2 = [UIAlertAction actionWithTitle:@"texture 2 - stones" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *texture2 = [UIAlertAction actionWithTitle:@"stones" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         _shouldShowTexture = YES;
 
         [_glView updateTextureWithShaderIndex:2];
     }];
 
-    UIAlertAction *texture3 = [UIAlertAction actionWithTitle:@"texture 3 - bricks" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *texture3 = [UIAlertAction actionWithTitle:@"bricks" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         _shouldShowTexture = YES;
 
         [_glView updateTextureWithShaderIndex:3];
     }];
 
     NSString *toggleMenuOptionString;
-    _shouldShowTexture == YES ? toggleMenuOptionString = @"hide texture" : toggleMenuOptionString = @"show texture";
+    _shouldShowTexture == YES ? toggleMenuOptionString = @"remove texture" : toggleMenuOptionString = @"show texture";
 
 
     UIAlertAction *texturetoggle = [UIAlertAction actionWithTitle:toggleMenuOptionString style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

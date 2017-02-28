@@ -99,10 +99,10 @@
                                     <action selector="switchCameras:" destination="ib7-yu-0vu" eventType="touchUpInside" id="0iM-Kn-vYz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNk-Jk-haH">
-                                <rect key="frame" x="313" y="79" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNk-Jk-haH">
+                                <rect key="frame" x="285" y="79" width="74" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="to MIL"/>
+                                <state key="normal" title="use MIL"/>
                                 <connections>
                                     <action selector="switchTrackers:" destination="ib7-yu-0vu" eventType="touchUpInside" id="Vly-7y-3jA"/>
                                 </connections>
