@@ -27,6 +27,7 @@ using namespace cv;
 @property (nonatomic) BOOL isTracking;
 @property (nonatomic) BOOL isTrackerInitialized;
 @property (nonatomic) BOOL isRegionSpecified;
+@property (nonatomic) BOOL useKCFTracker;
 
 @end
 
@@ -65,6 +66,9 @@ Rect2d regionOfInterest;
     _isTrackerInitialized = \
     _isRegionSpecified =    NO;
 
+    // use KCF tracker?
+    _useKCFTracker = YES;
+
     [self.videoCamera start];
 }
 
@@ -84,6 +88,15 @@ Rect2d regionOfInterest;
     if (_tracker) {
         _tracker->~Tracker();
     }
+}
+
+#pragma mark - Button actions - Switch trackers
+-(IBAction)switchTrackers:(UIButton *)sender {
+    _useKCFTracker = !_useKCFTracker;
+
+    _useKCFTracker == YES?
+        [sender setTitle:@"to MIL" forState:UIControlStateNormal]:
+        [sender setTitle:@"to KCF" forState:UIControlStateNormal];
 }
 
 #pragma mark - Button actions - Switch cameras
@@ -209,9 +222,7 @@ Rect2d regionOfInterest;
 
         // create a tracker object
         if (_tracker == nil) {
-//            _tracker = Tracker::create("MIL");
-            _tracker = Tracker::create("KCF");
-//            _tracker = Tracker::create("BOOSTING");
+            _useKCFTracker == YES ? _tracker = Tracker::create("KCF") : _tracker = Tracker::create("MIL");
         }
     } else {
         [_toggleTrackingButton setTitle:@"start tracking" forState:UIControlStateNormal];
