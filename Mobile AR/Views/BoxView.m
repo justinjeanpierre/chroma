@@ -13,6 +13,7 @@
 #import "CC3GLMatrix.h"
 #import <CoreMotion/CoreMotion.h>
 #import "Structures.h"
+#import "PerspectiveStructure.h"
 
 @interface BoxView () {
     CMMotionManager *motionManager;
@@ -236,6 +237,7 @@
 -(void)setupVBOs {
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    [PerspectiveBox updateVerticesWithInitialPerspective:BoxVertices];
     glBufferData(GL_ARRAY_BUFFER, sizeof(BoxVertices), BoxVertices, GL_DYNAMIC_DRAW);
 
     glGenBuffers(1, &indexBuffer);

@@ -17,11 +17,8 @@
 
 #define TEXTURE_COORDINATE_MAX  2
 #define TEXTURE_COORDINATE_MIN  0
-typedef struct {
-    float Position[3];
-    float Color[4];
-    float TextureCoordinate[2];
-} BoxVertex;
+
+#import "BoxVertex.h"
 
 BoxVertex BoxVertices[] = {
     // Front
