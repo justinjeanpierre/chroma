@@ -13,7 +13,7 @@
 #import "CC3GLMatrix.h"
 #import <CoreMotion/CoreMotion.h>
 #import "Structures.h"
-#import "PerspectiveStructure.h"
+#import "PerspectiveBox.h"
 
 @interface BoxView () {
     CMMotionManager *motionManager;

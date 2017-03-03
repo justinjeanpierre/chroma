@@ -56,9 +56,9 @@
 		2DC9F7B11E5AB3110076F562 /* CGPoint_Extensions.h in Resources */ = {isa = PBXBuildFile; fileRef = 2DC9F7B01E5AB3110076F562 /* CGPoint_Extensions.h */; };
 		2DC9F7B21E5AB3110076F562 /* CGPoint_Extensions.h in Resources */ = {isa = PBXBuildFile; fileRef = 2DC9F7B01E5AB3110076F562 /* CGPoint_Extensions.h */; };
 		2DC9F7B31E5AB3110076F562 /* CGPoint_Extensions.h in Resources */ = {isa = PBXBuildFile; fileRef = 2DC9F7B01E5AB3110076F562 /* CGPoint_Extensions.h */; };
-		2DF23C0C1E67F526001CCCA6 /* PerspectiveStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF23C0B1E67F526001CCCA6 /* PerspectiveStructure.m */; };
-		2DF23C0D1E67F526001CCCA6 /* PerspectiveStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF23C0B1E67F526001CCCA6 /* PerspectiveStructure.m */; };
-		2DF23C0E1E67F526001CCCA6 /* PerspectiveStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF23C0B1E67F526001CCCA6 /* PerspectiveStructure.m */; };
+		2DF23C0C1E67F526001CCCA6 /* PerspectiveBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF23C0B1E67F526001CCCA6 /* PerspectiveBox.m */; };
+		2DF23C0D1E67F526001CCCA6 /* PerspectiveBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF23C0B1E67F526001CCCA6 /* PerspectiveBox.m */; };
+		2DF23C0E1E67F526001CCCA6 /* PerspectiveBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF23C0B1E67F526001CCCA6 /* PerspectiveBox.m */; };
 		7935C33ADB07255AA73AF8B8 /* Pods_Mobile_ARTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324104D757D546EA5253FAB3 /* Pods_Mobile_ARTests.framework */; };
 		8AF91C376DBFB5676D61F88D /* Pods_Mobile_ARUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A81661E07B26EA5835D15A6F /* Pods_Mobile_ARUITests.framework */; };
 		F2862A5A91EA805E630E461C /* Pods_Mobile_AR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC1983C85BBCDDA6376428D /* Pods_Mobile_AR.framework */; };
@@ -123,8 +123,8 @@
 		2D29DC171E614C6B00FCC601 /* SimpleVertexTexture.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleVertexTexture.glsl; sourceTree = "<group>"; };
 		2DC9F7B01E5AB3110076F562 /* CGPoint_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPoint_Extensions.h; sourceTree = "<group>"; };
 		2DF23C091E67F1AF001CCCA6 /* BoxVertex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxVertex.h; sourceTree = "<group>"; };
-		2DF23C0A1E67F526001CCCA6 /* PerspectiveStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerspectiveStructure.h; sourceTree = "<group>"; };
-		2DF23C0B1E67F526001CCCA6 /* PerspectiveStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerspectiveStructure.m; sourceTree = "<group>"; };
+		2DF23C0A1E67F526001CCCA6 /* PerspectiveBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerspectiveBox.h; sourceTree = "<group>"; };
+		2DF23C0B1E67F526001CCCA6 /* PerspectiveBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerspectiveBox.m; sourceTree = "<group>"; };
 		30F068E12F312BB53E129EBA /* Pods-Mobile AR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobile AR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mobile AR/Pods-Mobile AR.debug.xcconfig"; sourceTree = "<group>"; };
 		324104D757D546EA5253FAB3 /* Pods_Mobile_ARTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mobile_ARTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A81661E07B26EA5835D15A6F /* Pods_Mobile_ARUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mobile_ARUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -242,8 +242,8 @@
 			children = (
 				2D249B421E5AA88500FA012F /* Structures.h */,
 				2DF23C091E67F1AF001CCCA6 /* BoxVertex.h */,
-				2DF23C0A1E67F526001CCCA6 /* PerspectiveStructure.h */,
-				2DF23C0B1E67F526001CCCA6 /* PerspectiveStructure.m */,
+				2DF23C0A1E67F526001CCCA6 /* PerspectiveBox.h */,
+				2DF23C0B1E67F526001CCCA6 /* PerspectiveBox.m */,
 				2DC9F7B01E5AB3110076F562 /* CGPoint_Extensions.h */,
 			);
 			path = "Data Models";
@@ -664,7 +664,7 @@
 				2D249B5F1E5AA88500FA012F /* CC3Foundation.m in Sources */,
 				2D249B741E5AA88500FA012F /* CaptureViewController.swift in Sources */,
 				2D249B621E5AA88500FA012F /* CC3GLMatrix.m in Sources */,
-				2DF23C0C1E67F526001CCCA6 /* PerspectiveStructure.m in Sources */,
+				2DF23C0C1E67F526001CCCA6 /* PerspectiveBox.m in Sources */,
 				2D249B681E5AA88500FA012F /* CC3Math.m in Sources */,
 				2D1BC99D1E5AA614000D5CB7 /* main.m in Sources */,
 				2D249B711E5AA88500FA012F /* CameraViewController.mm in Sources */,
@@ -675,7 +675,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DF23C0D1E67F526001CCCA6 /* PerspectiveStructure.m in Sources */,
+				2DF23C0D1E67F526001CCCA6 /* PerspectiveBox.m in Sources */,
 				2D249B7B1E5AA88500FA012F /* BoxView.m in Sources */,
 				2D249B601E5AA88500FA012F /* CC3Foundation.m in Sources */,
 				2D1BC9B61E5AA615000D5CB7 /* Mobile_ARTests.m in Sources */,
@@ -691,7 +691,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DF23C0E1E67F526001CCCA6 /* PerspectiveStructure.m in Sources */,
+				2DF23C0E1E67F526001CCCA6 /* PerspectiveBox.m in Sources */,
 				2D249B7C1E5AA88500FA012F /* BoxView.m in Sources */,
 				2D249B611E5AA88500FA012F /* CC3Foundation.m in Sources */,
 				2D1BC9C11E5AA615000D5CB7 /* Mobile_ARUITests.m in Sources */,

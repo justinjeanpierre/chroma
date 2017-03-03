@@ -15,7 +15,7 @@
 #define TEXTURE_COORDINATE_MAX  2
 #define TEXTURE_COORDINATE_MIN  0
 
-#import "PerspectiveStructure.h"
+#import "PerspectiveBox.h"
 
 @implementation PerspectiveBox
 
