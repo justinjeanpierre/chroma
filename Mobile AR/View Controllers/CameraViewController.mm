@@ -27,6 +27,7 @@ using namespace cv;
 @property (nonatomic) BOOL isTracking;
 @property (nonatomic) BOOL isTrackerInitialized;
 @property (nonatomic) BOOL isRegionSpecified;
+@property (nonatomic) BOOL useKCFTracker;
 
 @end
 
@@ -49,7 +50,7 @@ Rect2d regionOfInterest;
     self.videoCamera = [[CvVideoCamera alloc] initWithParentView:self.cameraView];
     self.videoCamera.delegate = self;
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
-    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
+    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset1280x720; // switch to higher resolution
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
@@ -64,6 +65,9 @@ Rect2d regionOfInterest;
     _isTracking =           \
     _isTrackerInitialized = \
     _isRegionSpecified =    NO;
+
+    // use KCF tracker?
+    _useKCFTracker = YES;
 
     [self.videoCamera start];
 }
@@ -84,6 +88,15 @@ Rect2d regionOfInterest;
     if (_tracker) {
         _tracker->~Tracker();
     }
+}
+
+#pragma mark - Button actions - Switch trackers
+-(IBAction)switchTrackers:(UIButton *)sender {
+    _useKCFTracker = !_useKCFTracker;
+
+    _useKCFTracker == YES?
+        [sender setTitle:@"use MIL" forState:UIControlStateNormal]:
+        [sender setTitle:@"use KCF" forState:UIControlStateNormal];
 }
 
 #pragma mark - Button actions - Switch cameras
@@ -147,28 +160,28 @@ Rect2d regionOfInterest;
 }
 
 -(IBAction)showTextureMenu:(UIButton *)sender {
-    UIAlertController *textureMenuActions = [UIAlertController alertControllerWithTitle:@"Texture menu" message:@"message" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *textureMenuActions = [UIAlertController alertControllerWithTitle:@"Filter options" message:@"Select a filter to apply to the scene" preferredStyle:UIAlertControllerStyleActionSheet];
 
-    UIAlertAction *texture1 = [UIAlertAction actionWithTitle:@"texture 1 - pebbles" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *texture1 = [UIAlertAction actionWithTitle:@"pebbles" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         _shouldShowTexture = YES;
 
         [_glView updateTextureWithShaderIndex:1];
     }];
 
-    UIAlertAction *texture2 = [UIAlertAction actionWithTitle:@"texture 2 - stones" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *texture2 = [UIAlertAction actionWithTitle:@"stones" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         _shouldShowTexture = YES;
 
         [_glView updateTextureWithShaderIndex:2];
     }];
 
-    UIAlertAction *texture3 = [UIAlertAction actionWithTitle:@"texture 3 - bricks" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *texture3 = [UIAlertAction actionWithTitle:@"bricks" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         _shouldShowTexture = YES;
 
         [_glView updateTextureWithShaderIndex:3];
     }];
 
     NSString *toggleMenuOptionString;
-    _shouldShowTexture == YES ? toggleMenuOptionString = @"hide texture" : toggleMenuOptionString = @"show texture";
+    _shouldShowTexture == YES ? toggleMenuOptionString = @"remove texture" : toggleMenuOptionString = @"show texture";
 
 
     UIAlertAction *texturetoggle = [UIAlertAction actionWithTitle:toggleMenuOptionString style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -209,9 +222,7 @@ Rect2d regionOfInterest;
 
         // create a tracker object
         if (_tracker == nil) {
-//            _tracker = Tracker::create("MIL");
-            _tracker = Tracker::create("KCF");
-//            _tracker = Tracker::create("BOOSTING");
+            _useKCFTracker == YES ? _tracker = Tracker::create("KCF") : _tracker = Tracker::create("MIL");
         }
     } else {
         [_toggleTrackingButton setTitle:@"start tracking" forState:UIControlStateNormal];
