@@ -96,22 +96,15 @@
                                     andNear:4
                                      andFar:12];
 
-//        [projection populateFromFrustumLeft:-1
-//                                   andRight:1
-//                                  andBottom:-1
-//                                     andTop:1
-//                                    andNear:8
-//                                     andFar:12];
-
         glUniformMatrix4fv(_projectionUniform, 1, 0, projection.glMatrix);
 
         CC3GLMatrix *modelView = [CC3GLMatrix matrix];
-        [modelView populateFromTranslation:CC3VectorMake(0, 0, -7)];
+        [modelView populateFromTranslation:CC3VectorMake(0, 0, -4)];
         // use device attitude to rotate box:
         [modelView rotateBy:CC3VectorMake(-57 * motionManager.deviceMotion.attitude.pitch,
                                           -57 * motionManager.deviceMotion.attitude.roll,
                                           -57 * motionManager.deviceMotion.attitude.yaw)];
-//        [modelView scaleBy:CC3VectorMake(3, 3, 3)];
+        [modelView scaleBy:CC3VectorMake(3, 3, 3)];
 
         glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
     } else { // outside box looking in
@@ -121,13 +114,6 @@
                                      andTop:h/2
                                     andNear:4
                                      andFar:10];
-
-//        [projection populateFromFrustumLeft:-2
-//                                   andRight:2
-//                                  andBottom:-2
-//                                     andTop:2
-//                                    andNear:-2
-//                                     andFar:4];
 
         glUniformMatrix4fv(_projectionUniform, 1, 0, projection.glMatrix);
 
