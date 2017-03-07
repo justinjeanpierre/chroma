@@ -90,22 +90,22 @@
     float h = 4.0f * self.frame.size.height / self.frame.size.width;
 
     if (_isPerspectiveInsideCube) { // inside box looking out
-        [projection populateFromFrustumLeft:-3
-                                   andRight:3
-                                  andBottom:-6
-                                     andTop:2
-                                    andNear:4
-                                     andFar:12];
+        [projection populateFromFrustumLeft:-2
+                                   andRight:2
+                                  andBottom:-h/2
+                                     andTop:h/2
+                                    andNear:10
+                                     andFar:20];
 
         glUniformMatrix4fv(_projectionUniform, 1, 0, projection.glMatrix);
 
         CC3GLMatrix *modelView = [CC3GLMatrix matrix];
-        [modelView populateFromTranslation:CC3VectorMake(0, 0, -4)];
+        [modelView populateFromTranslation:CC3VectorMake(0, 0, -7)];
         // use device attitude to rotate box:
         [modelView rotateBy:CC3VectorMake(-57 * motionManager.deviceMotion.attitude.pitch,
                                           -57 * motionManager.deviceMotion.attitude.roll,
                                           -57 * motionManager.deviceMotion.attitude.yaw)];
-        [modelView scaleBy:CC3VectorMake(3, 3, 3)];
+        [modelView scaleBy:CC3VectorMake(6, 6, 6)];
 
         glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
     } else { // outside box looking in
@@ -124,7 +124,6 @@
         [modelView rotateBy:CC3VectorMake(57 * motionManager.deviceMotion.attitude.pitch,
                                           57 * motionManager.deviceMotion.attitude.roll,
                                           -57 * motionManager.deviceMotion.attitude.yaw)];
-//        [modelView scaleByZ:self.frame.size.height/self.frame.size.width];
 
         glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
     }
@@ -223,7 +222,7 @@
 -(void)setupVBOs {
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    [PerspectiveBox updateVerticesWithInitialPerspective:BoxVertices];
+//    [PerspectiveBox updateVerticesWithInitialPerspective:BoxVertices];
     glBufferData(GL_ARRAY_BUFFER, sizeof(BoxVertices), BoxVertices, GL_DYNAMIC_DRAW);
 
     glGenBuffers(1, &indexBuffer);
