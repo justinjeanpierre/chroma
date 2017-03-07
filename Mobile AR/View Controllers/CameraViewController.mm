@@ -131,9 +131,9 @@ Rect2d regionOfInterest;
     if (_shouldShowCube == YES) {
         [button setTitle:@"hide cube" forState:UIControlStateNormal];
         if (!_glView) {
-            _glView = [[BoxView alloc] initWithFrame:self.cameraView.frame];
+            _glView = [[BoxView alloc] initWithFrame:self.cameraView.bounds];
         } else {
-            [_glView setFrame:self.cameraView.frame];
+            [_glView setFrame:self.cameraView.bounds];
         }
 
         [self.cameraView addSubview:_glView];
