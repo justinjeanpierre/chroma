@@ -94,7 +94,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6J-MJ-FH6">
                                 <rect key="frame" x="16" y="72" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="SwitchCamera"/>
+                                <state key="normal" image="switch cameras"/>
                                 <connections>
                                     <action selector="switchCameras:" destination="ib7-yu-0vu" eventType="touchUpInside" id="0iM-Kn-vYz"/>
                                 </connections>
@@ -152,6 +152,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SwitchCamera" width="50" height="50"/>
+        <image name="switch cameras" width="50" height="50"/>
     </resources>
 </document>
