@@ -29,8 +29,8 @@
     const float screen_height = 1280;
 
     //get pixel coordinates + width + height of contour. Following values are just assumed
-    const float x_topleft = 100;
-    const float y_topleft = 250;
+    //const float x_topleft = 100;
+    //const float y_topleft = 250;
     const float width_pixels = 600;
     const float height_pixels = 400;
 
