@@ -109,7 +109,9 @@ cv::Rect bounding_rect;
 
 #pragma mark - Button actions - Show files
 -(IBAction)showFiles:(UIButton *) sender {
-    [self presentViewController:[[FileBrowser alloc] init] animated:NO completion:^{}];
+    [self presentViewController:[[FileBrowser alloc] init]
+                       animated:NO
+                     completion:^{}];
 }
 
 #pragma mark - Button actions - Image colour
@@ -136,7 +138,7 @@ cv::Rect bounding_rect;
 
         // set up the border width, colour, and radius
         _contourBoundingBox.layer.borderWidth = 2.0f;
-        _contourBoundingBox.layer.borderColor = [[UIColor greenColor] CGColor];
+        _contourBoundingBox.layer.borderColor = [[UIColor redColor] CGColor];
         _contourBoundingBox.layer.cornerRadius = 4.0f;
 
         // put the box on screen
@@ -146,10 +148,10 @@ cv::Rect bounding_rect;
         // we need to let the contour detector start the
         // timer as well
         _contourOutlineTimer = [NSTimer scheduledTimerWithTimeInterval:0.03
-                                                     target:self
-                                                   selector:@selector(updateContourBoundingBox)
-                                                   userInfo:nil
-                                                    repeats:YES];
+                                                                target:self
+                                                              selector:@selector(updateContourBoundingBox)
+                                                              userInfo:nil
+                                                               repeats:YES];
     } else {
         // someone turned off the contour detection,
         // so we don't need the box on screen anymore.
@@ -195,21 +197,29 @@ cv::Rect bounding_rect;
 }
 
 -(IBAction)showTextureMenu:(UIButton *)sender {
-    UIAlertController *textureMenuActions = [UIAlertController alertControllerWithTitle:@"Filter options" message:@"Select a filter to apply to the scene" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *textureMenuActions = [UIAlertController alertControllerWithTitle:@"Filter options"
+                                                                                message:@"Select a filter to apply to the scene"
+                                                                         preferredStyle:UIAlertControllerStyleActionSheet];
 
-    UIAlertAction *texture1 = [UIAlertAction actionWithTitle:@"pebbles" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *texture1 = [UIAlertAction actionWithTitle:@"pebbles"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
         _shouldShowTexture = YES;
 
         [_glView updateTextureWithShaderIndex:1];
     }];
 
-    UIAlertAction *texture2 = [UIAlertAction actionWithTitle:@"stones" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *texture2 = [UIAlertAction actionWithTitle:@"stones"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
         _shouldShowTexture = YES;
 
         [_glView updateTextureWithShaderIndex:2];
     }];
 
-    UIAlertAction *texture3 = [UIAlertAction actionWithTitle:@"bricks" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *texture3 = [UIAlertAction actionWithTitle:@"bricks"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
         _shouldShowTexture = YES;
 
         [_glView updateTextureWithShaderIndex:3];
@@ -219,12 +229,16 @@ cv::Rect bounding_rect;
     _shouldShowTexture == YES ? toggleMenuOptionString = @"remove texture" : toggleMenuOptionString = @"show texture";
 
 
-    UIAlertAction *texturetoggle = [UIAlertAction actionWithTitle:toggleMenuOptionString style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *texturetoggle = [UIAlertAction actionWithTitle:toggleMenuOptionString
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * _Nonnull action) {
         _shouldShowTexture = !_shouldShowTexture;
         [_glView updateTextureWithShaderIndex:(int)_shouldShowTexture];
     }];
 
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction * _Nonnull action) {
         _shouldShowTexture == YES ? [_glView updateTextureWithShaderIndex:(int)_shouldShowTexture] : [_glView updateTextureWithShaderIndex:0];
     }];
 
@@ -250,7 +264,7 @@ cv::Rect bounding_rect;
 
         [_trackerBoundingBox setFrame:CGRectZero];
         _trackerBoundingBox.layer.borderWidth = 2.0f;
-        _trackerBoundingBox.layer.borderColor = [[UIColor redColor] CGColor];
+        _trackerBoundingBox.layer.borderColor = [[UIColor blackColor] CGColor];
         _trackerBoundingBox.layer.cornerRadius = 4.0f;
 
         [self.cameraView addSubview:_trackerBoundingBox];
@@ -274,10 +288,10 @@ cv::Rect bounding_rect;
     Mat edges;
     cvtColor(image, image_copy, CV_BGRA2BGR);
     cvtColor(image, gray_image, CV_BGR2GRAY);
-    vector<vector<cv::Point> > contours;
+    vector<vector<cv::Point>> contours;
     vector<Vec4i> hierarchy;
-    int largest_area=0;
-    int largest_contour_index=0;
+    int largest_area = 0;
+    int largest_contour_index = 0;
 
     int corner1_x, corner1_y, corner2_x, corner2_y, corner3_x, corner3_y, corner4_x, corner4_y;
 
@@ -293,17 +307,15 @@ cv::Rect bounding_rect;
         
         // Find the contours in the image
         findContours( edges, contours, hierarchy,CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
-        
-        
-        for( int i = 0; i< contours.size(); i++ ) // iterate through each contour.
-        {
-            double a=contourArea( contours[i],false);  //  Find the area of contour
+
+        for( int i = 0; i < contours.size(); i++ ) { // iterate through each contour.
+            double a = contourArea(contours[i], false);  //  Find the area of contour
             
-            if(a>largest_area){
-                largest_area=a;
-                largest_contour_index=i;  //index of largest contour
+            if(a > largest_area) {
+                largest_area = a;
+                largest_contour_index = i;  //index of largest contour
                 // bounding rectangle for biggest contour
-                bounding_rect=boundingRect(contours[i]);
+                bounding_rect = boundingRect(contours[i]);
             }
             
         //coordinates of all corners going clockwise:
@@ -318,7 +330,7 @@ cv::Rect bounding_rect;
         }
         
         //for testing purposes
-        cout << "index"<< largest_contour_index<< endl;
+//        NSLog(@"index: %d", largest_contour_index);
     }
 
     if (_isTracking == YES && _tracker != nil) {
@@ -346,6 +358,7 @@ cv::Rect bounding_rect;
                                     CGFloat(regionOfInterest.width),
                                     CGFloat(regionOfInterest.height));
 }
+
 -(void)updateContourBoundingBox {
     _contourBoundingBox.frame = CGRectMake(bounding_rect.x,
                                            bounding_rect.y,
