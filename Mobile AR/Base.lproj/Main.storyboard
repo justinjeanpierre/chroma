@@ -32,7 +32,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWJ-dr-d91">
-                                            <rect key="frame" x="150" y="49" width="75" height="30"/>
+                                            <rect key="frame" x="8" y="11" width="75" height="30"/>
                                             <state key="normal" title="show cube"/>
                                             <connections>
                                                 <action selector="toggleCubeVisibility:" destination="ib7-yu-0vu" eventType="touchUpInside" id="Sac-EE-UOi"/>
@@ -45,13 +45,6 @@
                                                 <action selector="toggleCubePerpective:" destination="ib7-yu-0vu" eventType="touchUpInside" id="1v1-vK-c0C"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uMk-OV-MZg">
-                                            <rect key="frame" x="8" y="49" width="92" height="30"/>
-                                            <state key="normal" title="start tracking"/>
-                                            <connections>
-                                                <action selector="toggleTracking:" destination="ib7-yu-0vu" eventType="touchUpInside" id="T8a-0y-4vq"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Me4-iR-rIL">
                                             <rect key="frame" x="325" y="11" width="42" height="30"/>
                                             <state key="normal" title="colors"/>
@@ -60,7 +53,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYQ-ZC-4bx">
-                                            <rect key="frame" x="8" y="11" width="91" height="30"/>
+                                            <rect key="frame" x="8" y="49" width="91" height="30"/>
                                             <state key="normal" title="texture menu"/>
                                             <connections>
                                                 <action selector="showTextureMenu:" destination="ib7-yu-0vu" eventType="touchUpInside" id="GJx-Lq-3Jt"/>
@@ -73,19 +66,26 @@
                                                 <action selector="detectFeatures:" destination="ib7-yu-0vu" eventType="touchUpInside" id="NfJ-xs-rgg"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uMk-OV-MZg">
+                                            <rect key="frame" x="141" y="49" width="92" height="30"/>
+                                            <state key="normal" title="start tracking"/>
+                                            <connections>
+                                                <action selector="toggleTracking:" destination="ib7-yu-0vu" eventType="touchUpInside" id="T8a-0y-4vq"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="WYQ-ZC-4bx" firstAttribute="leading" secondItem="CwV-dX-WH7" secondAttribute="leadingMargin" id="9fU-eQ-gEu"/>
-                                        <constraint firstItem="p2f-St-xDV" firstAttribute="centerX" secondItem="RWJ-dr-d91" secondAttribute="centerX" id="G1h-jt-EPc"/>
-                                        <constraint firstItem="uMk-OV-MZg" firstAttribute="top" secondItem="WYQ-ZC-4bx" secondAttribute="bottom" constant="8" symbolic="YES" id="Iuk-GY-byu"/>
+                                        <constraint firstItem="p2f-St-xDV" firstAttribute="centerX" secondItem="RWJ-dr-d91" secondAttribute="centerX" constant="142" id="G1h-jt-EPc"/>
+                                        <constraint firstItem="uMk-OV-MZg" firstAttribute="top" secondItem="WYQ-ZC-4bx" secondAttribute="bottom" constant="-30" id="Iuk-GY-byu"/>
                                         <constraint firstItem="p2f-St-xDV" firstAttribute="baseline" secondItem="Me4-iR-rIL" secondAttribute="baseline" id="Vnc-Zt-did"/>
                                         <constraint firstItem="Me4-iR-rIL" firstAttribute="trailing" secondItem="KLK-Tx-cYM" secondAttribute="trailing" id="YO4-ei-1Ap"/>
-                                        <constraint firstItem="WYQ-ZC-4bx" firstAttribute="leading" secondItem="uMk-OV-MZg" secondAttribute="leading" id="cL4-cX-BQs"/>
-                                        <constraint firstItem="WYQ-ZC-4bx" firstAttribute="baseline" secondItem="p2f-St-xDV" secondAttribute="baseline" id="fvZ-QR-yhl"/>
+                                        <constraint firstItem="WYQ-ZC-4bx" firstAttribute="leading" secondItem="uMk-OV-MZg" secondAttribute="leading" constant="-133" id="cL4-cX-BQs"/>
+                                        <constraint firstItem="WYQ-ZC-4bx" firstAttribute="baseline" secondItem="p2f-St-xDV" secondAttribute="baseline" constant="38.5" id="fvZ-QR-yhl"/>
                                         <constraint firstItem="Me4-iR-rIL" firstAttribute="trailing" secondItem="CwV-dX-WH7" secondAttribute="trailingMargin" id="hZ4-8j-Cgq"/>
-                                        <constraint firstItem="uMk-OV-MZg" firstAttribute="baseline" secondItem="RWJ-dr-d91" secondAttribute="baseline" id="jIE-xL-E90"/>
+                                        <constraint firstItem="uMk-OV-MZg" firstAttribute="baseline" secondItem="RWJ-dr-d91" secondAttribute="baseline" constant="38" id="jIE-xL-E90"/>
                                         <constraint firstItem="p2f-St-xDV" firstAttribute="centerX" secondItem="CwV-dX-WH7" secondAttribute="centerX" id="pQ4-wW-jzu"/>
-                                        <constraint firstItem="RWJ-dr-d91" firstAttribute="baseline" secondItem="KLK-Tx-cYM" secondAttribute="baseline" id="waZ-gD-YKW"/>
+                                        <constraint firstItem="RWJ-dr-d91" firstAttribute="baseline" secondItem="KLK-Tx-cYM" secondAttribute="baseline" constant="-37.5" id="waZ-gD-YKW"/>
                                         <constraint firstItem="uMk-OV-MZg" firstAttribute="bottom" secondItem="CwV-dX-WH7" secondAttribute="bottomMargin" id="yhb-Gi-6FD"/>
                                     </constraints>
                                 </view>
