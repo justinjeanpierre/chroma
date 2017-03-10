@@ -66,8 +66,8 @@ Rect2d regionOfInterest;
     _isTrackerInitialized = \
     _isRegionSpecified =    NO;
 
-    // use KCF tracker?
-    _useKCFTracker = YES;
+    // use KCF tracker by default?
+    _useKCFTracker = NO;
 
     [self.videoCamera start];
 }
@@ -95,8 +95,8 @@ Rect2d regionOfInterest;
     _useKCFTracker = !_useKCFTracker;
 
     _useKCFTracker == YES?
-        [sender setTitle:@"use MIL" forState:UIControlStateNormal]:
-        [sender setTitle:@"use KCF" forState:UIControlStateNormal];
+        [sender setTitle:@"using KCF" forState:UIControlStateNormal]:
+        [sender setTitle:@"using MIL" forState:UIControlStateNormal];
 }
 
 #pragma mark - Button actions - Switch cameras
