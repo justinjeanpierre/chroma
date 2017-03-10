@@ -7,18 +7,18 @@
 //
 
 struct CGPoint3D {
-CGFloat x;
-CGFloat y;
-CGFloat z;
+    CGFloat x;
+    CGFloat y;
+    CGFloat z;
 };
 typedef struct CGPoint3D CGPoint3D;
 
 CGPoint3D CGPoint3DMake(CGFloat x, CGFloat y, CGFloat z) {
-CGPoint3D p;
+    CGPoint3D p;
 
-p.x = x;
-p.y = y;
-p.z = z;
+    p.x = x;
+    p.y = y;
+    p.z = z;
 
-return p;
+    return p;
 }

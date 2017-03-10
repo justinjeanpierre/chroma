@@ -7,7 +7,6 @@
 //
 
 #define SHOW_FPS        false
-//#define SHOW_TEXTURE    true
 
 #import "BoxView.h"
 #import "CC3GLMatrix.h"
