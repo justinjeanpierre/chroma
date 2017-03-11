@@ -20,6 +20,10 @@
     GLuint indexBuffer;
 
     int frameCount;
+
+    float scale_x;
+    float scale_y;
+    float scale_z;
 }
 
 @property (nonatomic) bool isPerspectiveInsideCube;
@@ -31,16 +35,6 @@
 #pragma mark - Class methods
 +(Class)layerClass {
     return [CAEAGLLayer class];
-}
-
--(void)displayFPSrate {
-    NSLog(@"%s ~%d FPS", __func__, frameCount);
-
-    frameCount = 0;
-}
-
--(void)changePerspective:(UIButton *)sender {
-    _isPerspectiveInsideCube = !_isPerspectiveInsideCube;
 }
 
 #pragma mark - Instance methods
@@ -69,9 +63,18 @@
         }
 
         _isPerspectiveInsideCube = NO;
+
+        scale_x = scale_y = scale_z = 1.0f;
     }
 
     return self;
+}
+
+#pragma mark - FPS
+-(void)displayFPSrate {
+    NSLog(@"%s ~%d FPS", __func__, frameCount);
+
+    frameCount = 0;
 }
 
 #pragma mark - OpenGL - run
@@ -104,7 +107,7 @@
         [modelView rotateBy:CC3VectorMake(-57 * motionManager.deviceMotion.attitude.pitch,
                                           -57 * motionManager.deviceMotion.attitude.roll,
                                           -57 * motionManager.deviceMotion.attitude.yaw)];
-        [modelView scaleBy:CC3VectorMake(6, 6, 6)];
+        [modelView scaleBy:CC3VectorMake(6 * scale_x, 6 * scale_y, 6 * scale_z)];
 
         glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
     } else { // outside box looking in
@@ -123,6 +126,7 @@
         [modelView rotateBy:CC3VectorMake(57 * motionManager.deviceMotion.attitude.pitch,
                                           57 * motionManager.deviceMotion.attitude.roll,
                                           -57 * motionManager.deviceMotion.attitude.yaw)];
+        [modelView scaleBy:CC3VectorMake(1 * scale_x, 1 * scale_y, 1 * scale_z)];
 
         glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
     }
@@ -160,6 +164,13 @@
                    0);
 
     [_context presentRenderbuffer:GL_RENDERBUFFER];
+}
+
+-(void)setupDisplayLink {
+    CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self
+                                                             selector:@selector(render:)];
+    [displayLink addToRunLoop:[NSRunLoop currentRunLoop]
+                      forMode:NSDefaultRunLoopMode];
 }
 
 #pragma mark - OpenGL - setup
@@ -229,6 +240,29 @@
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(BoxIndices), BoxIndices, GL_STATIC_DRAW);
 }
 
+#pragma mark - Box transformations
+-(void)changePerspective:(UIButton *)sender {
+    _isPerspectiveInsideCube = !_isPerspectiveInsideCube;
+}
+
+-(void)scaleXBy:(float)scaleFactor {
+    if (scaleFactor > 0) {
+        scale_x = scaleFactor;
+    }
+}
+
+-(void)scaleYBy:(float)scaleFactor {
+    if (scaleFactor > 0) {
+        scale_y = scaleFactor;
+    }
+}
+
+-(void)scaleZBy:(float)scaleFactor {
+    if (scaleFactor > 0) {
+        scale_z = scaleFactor;
+    }
+}
+
 -(void)updateBoxWithPoint:(CGPoint3D)newPoint {
     NSLog(@"%s (%.0f, %.0f, %.0f)", __func__, newPoint.x, newPoint.y, newPoint.z);
 
@@ -264,13 +298,6 @@
     // call this when updating a vertex at a specified 3d-coordinate point
     // to newPoint's 3d coordinates.
     NSLog(@"%s", __func__);
-}
-
--(void)setupDisplayLink {
-    CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self
-                                                             selector:@selector(render:)];
-    [displayLink addToRunLoop:[NSRunLoop currentRunLoop]
-                      forMode:NSDefaultRunLoopMode];
 }
 
 #pragma mark - OpenGL methods - shader
