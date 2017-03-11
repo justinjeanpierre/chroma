@@ -182,7 +182,8 @@ Rect2f bounding_rect;
     NSLog(@"%s", __func__);
 
     // toggle one of the cube's points
-    [_glView updateBoxWithPoint:CGPoint3DMake(2, 2, 2)];
+//    [_glView updateBoxWithPoint:CGPoint3DMake(2, 2, 2)];
+    [_glView scaleYBy:1.5];
 }
 
 -(IBAction)showTextureMenu:(UIButton *)sender {
