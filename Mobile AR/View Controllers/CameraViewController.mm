@@ -36,7 +36,7 @@ using namespace cv;
 @implementation CameraViewController
 
 Rect2d regionOfInterest;
-cv::Rect bounding_rect;
+Rect2f bounding_rect;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -296,7 +296,7 @@ cv::Rect bounding_rect;
     int largest_area = 0;
     int largest_contour_index = 0;
 
-    int corner1_x, corner1_y, corner2_x, corner2_y, corner3_x, corner3_y, corner4_x, corner4_y;
+    CGPoint corner1, corner2, corner3, corner4;
 
     if (_shouldInvertColors == YES) {
         // invert image
@@ -322,14 +322,14 @@ cv::Rect bounding_rect;
             }
             
         //coordinates of all corners going clockwise:
-            corner1_x = bounding_rect.x;
-            corner1_y = bounding_rect.y;
-            corner2_x = corner1_x + bounding_rect.width;
-            corner2_y = corner1_y;
-            corner3_x = corner2_x;
-            corner3_y = corner2_y - bounding_rect.height;
-            corner4_x = corner1_x;
-            corner4_y = corner3_y;
+            corner1.x = bounding_rect.x;
+            corner1.y = bounding_rect.y;
+            corner2.x = corner1.x + bounding_rect.width;
+            corner2.y = corner1.y;
+            corner3.x = corner2.x;
+            corner3.y = corner2.y - bounding_rect.height;
+            corner4.x = corner1.x;
+            corner4.y = corner3.y;
         }
         
         //for testing purposes
@@ -349,9 +349,6 @@ cv::Rect bounding_rect;
                 _isTrackerInitialized = _tracker->init(targetImage, regionOfInterest) || !(_tracker == nil);
             } else {
                 // update ROI from tracker
-//                int updated = _tracker->update(targetImage, regionOfInterest);
-//                NSLog(@"update: %d", updated);
-
                 _tracker->update(targetImage, regionOfInterest);
             }
         }
