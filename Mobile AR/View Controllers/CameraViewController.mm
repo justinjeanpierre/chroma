@@ -264,8 +264,11 @@ cv::Rect bounding_rect;
 
         [_trackerBoundingBox setFrame:CGRectZero];
         _trackerBoundingBox.layer.borderWidth = 2.0f;
-        _trackerBoundingBox.layer.borderColor = [[UIColor blackColor] CGColor];
         _trackerBoundingBox.layer.cornerRadius = 4.0f;
+
+        _useKCFTracker == YES?
+            _trackerBoundingBox.layer.borderColor = [[UIColor blackColor] CGColor]: // black for KCF
+            _trackerBoundingBox.layer.borderColor = [[UIColor blueColor] CGColor];  // blude for MIL
 
         [self.cameraView addSubview:_trackerBoundingBox];
 
@@ -306,7 +309,7 @@ cv::Rect bounding_rect;
         Canny(gray_image, edges, 5, 200, 3);
         
         // Find the contours in the image
-        findContours( edges, contours, hierarchy,CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
+        findContours( edges, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
 
         for( int i = 0; i < contours.size(); i++ ) { // iterate through each contour.
             double a = contourArea(contours[i], false);  //  Find the area of contour
@@ -343,9 +346,12 @@ cv::Rect bounding_rect;
         // check whether touchesEnded:withEvent was called and produced a non-zero ROI
         if (_isRegionSpecified == YES) {
             if (_isTrackerInitialized == NO) {
-                _isTrackerInitialized = _tracker->init(targetImage, regionOfInterest);
+                _isTrackerInitialized = _tracker->init(targetImage, regionOfInterest) || !(_tracker == nil);
             } else {
                 // update ROI from tracker
+//                int updated = _tracker->update(targetImage, regionOfInterest);
+//                NSLog(@"update: %d", updated);
+
                 _tracker->update(targetImage, regionOfInterest);
             }
         }
