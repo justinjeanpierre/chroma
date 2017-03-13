@@ -169,6 +169,7 @@ void KCFTracker::init(const cv::Rect &roi, cv::Mat image)
     //_den = cv::Mat(size_patch[0], size_patch[1], CV_32FC2, float(0));
     train(_tmpl, 1.0); // train with initial frame
  }
+
 // Update position based on the new frame
 cv::Rect KCFTracker::update(cv::Mat image)
 {

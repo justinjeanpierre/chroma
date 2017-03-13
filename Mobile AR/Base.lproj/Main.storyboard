@@ -102,7 +102,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNk-Jk-haH">
                                 <rect key="frame" x="285" y="79" width="74" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="using MIL"/>
+                                <state key="normal" title="using KCF"/>
                                 <connections>
                                     <action selector="switchTrackers:" destination="ib7-yu-0vu" eventType="touchUpInside" id="Vly-7y-3jA"/>
                                 </connections>

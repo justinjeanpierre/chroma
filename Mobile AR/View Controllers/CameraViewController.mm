@@ -8,6 +8,7 @@
 
 #import "CameraViewController.h"
 #import "FileBrowser-swift.h"
+#import "kcftracker.hpp"
 
 using namespace std;
 using namespace cv;
@@ -17,7 +18,7 @@ using namespace cv;
 @property (nonatomic, strong) CvVideoCamera *videoCamera;
 @property (nonatomic, strong) UIView *trackerBoundingBox;
 @property (nonatomic, strong) UIView *contourBoundingBox;
-@property (nonatomic) Ptr<Tracker> tracker;
+@property (nonatomic) KCFTracker kcfTracker;
 
 @property (nonatomic, strong) NSTimer *trackerOutlineTimer;
 @property (nonatomic, strong) NSTimer *contourOutlineTimer;
@@ -70,7 +71,7 @@ Rect2f bounding_rect;
     _isRegionSpecified =    NO;
 
     // use KCF tracker by default?
-    _useKCFTracker = NO;
+    _useKCFTracker = YES;
 
     [self.videoCamera start];
 }
@@ -88,9 +89,7 @@ Rect2f bounding_rect;
     _isTracking = _isTrackerInitialized = _isRegionSpecified = NO;
 
     // destroy tracker
-    if (_tracker) {
-        _tracker->~Tracker();
-    }
+    _kcfTracker.~KCFTracker();
 }
 
 #pragma mark - Button actions - Switch trackers
@@ -273,14 +272,17 @@ Rect2f bounding_rect;
         [self.cameraView addSubview:_trackerBoundingBox];
 
         // create a tracker object
-        if (_tracker == nil) {
-            _useKCFTracker == YES ? _tracker = Tracker::create("KCF") : _tracker = Tracker::create("MIL");
+        if (_useKCFTracker == YES) {
+            _kcfTracker = KCFTracker(NO, YES, NO, NO);
         }
+
     } else {
         [_toggleTrackingButton setTitle:@"start tracking" forState:UIControlStateNormal];
         [_trackerOutlineTimer invalidate];
         [_trackerBoundingBox removeFromSuperview];
         _isTrackerInitialized = _isRegionSpecified = NO;
+
+        _kcfTracker.~KCFTracker();
     }
 }
 
@@ -331,25 +333,23 @@ Rect2f bounding_rect;
             corner4.x = corner1.x;
             corner4.y = corner3.y;
         }
-        
-        //for testing purposes
-//        NSLog(@"index: %d", largest_contour_index);
     }
 
-    if (_isTracking == YES && _tracker != nil) {
+    if (_isTracking == YES) {
         // source: http://docs.opencv.org/3.1.0/d2/d0a/tutorial_introduction_to_tracker.html
 
-        // create 3-channel copy of source image (to work with MIL tracker)
+        // create 3-channel copy of source image
         Mat targetImage;
         cvtColor(image, targetImage, CV_BGRA2BGR);
 
         // check whether touchesEnded:withEvent was called and produced a non-zero ROI
         if (_isRegionSpecified == YES) {
             if (_isTrackerInitialized == NO) {
-                _isTrackerInitialized = _tracker->init(targetImage, regionOfInterest) || !(_tracker == nil);
+                _kcfTracker.init(regionOfInterest, targetImage);
+                _isTrackerInitialized = YES;
             } else {
                 // update ROI from tracker
-                _tracker->update(targetImage, regionOfInterest);
+                regionOfInterest = _kcfTracker.update(targetImage);
             }
         }
     }
