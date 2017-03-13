@@ -32,6 +32,8 @@ using namespace cv;
 @property (nonatomic) BOOL isRegionSpecified;
 @property (nonatomic) BOOL useKCFTracker;
 
+@property (nonatomic, strong) UIImageView *trackedObjectImageView;
+
 @end
 
 @implementation CameraViewController
@@ -172,7 +174,7 @@ Rect2f bounding_rect;
             [_glView setFrame:self.cameraView.bounds];
         }
 
-        [self.cameraView addSubview:_glView];
+        [self.cameraView insertSubview:_glView belowSubview:_trackedObjectImageView];
     } else {
         [button setTitle:@"show cube" forState:UIControlStateNormal];
         [_glView removeFromSuperview];
@@ -276,7 +278,16 @@ Rect2f bounding_rect;
             _kcfTracker = KCFTracker(NO, YES, NO, NO);
         }
 
+        // add "preview" box
+        if (!_trackedObjectImageView) {
+            _trackedObjectImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        }
+
+        [self.cameraView addSubview:_trackedObjectImageView];
+
     } else {
+        [_trackedObjectImageView removeFromSuperview];
+
         [_toggleTrackingButton setTitle:@"start tracking" forState:UIControlStateNormal];
         [_trackerOutlineTimer invalidate];
         [_trackerBoundingBox removeFromSuperview];
@@ -349,10 +360,30 @@ Rect2f bounding_rect;
                 _isTrackerInitialized = YES;
             } else {
                 // update ROI from tracker
+//                NSLog(@"roi: (%0.1f, %0.1f, %0.1f, %0.1f)",
+//                      regionOfInterest.x, regionOfInterest.y, regionOfInterest.width, regionOfInterest.height);
                 regionOfInterest = _kcfTracker.update(targetImage);
+
+                // set overlay image to regionOfInterest contents
+                if (0 <= regionOfInterest.x // asserted in modules/core/src/matrix.cpp, line 522
+                    && 0 <= regionOfInterest.width
+                    && regionOfInterest.x + regionOfInterest.width <= image.cols
+                    && 0 <= regionOfInterest.y
+                    && 0 <= regionOfInterest.height
+                    && regionOfInterest.y + regionOfInterest.height <= image.rows) {
+                        cv::Mat croppedImage = image(regionOfInterest);
+
+//                        UIImage *tmp = MatToUIImage(croppedImage);
+                        UIImage *tmp = MatToUIImage(image);
+                        [_trackedObjectImageView performSelectorOnMainThread:@selector(setImage:) withObject:tmp waitUntilDone:NO];
+                }
             }
         }
     }
+}
+
+-(void)updatePreviewWithImage:(UIImage *)img {
+    [_trackedObjectImageView setImage:img];
 }
 
 -(void)updateTrackerBoundingBox {
@@ -360,6 +391,10 @@ Rect2f bounding_rect;
                                     CGFloat(regionOfInterest.y),
                                     CGFloat(regionOfInterest.width),
                                     CGFloat(regionOfInterest.height));
+    _trackedObjectImageView.frame = CGRectMake(CGFloat(regionOfInterest.x),
+                                               CGFloat(regionOfInterest.y + regionOfInterest.height/2),
+                                               CGFloat(regionOfInterest.width - 2),
+                                               CGFloat(regionOfInterest.height - 2));
 }
 
 -(void)updateContourBoundingBox {
