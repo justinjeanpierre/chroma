@@ -53,6 +53,12 @@
 		2D29DC1B1E614C6B00FCC601 /* SimpleVertexTexture.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D29DC171E614C6B00FCC601 /* SimpleVertexTexture.glsl */; };
 		2D29DC1C1E614C6B00FCC601 /* SimpleVertexTexture.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D29DC171E614C6B00FCC601 /* SimpleVertexTexture.glsl */; };
 		2D29DC1D1E614C6B00FCC601 /* SimpleVertexTexture.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D29DC171E614C6B00FCC601 /* SimpleVertexTexture.glsl */; };
+		2DA8DB701E7664510045925C /* fhog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8DB681E7664510045925C /* fhog.cpp */; };
+		2DA8DB711E7664510045925C /* fhog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8DB681E7664510045925C /* fhog.cpp */; };
+		2DA8DB721E7664510045925C /* fhog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8DB681E7664510045925C /* fhog.cpp */; };
+		2DA8DB731E7664510045925C /* kcftracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8DB6A1E7664510045925C /* kcftracker.cpp */; };
+		2DA8DB741E7664510045925C /* kcftracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8DB6A1E7664510045925C /* kcftracker.cpp */; };
+		2DA8DB751E7664510045925C /* kcftracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8DB6A1E7664510045925C /* kcftracker.cpp */; };
 		2DC9F7B11E5AB3110076F562 /* CGPoint_Extensions.h in Resources */ = {isa = PBXBuildFile; fileRef = 2DC9F7B01E5AB3110076F562 /* CGPoint_Extensions.h */; };
 		2DC9F7B21E5AB3110076F562 /* CGPoint_Extensions.h in Resources */ = {isa = PBXBuildFile; fileRef = 2DC9F7B01E5AB3110076F562 /* CGPoint_Extensions.h */; };
 		2DC9F7B31E5AB3110076F562 /* CGPoint_Extensions.h in Resources */ = {isa = PBXBuildFile; fileRef = 2DC9F7B01E5AB3110076F562 /* CGPoint_Extensions.h */; };
@@ -121,6 +127,14 @@
 		2D249B5E1E5AA88500FA012F /* BoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxView.m; sourceTree = "<group>"; };
 		2D29DC161E614C6B00FCC601 /* SimpleFragmentTexture.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleFragmentTexture.glsl; sourceTree = "<group>"; };
 		2D29DC171E614C6B00FCC601 /* SimpleVertexTexture.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleVertexTexture.glsl; sourceTree = "<group>"; };
+		2DA8DB671E7664510045925C /* ffttools.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ffttools.hpp; sourceTree = "<group>"; };
+		2DA8DB681E7664510045925C /* fhog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fhog.cpp; sourceTree = "<group>"; };
+		2DA8DB691E7664510045925C /* fhog.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fhog.hpp; sourceTree = "<group>"; };
+		2DA8DB6A1E7664510045925C /* kcftracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kcftracker.cpp; sourceTree = "<group>"; };
+		2DA8DB6B1E7664510045925C /* kcftracker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kcftracker.hpp; sourceTree = "<group>"; };
+		2DA8DB6C1E7664510045925C /* labdata.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = labdata.hpp; sourceTree = "<group>"; };
+		2DA8DB6D1E7664510045925C /* recttools.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = recttools.hpp; sourceTree = "<group>"; };
+		2DA8DB6F1E7664510045925C /* tracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tracker.h; sourceTree = "<group>"; };
 		2DC9F7B01E5AB3110076F562 /* CGPoint_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPoint_Extensions.h; sourceTree = "<group>"; };
 		2DF23C091E67F1AF001CCCA6 /* BoxVertex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxVertex.h; sourceTree = "<group>"; };
 		2DF23C0A1E67F526001CCCA6 /* PerspectiveBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerspectiveBox.h; sourceTree = "<group>"; };
@@ -253,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				2D249B441E5AA88500FA012F /* Cocos3DMathLib */,
+				2DA8DB661E7664510045925C /* KCFcpp */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -333,6 +348,21 @@
 				2D249B5E1E5AA88500FA012F /* BoxView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2DA8DB661E7664510045925C /* KCFcpp */ = {
+			isa = PBXGroup;
+			children = (
+				2DA8DB671E7664510045925C /* ffttools.hpp */,
+				2DA8DB681E7664510045925C /* fhog.cpp */,
+				2DA8DB691E7664510045925C /* fhog.hpp */,
+				2DA8DB6A1E7664510045925C /* kcftracker.cpp */,
+				2DA8DB6B1E7664510045925C /* kcftracker.hpp */,
+				2DA8DB6C1E7664510045925C /* labdata.hpp */,
+				2DA8DB6D1E7664510045925C /* recttools.hpp */,
+				2DA8DB6F1E7664510045925C /* tracker.h */,
+			);
+			path = KCFcpp;
 			sourceTree = "<group>";
 		};
 		A0EE8A6477B575231061552B /* Pods */ = {
@@ -661,7 +691,9 @@
 				2D249B7A1E5AA88500FA012F /* BoxView.m in Sources */,
 				2D249B651E5AA88500FA012F /* CC3Kazmath.c in Sources */,
 				2D1BC9A01E5AA614000D5CB7 /* AppDelegate.m in Sources */,
+				2DA8DB731E7664510045925C /* kcftracker.cpp in Sources */,
 				2D249B5F1E5AA88500FA012F /* CC3Foundation.m in Sources */,
+				2DA8DB701E7664510045925C /* fhog.cpp in Sources */,
 				2D249B741E5AA88500FA012F /* CaptureViewController.swift in Sources */,
 				2D249B621E5AA88500FA012F /* CC3GLMatrix.m in Sources */,
 				2DF23C0C1E67F526001CCCA6 /* PerspectiveBox.m in Sources */,
@@ -678,10 +710,12 @@
 				2DF23C0D1E67F526001CCCA6 /* PerspectiveBox.m in Sources */,
 				2D249B7B1E5AA88500FA012F /* BoxView.m in Sources */,
 				2D249B601E5AA88500FA012F /* CC3Foundation.m in Sources */,
+				2DA8DB711E7664510045925C /* fhog.cpp in Sources */,
 				2D1BC9B61E5AA615000D5CB7 /* Mobile_ARTests.m in Sources */,
 				2D249B751E5AA88500FA012F /* CaptureViewController.swift in Sources */,
 				2D249B661E5AA88500FA012F /* CC3Kazmath.c in Sources */,
 				2D249B691E5AA88500FA012F /* CC3Math.m in Sources */,
+				2DA8DB741E7664510045925C /* kcftracker.cpp in Sources */,
 				2D249B631E5AA88500FA012F /* CC3GLMatrix.m in Sources */,
 				2D249B721E5AA88500FA012F /* CameraViewController.mm in Sources */,
 			);
@@ -694,10 +728,12 @@
 				2DF23C0E1E67F526001CCCA6 /* PerspectiveBox.m in Sources */,
 				2D249B7C1E5AA88500FA012F /* BoxView.m in Sources */,
 				2D249B611E5AA88500FA012F /* CC3Foundation.m in Sources */,
+				2DA8DB721E7664510045925C /* fhog.cpp in Sources */,
 				2D1BC9C11E5AA615000D5CB7 /* Mobile_ARUITests.m in Sources */,
 				2D249B761E5AA88500FA012F /* CaptureViewController.swift in Sources */,
 				2D249B671E5AA88500FA012F /* CC3Kazmath.c in Sources */,
 				2D249B6A1E5AA88500FA012F /* CC3Math.m in Sources */,
+				2DA8DB751E7664510045925C /* kcftracker.cpp in Sources */,
 				2D249B641E5AA88500FA012F /* CC3GLMatrix.m in Sources */,
 				2D249B731E5AA88500FA012F /* CameraViewController.mm in Sources */,
 			);
