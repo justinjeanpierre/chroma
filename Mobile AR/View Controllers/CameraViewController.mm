@@ -82,16 +82,16 @@ Rect2f bounding_rect;
     [super didReceiveMemoryWarning];
 
     // turn off image processing
-    _shouldInvertColors = _shouldDetectFeatures = NO;
+//    _shouldInvertColors = _shouldDetectFeatures = NO;
 
     // turn off cube
-    _shouldShowCube = NO;
+//    _shouldShowCube = NO;
 
     // turn off tracker
-    _isTracking = _isTrackerInitialized = _isRegionSpecified = NO;
+//    _isTracking = _isTrackerInitialized = _isRegionSpecified = NO;
 
     // destroy tracker
-    _kcfTracker.~KCFTracker();
+//    _kcfTracker.~KCFTracker();
 }
 
 #pragma mark - Button actions - Switch trackers
@@ -269,7 +269,7 @@ Rect2f bounding_rect;
 
         _useKCFTracker == YES?
             _trackerBoundingBox.layer.borderColor = [[UIColor blackColor] CGColor]: // black for KCF
-            _trackerBoundingBox.layer.borderColor = [[UIColor blueColor] CGColor];  // blude for MIL
+            _trackerBoundingBox.layer.borderColor = [[UIColor blueColor] CGColor];  // blue for MIL
 
         [self.cameraView addSubview:_trackerBoundingBox];
 
@@ -283,6 +283,7 @@ Rect2f bounding_rect;
             _trackedObjectImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         }
 
+        _trackedObjectImageView.layer.cornerRadius = _trackerBoundingBox.layer.cornerRadius;
         [self.cameraView addSubview:_trackedObjectImageView];
 
     } else {
@@ -391,10 +392,11 @@ Rect2f bounding_rect;
                                     CGFloat(regionOfInterest.y),
                                     CGFloat(regionOfInterest.width),
                                     CGFloat(regionOfInterest.height));
-    _trackedObjectImageView.frame = CGRectMake(CGFloat(regionOfInterest.x),
-                                               CGFloat(regionOfInterest.y + regionOfInterest.height/2),
-                                               CGFloat(regionOfInterest.width - 2),
-                                               CGFloat(regionOfInterest.height - 2));
+
+    _trackedObjectImageView.frame = CGRectMake(CGFloat(regionOfInterest.x + 2),
+                                               CGFloat(regionOfInterest.y + 2),//+ regionOfInterest.height),
+                                               CGFloat(regionOfInterest.width - 4),
+                                               CGFloat(regionOfInterest.height - 4));
 }
 
 -(void)updateContourBoundingBox {
