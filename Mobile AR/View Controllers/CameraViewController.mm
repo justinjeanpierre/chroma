@@ -80,18 +80,6 @@ Rect2f bounding_rect;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
-    // turn off image processing
-//    _shouldInvertColors = _shouldDetectFeatures = NO;
-
-    // turn off cube
-//    _shouldShowCube = NO;
-
-    // turn off tracker
-//    _isTracking = _isTrackerInitialized = _isRegionSpecified = NO;
-
-    // destroy tracker
-//    _kcfTracker.~KCFTracker();
 }
 
 #pragma mark - Button actions - Switch trackers
@@ -361,8 +349,6 @@ Rect2f bounding_rect;
                 _isTrackerInitialized = YES;
             } else {
                 // update ROI from tracker
-//                NSLog(@"roi: (%0.1f, %0.1f, %0.1f, %0.1f)",
-//                      regionOfInterest.x, regionOfInterest.y, regionOfInterest.width, regionOfInterest.height);
                 regionOfInterest = _kcfTracker.update(targetImage);
 
                 // set overlay image to regionOfInterest contents
@@ -394,7 +380,7 @@ Rect2f bounding_rect;
                                     CGFloat(regionOfInterest.height));
 
     _trackedObjectImageView.frame = CGRectMake(CGFloat(regionOfInterest.x + 2),
-                                               CGFloat(regionOfInterest.y + 2),//+ regionOfInterest.height),
+                                               CGFloat(regionOfInterest.y + 2),
                                                CGFloat(regionOfInterest.width - 4),
                                                CGFloat(regionOfInterest.height - 4));
 }
