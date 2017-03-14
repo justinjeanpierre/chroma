@@ -8,6 +8,7 @@
 
 #import "CameraViewController.h"
 #import "FileBrowser-swift.h"
+#import "kcftracker.hpp"
 
 using namespace std;
 using namespace cv;
@@ -17,7 +18,7 @@ using namespace cv;
 @property (nonatomic, strong) CvVideoCamera *videoCamera;
 @property (nonatomic, strong) UIView *trackerBoundingBox;
 @property (nonatomic, strong) UIView *contourBoundingBox;
-@property (nonatomic) Ptr<Tracker> tracker;
+@property (nonatomic) KCFTracker kcfTracker;
 
 @property (nonatomic, strong) NSTimer *trackerOutlineTimer;
 @property (nonatomic, strong) NSTimer *contourOutlineTimer;
@@ -30,6 +31,8 @@ using namespace cv;
 @property (nonatomic) BOOL isTrackerInitialized;
 @property (nonatomic) BOOL isRegionSpecified;
 @property (nonatomic) BOOL useKCFTracker;
+
+@property (nonatomic, strong) UIImageView *trackedObjectImageView;
 
 @end
 
@@ -70,27 +73,13 @@ Rect2f bounding_rect;
     _isRegionSpecified =    NO;
 
     // use KCF tracker by default?
-    _useKCFTracker = NO;
+    _useKCFTracker = YES;
 
     [self.videoCamera start];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
-    // turn off image processing
-    _shouldInvertColors = _shouldDetectFeatures = NO;
-
-    // turn off cube
-    _shouldShowCube = NO;
-
-    // turn off tracker
-    _isTracking = _isTrackerInitialized = _isRegionSpecified = NO;
-
-    // destroy tracker
-    if (_tracker) {
-        _tracker->~Tracker();
-    }
 }
 
 #pragma mark - Button actions - Switch trackers
@@ -173,7 +162,7 @@ Rect2f bounding_rect;
             [_glView setFrame:self.cameraView.bounds];
         }
 
-        [self.cameraView addSubview:_glView];
+        [self.cameraView insertSubview:_glView belowSubview:_trackedObjectImageView];
     } else {
         [button setTitle:@"show cube" forState:UIControlStateNormal];
         [_glView removeFromSuperview];
@@ -268,19 +257,32 @@ Rect2f bounding_rect;
 
         _useKCFTracker == YES?
             _trackerBoundingBox.layer.borderColor = [[UIColor blackColor] CGColor]: // black for KCF
-            _trackerBoundingBox.layer.borderColor = [[UIColor blueColor] CGColor];  // blude for MIL
+            _trackerBoundingBox.layer.borderColor = [[UIColor blueColor] CGColor];  // blue for MIL
 
         [self.cameraView addSubview:_trackerBoundingBox];
 
         // create a tracker object
-        if (_tracker == nil) {
-            _useKCFTracker == YES ? _tracker = Tracker::create("KCF") : _tracker = Tracker::create("MIL");
+        if (_useKCFTracker == YES) {
+            _kcfTracker = KCFTracker(NO, YES, NO, NO);
         }
+
+        // add "preview" box
+        if (!_trackedObjectImageView) {
+            _trackedObjectImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        }
+
+        _trackedObjectImageView.layer.cornerRadius = _trackerBoundingBox.layer.cornerRadius;
+        [self.cameraView addSubview:_trackedObjectImageView];
+
     } else {
+        [_trackedObjectImageView removeFromSuperview];
+
         [_toggleTrackingButton setTitle:@"start tracking" forState:UIControlStateNormal];
         [_trackerOutlineTimer invalidate];
         [_trackerBoundingBox removeFromSuperview];
         _isTrackerInitialized = _isRegionSpecified = NO;
+
+        _kcfTracker.~KCFTracker();
     }
 }
 
@@ -331,28 +333,44 @@ Rect2f bounding_rect;
             corner4.x = corner1.x;
             corner4.y = corner3.y;
         }
-        
-        //for testing purposes
-//        NSLog(@"index: %d", largest_contour_index);
     }
 
-    if (_isTracking == YES && _tracker != nil) {
+    if (_isTracking == YES) {
         // source: http://docs.opencv.org/3.1.0/d2/d0a/tutorial_introduction_to_tracker.html
 
-        // create 3-channel copy of source image (to work with MIL tracker)
+        // create 3-channel copy of source image
         Mat targetImage;
         cvtColor(image, targetImage, CV_BGRA2BGR);
 
         // check whether touchesEnded:withEvent was called and produced a non-zero ROI
         if (_isRegionSpecified == YES) {
             if (_isTrackerInitialized == NO) {
-                _isTrackerInitialized = _tracker->init(targetImage, regionOfInterest) || !(_tracker == nil);
+                _kcfTracker.init(regionOfInterest, targetImage);
+                _isTrackerInitialized = YES;
             } else {
                 // update ROI from tracker
-                _tracker->update(targetImage, regionOfInterest);
+                regionOfInterest = _kcfTracker.update(targetImage);
+
+                // set overlay image to regionOfInterest contents
+                if (0 <= regionOfInterest.x // asserted in modules/core/src/matrix.cpp, line 522
+                    && 0 <= regionOfInterest.width
+                    && regionOfInterest.x + regionOfInterest.width <= image.cols
+                    && 0 <= regionOfInterest.y
+                    && 0 <= regionOfInterest.height
+                    && regionOfInterest.y + regionOfInterest.height <= image.rows) {
+                        cv::Mat croppedImage = image(regionOfInterest);
+
+//                        UIImage *tmp = MatToUIImage(croppedImage);
+                        UIImage *tmp = MatToUIImage(image);
+                        [_trackedObjectImageView performSelectorOnMainThread:@selector(setImage:) withObject:tmp waitUntilDone:NO];
+                }
             }
         }
     }
+}
+
+-(void)updatePreviewWithImage:(UIImage *)img {
+    [_trackedObjectImageView setImage:img];
 }
 
 -(void)updateTrackerBoundingBox {
@@ -360,6 +378,11 @@ Rect2f bounding_rect;
                                     CGFloat(regionOfInterest.y),
                                     CGFloat(regionOfInterest.width),
                                     CGFloat(regionOfInterest.height));
+
+    _trackedObjectImageView.frame = CGRectMake(CGFloat(regionOfInterest.x + 2),
+                                               CGFloat(regionOfInterest.y + 2),
+                                               CGFloat(regionOfInterest.width - 4),
+                                               CGFloat(regionOfInterest.height - 4));
 }
 
 -(void)updateContourBoundingBox {
