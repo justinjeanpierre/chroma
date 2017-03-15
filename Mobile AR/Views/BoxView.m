@@ -263,6 +263,12 @@
     }
 }
 
+-(void)scaleXAxis:(float)xAxisScale yAxis:(float)yAxisScale zAxis:(float)zAxisScale {
+    [self scaleXBy:xAxisScale];
+    [self scaleYBy:yAxisScale];
+    [self scaleZBy:zAxisScale];
+}
+
 -(void)updateBoxWithPoint:(CGPoint3D)newPoint {
     NSLog(@"%s (%.0f, %.0f, %.0f)", __func__, newPoint.x, newPoint.y, newPoint.z);
 

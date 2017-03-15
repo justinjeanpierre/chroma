@@ -38,5 +38,6 @@
 -(void)scaleXBy:(float)scaleFactor;
 -(void)scaleYBy:(float)scaleFactor;
 -(void)scaleZBy:(float)scaleFactor;
+-(void)scaleXAxis:(float)xAxisScale yAxis:(float)yAxisScale zAxis:(float)zAxisScale;
 
 @end
