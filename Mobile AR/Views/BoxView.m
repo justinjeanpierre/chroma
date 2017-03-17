@@ -24,6 +24,8 @@
     float scale_x;
     float scale_y;
     float scale_z;
+
+    float orientationScale;
 }
 
 @property (nonatomic) bool isPerspectiveInsideCube;
@@ -65,6 +67,7 @@
         _isPerspectiveInsideCube = NO;
 
         scale_x = scale_y = scale_z = 1.0f;
+        orientationScale = 0.0;
     }
 
     return self;
@@ -104,9 +107,9 @@
         CC3GLMatrix *modelView = [CC3GLMatrix matrix];
         [modelView populateFromTranslation:CC3VectorMake(0, 0, -7)];
         // use device attitude to rotate box:
-        [modelView rotateBy:CC3VectorMake(-57 * motionManager.deviceMotion.attitude.pitch,
-                                          -57 * motionManager.deviceMotion.attitude.roll,
-                                          -57 * motionManager.deviceMotion.attitude.yaw)];
+        [modelView rotateBy:CC3VectorMake(-57 * motionManager.deviceMotion.attitude.pitch * orientationScale,
+                                          -57 * motionManager.deviceMotion.attitude.roll * orientationScale,
+                                          -57 * motionManager.deviceMotion.attitude.yaw * orientationScale)];
         [modelView scaleBy:CC3VectorMake(6 * scale_x, 6 * scale_y, 6 * scale_z)];
 
         glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
@@ -123,9 +126,9 @@
         CC3GLMatrix *modelView = [CC3GLMatrix matrix];
         [modelView populateFromTranslation:CC3VectorMake(0, 0, -7)];
         // use device attitude to rotate box:
-        [modelView rotateBy:CC3VectorMake(57 * motionManager.deviceMotion.attitude.pitch,
-                                          57 * motionManager.deviceMotion.attitude.roll,
-                                          -57 * motionManager.deviceMotion.attitude.yaw)];
+        [modelView rotateBy:CC3VectorMake(57 * motionManager.deviceMotion.attitude.pitch * orientationScale,
+                                          57 * motionManager.deviceMotion.attitude.roll * orientationScale,
+                                          -57 * motionManager.deviceMotion.attitude.yaw * orientationScale)];
         [modelView scaleBy:CC3VectorMake(1 * scale_x, 1 * scale_y, 1 * scale_z)];
 
         glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
@@ -432,6 +435,10 @@
 -(void)setupMotion {
     motionManager = [[CMMotionManager alloc] init];
     [motionManager startDeviceMotionUpdates];
+}
+
+-(void)enableOrientationUpdates {
+    orientationScale = 1.0;
 }
 
 #pragma mark - Texture - setup
