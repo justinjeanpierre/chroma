@@ -38,5 +38,6 @@
 -(void)scaleXBy:(float)scaleFactor;
 -(void)scaleYBy:(float)scaleFactor;
 -(void)scaleZBy:(float)scaleFactor;
+-(void)enableOrientationUpdates;
 
 @end
