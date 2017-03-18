@@ -113,8 +113,9 @@ Rect2d regionOfInterest;
                     && 0 <= regionOfInterest.height
                     && regionOfInterest.y + regionOfInterest.height <= image.rows) {
 
-                    [_displayTarget updatePreviewWithImage:MatToUIImage(image)];
-//                    [_displayTarget updatePreviewWithImage:MatToUIImage(image(regionOfInterest))]; // crop image to roi somehow
+                    Mat croppedImage;
+                    image(regionOfInterest).copyTo(croppedImage);
+                    [_displayTarget updatePreviewWithImage:MatToUIImage(croppedImage)];
                     [_displayTarget updateTrackerBoundingBoxWithRect:CGRectMake(regionOfInterest.x,
                                                                                 regionOfInterest.y,
                                                                                 regionOfInterest.width,
