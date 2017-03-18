@@ -48,9 +48,10 @@ using namespace cv;
 
     self.cameraView.clipsToBounds = YES;
 
+    // TODO: why is camera preview not covering full 6+/7+ screen?
     self.videoCamera = [[CvVideoCamera alloc] initWithParentView:self.cameraView];
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
-    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset1280x720; // switch to higher resolution
+    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset1280x720;
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
@@ -251,9 +252,11 @@ using namespace cv;
 }
 
 -(void)updatePreviewWithImage:(UIImage *)newImage {
-    [_trackedObjectImageView performSelectorOnMainThread:@selector(setImage:)
-                                              withObject:newImage
-                                           waitUntilDone:NO];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_trackedObjectImageView performSelectorOnMainThread:@selector(setImage:)
+                                                  withObject:newImage
+                                               waitUntilDone:NO];
+    });
 }
 
 -(void)updateTrackerBoundingBoxWithRect:(CGRect)newBoundingBox {

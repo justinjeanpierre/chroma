@@ -106,6 +106,7 @@ Rect2d regionOfInterest;
                 _isTrackerInitialized = YES;
             } else {
                 // update ROI from tracker
+                // TODO: investigate tracker bounds (why do the axes seem inverted?)
                 regionOfInterest = _tracker.update(targetImage);
 
                 // set overlay image to regionOfInterest contents
