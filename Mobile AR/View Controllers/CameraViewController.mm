@@ -19,9 +19,6 @@ using namespace cv;
 @property (nonatomic, strong) UIView *trackerBoundingBox;
 @property (nonatomic, strong) UIView *contourBoundingBox;
 
-@property (nonatomic, strong) NSTimer *trackerOutlineTimer;
-@property (nonatomic, strong) NSTimer *contourOutlineTimer;
-
 @property (nonatomic) BOOL shouldInvertColors;
 @property (nonatomic) BOOL shouldDetectFeatures;
 @property (nonatomic) BOOL shouldShowCube;
@@ -68,9 +65,9 @@ using namespace cv;
 
     // initial tracker state to NO
     _isTracking =           \
-    _isTrackerInitialized = \
     _isRegionSpecified =    NO;
-
+    _isTrackerInitialized = NO; // ???
+    
     [self.videoCamera start];
 }
 
@@ -123,7 +120,6 @@ using namespace cv;
         // someone turned off the contour detection,
         // so we don't need the box on screen anymore.
         [_contourBoundingBox removeFromSuperview];
-        [_contourOutlineTimer invalidate];
     }
 }
 
@@ -245,7 +241,6 @@ using namespace cv;
         [_trackedObjectImageView removeFromSuperview];
 
         [_toggleTrackingButton setTitle:@"start tracking" forState:UIControlStateNormal];
-        [_trackerOutlineTimer invalidate];
         [_trackerBoundingBox removeFromSuperview];
         _isTrackerInitialized = _isRegionSpecified = NO;
     }
