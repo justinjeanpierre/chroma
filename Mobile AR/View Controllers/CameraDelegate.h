@@ -25,5 +25,4 @@
 -(void)toggleColorInversion;
 -(void)toggleFeatureDetection;
 -(void)updateRegionOfInterest:(cv::Rect)newROI;
-
 @end

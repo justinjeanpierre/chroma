@@ -43,26 +43,29 @@ Rect2d regionOfInterest;
 }
 
 -(void)processImage:(cv::Mat &)image {
-    Mat image_copy;
-    Mat gray_image;
-    Mat edges;
-    cvtColor(image, image_copy, CV_BGRA2BGR);
-    cvtColor(image, gray_image, CV_BGR2GRAY);
-    vector<vector<cv::Point>> contours;
-    vector<Vec4i> hierarchy;
-    int largest_area = 0;
-    int largest_contour_index = 0;
-
-    Rect2f bounding_rect;
     CGRect contour;
 
     if (_shouldInvertColors == YES) {
         // invert image
+        Mat image_copy;
+        cvtColor(image, image_copy, CV_BGRA2BGR);
         bitwise_not(image_copy, image_copy);
         cvtColor(image_copy, image, CV_BGR2BGRA);
     }
 
     if (_shouldDetectFeatures == YES) {
+        Mat gray_image;
+        Mat edges;
+        Rect2f bounding_rect;
+
+        vector<vector<cv::Point>> contours;
+        vector<Vec4i> hierarchy;
+        int largest_area = 0;
+        int largest_contour_index = 0;
+
+        // desaturate
+        cvtColor(image, gray_image, CV_BGR2GRAY);
+
         // edge detection code
         Canny(gray_image, edges, 5, 200, 3);
 
