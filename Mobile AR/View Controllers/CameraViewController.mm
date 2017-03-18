@@ -139,6 +139,7 @@ using namespace cv;
             [_glView setFrame:self.cameraView.bounds];
         }
 
+        [_glView enableOrientationUpdates];
         [self.cameraView insertSubview:_glView belowSubview:_trackedObjectImageView];
     } else {
         [button setTitle:@"show cube" forState:UIControlStateNormal];
