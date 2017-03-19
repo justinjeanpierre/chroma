@@ -19,9 +19,6 @@ using namespace cv;
 @property (nonatomic, strong) UIView *trackerBoundingBox;
 @property (nonatomic, strong) UIView *contourBoundingBox;
 
-@property (nonatomic, strong) NSTimer *trackerOutlineTimer;
-@property (nonatomic, strong) NSTimer *contourOutlineTimer;
-
 @property (nonatomic) BOOL shouldInvertColors;
 @property (nonatomic) BOOL shouldDetectFeatures;
 @property (nonatomic) BOOL shouldShowCube;
@@ -48,9 +45,10 @@ using namespace cv;
 
     self.cameraView.clipsToBounds = YES;
 
+    // TODO: why is camera preview not covering full 6+/7+ screen?
     self.videoCamera = [[CvVideoCamera alloc] initWithParentView:self.cameraView];
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
-    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset1280x720; // switch to higher resolution
+    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset1280x720;
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
@@ -67,9 +65,9 @@ using namespace cv;
 
     // initial tracker state to NO
     _isTracking =           \
-    _isTrackerInitialized = \
     _isRegionSpecified =    NO;
-
+    _isTrackerInitialized = NO; // ???
+    
     [self.videoCamera start];
 }
 
@@ -122,7 +120,6 @@ using namespace cv;
         // someone turned off the contour detection,
         // so we don't need the box on screen anymore.
         [_contourBoundingBox removeFromSuperview];
-        [_contourOutlineTimer invalidate];
     }
 }
 
@@ -244,16 +241,17 @@ using namespace cv;
         [_trackedObjectImageView removeFromSuperview];
 
         [_toggleTrackingButton setTitle:@"start tracking" forState:UIControlStateNormal];
-        [_trackerOutlineTimer invalidate];
         [_trackerBoundingBox removeFromSuperview];
         _isTrackerInitialized = _isRegionSpecified = NO;
     }
 }
 
 -(void)updatePreviewWithImage:(UIImage *)newImage {
-    [_trackedObjectImageView performSelectorOnMainThread:@selector(setImage:)
-                                              withObject:newImage
-                                           waitUntilDone:NO];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_trackedObjectImageView performSelectorOnMainThread:@selector(setImage:)
+                                                  withObject:newImage
+                                               waitUntilDone:NO];
+    });
 }
 
 -(void)updateTrackerBoundingBoxWithRect:(CGRect)newBoundingBox {

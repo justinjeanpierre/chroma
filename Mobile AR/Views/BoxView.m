@@ -384,8 +384,10 @@
     NSLog(@"%s", __func__);
 
     if (shaderIndex != 0) {
-        // assumes shaderIndex will not be larger
-        // than # of textures in asset catalog
+        // Assumes shaderIndex will not be larger
+        // than # of textures in asset catalog.
+
+        // TODO: fix blue tint in textures
         NSString *tileName = [NSString stringWithFormat:@"tile_%d", shaderIndex];
         _floorTexture = [self setupTexture:tileName];
     }
@@ -410,6 +412,7 @@
     GLuint fragmentShader;
 
     // compile shaders depending on value of shaderIndex
+    //  TODO: change alpha value of filters.  make them slightly more transparent.
     if (shaderIndex == 0) {
         vertexShader = [self compileShader:@"SimpleVertex" withType:GL_VERTEX_SHADER];
         fragmentShader = [self compileShader:@"SimpleFragment" withType:GL_FRAGMENT_SHADER];
