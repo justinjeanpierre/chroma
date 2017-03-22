@@ -28,21 +28,6 @@
 
 cv::Rect2d roi;
 
-- (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
-
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
 - (void)testTrackingFramePerformance {
     UIImage *testImage = [UIImage imageNamed:@"Harris_Detector_Original_Image"];
     cv::Mat &img = *new cv::Mat();
@@ -50,7 +35,7 @@ cv::Rect2d roi;
 
     _tracker = KCFTracker(NO, YES, NO, NO);
 
-    _shouldInvertColors = _shouldDetectFeatures = _isTracking = _isTrackerInitialized = _isRegionSpecified = YES;
+    _isTracking = _isTrackerInitialized = _isRegionSpecified = YES;
 
     roi.x = 10;
     roi.y = 10;
@@ -90,6 +75,94 @@ cv::Rect2d roi;
                 image(roi).copyTo(croppedImage);
             }
         }
+    }
+}
+
+- (void)testDetectingFramePerformance {
+    UIImage *testImage = [UIImage imageNamed:@"Harris_Detector_Original_Image"];
+    cv::Mat &img = *new cv::Mat();
+    UIImageToMat(testImage, img);
+
+    _tracker = KCFTracker(NO, YES, NO, NO);
+
+    _shouldDetectFeatures = YES;
+
+    roi.x = 10;
+    roi.y = 10;
+    roi.width = 100;
+    roi.height = 100;
+
+    [self measureBlock:^{
+        [self processImage_detector:img];
+    }];
+}
+
+-(void)processImage_detector:(cv::Mat &)srcImage { // see CameraDelegate.h
+
+    CGRect contour = CGRectZero;
+
+    if (_shouldDetectFeatures == YES) {
+        cv::Mat gray_image;
+        cv::Mat edges;
+        cv::Rect2f bounding_rect;
+
+        std::vector<std::vector<cv::Point>> contours;
+        std::vector<cv::Vec4i> hierarchy;
+        int largest_area = 0;
+
+        // desaturate
+        cvtColor(srcImage, gray_image, CV_BGR2GRAY);
+
+        // edge detection code
+        Canny(gray_image, edges, 5, 200, 3);
+
+        // Find the contours in the image
+        findContours( edges, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
+
+        for( int i = 0; i < contours.size(); i++ ) { // iterate through each contour.
+            double a = contourArea(contours[i], false);  //  Find the area of contour
+
+            if(a > largest_area) {
+                largest_area = a;
+                // bounding rectangle for biggest contour
+                bounding_rect = boundingRect(contours[i]);
+            }
+
+            //coordinates of all corners going clockwise:
+            contour.origin.x = bounding_rect.x;
+            contour.origin.y = bounding_rect.y;
+            contour.size.width = contour.origin.x + bounding_rect.width;
+            contour.size.height = contour.origin.y - bounding_rect.height;
+        }
+    }
+}
+
+- (void)testInvertingFramePerformance {
+    UIImage *testImage = [UIImage imageNamed:@"Harris_Detector_Original_Image"];
+    cv::Mat &img = *new cv::Mat();
+    UIImageToMat(testImage, img);
+
+    _tracker = KCFTracker(NO, YES, NO, NO);
+
+    _shouldInvertColors = YES;
+
+    roi.x = 10;
+    roi.y = 10;
+    roi.width = 100;
+    roi.height = 100;
+
+    [self measureBlock:^{
+        [self processImage_invertor:img];
+    }];
+}
+
+-(void)processImage_invertor:(cv::Mat &)srcImage { // see CameraDelegate.h
+    if (_shouldInvertColors == YES) {
+        // invert image
+        cv::Mat image_copy;
+        cvtColor(srcImage, image_copy, CV_BGRA2BGR);
+        bitwise_not(image_copy, image_copy);
+        cvtColor(image_copy, srcImage, CV_BGR2BGRA);
     }
 }
 
