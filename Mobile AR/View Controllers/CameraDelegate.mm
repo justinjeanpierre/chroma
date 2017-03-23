@@ -115,9 +115,21 @@ Rect2d regionOfInterest;
                     && 0 <= regionOfInterest.height
                     && regionOfInterest.y + regionOfInterest.height <= image.rows) {
 
+                    // select region to display in tracker ROI from input image
+                    cv::Rect2f cropBounds = regionOfInterest;
+                    cropBounds.x += regionOfInterest.tl().x;
+                    cropBounds.y += regionOfInterest.tl().y;
+                    cropBounds.width = 2 * regionOfInterest.size().width;
+                    cropBounds.height = 2 * regionOfInterest.size().height;
+
+                    // copy ROI from source image to tracker overlay image
                     Mat croppedImage;
-                    image(regionOfInterest).copyTo(croppedImage);
+                    image(cropBounds).copyTo(croppedImage);
+
+                    // convert image back to original colours
                     cvtColor(croppedImage, croppedImage, CV_BGR2BGRA);
+
+                    // ask delegate to update tracker overlay image and bounds
                     [_displayTarget updatePreviewWithImage:MatToUIImage(croppedImage)];
                     [_displayTarget updateTrackerBoundingBoxWithRect:CGRectMake(regionOfInterest.x,
                                                                                 regionOfInterest.y,
