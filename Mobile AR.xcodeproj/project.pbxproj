@@ -12,7 +12,7 @@
 		2D1BC9A61E5AA614000D5CB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1BC9A41E5AA614000D5CB7 /* Main.storyboard */; };
 		2D1BC9A81E5AA614000D5CB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D1BC9A71E5AA614000D5CB7 /* Assets.xcassets */; };
 		2D1BC9AB1E5AA614000D5CB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1BC9A91E5AA614000D5CB7 /* LaunchScreen.storyboard */; };
-		2D1BC9B61E5AA615000D5CB7 /* Mobile_ARTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BC9B51E5AA615000D5CB7 /* Mobile_ARTests.m */; };
+		2D1BC9B61E5AA615000D5CB7 /* Mobile_ARTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BC9B51E5AA615000D5CB7 /* Mobile_ARTests.mm */; };
 		2D1BC9C11E5AA615000D5CB7 /* Mobile_ARUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BC9C01E5AA615000D5CB7 /* Mobile_ARUITests.m */; };
 		2D249B381E5AA77600FA012F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D249B371E5AA77600FA012F /* AssetsLibrary.framework */; };
 		2D249B3A1E5AA77D00FA012F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D249B391E5AA77D00FA012F /* OpenGLES.framework */; };
@@ -21,17 +21,9 @@
 		2D249B3F1E5AA7A800FA012F /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D249B3D1E5AA79400FA012F /* opencv2.framework */; };
 		2D249B401E5AA7B300FA012F /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D249B3D1E5AA79400FA012F /* opencv2.framework */; };
 		2D249B5F1E5AA88500FA012F /* CC3Foundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B461E5AA88500FA012F /* CC3Foundation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		2D249B601E5AA88500FA012F /* CC3Foundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B461E5AA88500FA012F /* CC3Foundation.m */; };
-		2D249B611E5AA88500FA012F /* CC3Foundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B461E5AA88500FA012F /* CC3Foundation.m */; };
 		2D249B621E5AA88500FA012F /* CC3GLMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B481E5AA88500FA012F /* CC3GLMatrix.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		2D249B631E5AA88500FA012F /* CC3GLMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B481E5AA88500FA012F /* CC3GLMatrix.m */; };
-		2D249B641E5AA88500FA012F /* CC3GLMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B481E5AA88500FA012F /* CC3GLMatrix.m */; };
 		2D249B651E5AA88500FA012F /* CC3Kazmath.c in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B491E5AA88500FA012F /* CC3Kazmath.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		2D249B661E5AA88500FA012F /* CC3Kazmath.c in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B491E5AA88500FA012F /* CC3Kazmath.c */; };
-		2D249B671E5AA88500FA012F /* CC3Kazmath.c in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B491E5AA88500FA012F /* CC3Kazmath.c */; };
 		2D249B681E5AA88500FA012F /* CC3Math.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B4D1E5AA88500FA012F /* CC3Math.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		2D249B691E5AA88500FA012F /* CC3Math.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B4D1E5AA88500FA012F /* CC3Math.m */; };
-		2D249B6A1E5AA88500FA012F /* CC3Math.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B4D1E5AA88500FA012F /* CC3Math.m */; };
 		2D249B6B1E5AA88500FA012F /* SimpleFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D249B501E5AA88500FA012F /* SimpleFragment.glsl */; };
 		2D249B6C1E5AA88500FA012F /* SimpleFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D249B501E5AA88500FA012F /* SimpleFragment.glsl */; };
 		2D249B6D1E5AA88500FA012F /* SimpleFragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D249B501E5AA88500FA012F /* SimpleFragment.glsl */; };
@@ -39,14 +31,10 @@
 		2D249B6F1E5AA88500FA012F /* SimpleVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D249B511E5AA88500FA012F /* SimpleVertex.glsl */; };
 		2D249B701E5AA88500FA012F /* SimpleVertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D249B511E5AA88500FA012F /* SimpleVertex.glsl */; };
 		2D249B711E5AA88500FA012F /* CameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B581E5AA88500FA012F /* CameraViewController.mm */; };
-		2D249B721E5AA88500FA012F /* CameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B581E5AA88500FA012F /* CameraViewController.mm */; };
-		2D249B731E5AA88500FA012F /* CameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B581E5AA88500FA012F /* CameraViewController.mm */; };
 		2D249B741E5AA88500FA012F /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B591E5AA88500FA012F /* CaptureViewController.swift */; };
 		2D249B751E5AA88500FA012F /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B591E5AA88500FA012F /* CaptureViewController.swift */; };
 		2D249B761E5AA88500FA012F /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B591E5AA88500FA012F /* CaptureViewController.swift */; };
 		2D249B7A1E5AA88500FA012F /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B5E1E5AA88500FA012F /* BoxView.m */; };
-		2D249B7B1E5AA88500FA012F /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B5E1E5AA88500FA012F /* BoxView.m */; };
-		2D249B7C1E5AA88500FA012F /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D249B5E1E5AA88500FA012F /* BoxView.m */; };
 		2D29DC181E614C6B00FCC601 /* SimpleFragmentTexture.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D29DC161E614C6B00FCC601 /* SimpleFragmentTexture.glsl */; };
 		2D29DC191E614C6B00FCC601 /* SimpleFragmentTexture.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D29DC161E614C6B00FCC601 /* SimpleFragmentTexture.glsl */; };
 		2D29DC1A1E614C6B00FCC601 /* SimpleFragmentTexture.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D29DC161E614C6B00FCC601 /* SimpleFragmentTexture.glsl */; };
@@ -54,11 +42,9 @@
 		2D29DC1C1E614C6B00FCC601 /* SimpleVertexTexture.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D29DC171E614C6B00FCC601 /* SimpleVertexTexture.glsl */; };
 		2D29DC1D1E614C6B00FCC601 /* SimpleVertexTexture.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D29DC171E614C6B00FCC601 /* SimpleVertexTexture.glsl */; };
 		2D7327B71E79A24700CCA034 /* CameraDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D7327B61E79A24700CCA034 /* CameraDelegate.mm */; };
-		2D7327B81E79A24700CCA034 /* CameraDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D7327B61E79A24700CCA034 /* CameraDelegate.mm */; };
-		2D7327B91E79A24700CCA034 /* CameraDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D7327B61E79A24700CCA034 /* CameraDelegate.mm */; };
 		2DA8DB701E7664510045925C /* fhog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8DB681E7664510045925C /* fhog.cpp */; };
-		2DA8DB711E7664510045925C /* fhog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8DB681E7664510045925C /* fhog.cpp */; };
-		2DA8DB721E7664510045925C /* fhog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8DB681E7664510045925C /* fhog.cpp */; };
+		2DA8DB711E7664510045925C /* fhog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8DB681E7664510045925C /* fhog.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2DA8DB721E7664510045925C /* fhog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8DB681E7664510045925C /* fhog.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2DA8DB731E7664510045925C /* kcftracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8DB6A1E7664510045925C /* kcftracker.cpp */; };
 		2DA8DB741E7664510045925C /* kcftracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8DB6A1E7664510045925C /* kcftracker.cpp */; };
 		2DA8DB751E7664510045925C /* kcftracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8DB6A1E7664510045925C /* kcftracker.cpp */; };
@@ -66,8 +52,6 @@
 		2DC9F7B21E5AB3110076F562 /* CGPoint_Extensions.h in Resources */ = {isa = PBXBuildFile; fileRef = 2DC9F7B01E5AB3110076F562 /* CGPoint_Extensions.h */; };
 		2DC9F7B31E5AB3110076F562 /* CGPoint_Extensions.h in Resources */ = {isa = PBXBuildFile; fileRef = 2DC9F7B01E5AB3110076F562 /* CGPoint_Extensions.h */; };
 		2DF23C0C1E67F526001CCCA6 /* PerspectiveBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF23C0B1E67F526001CCCA6 /* PerspectiveBox.m */; };
-		2DF23C0D1E67F526001CCCA6 /* PerspectiveBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF23C0B1E67F526001CCCA6 /* PerspectiveBox.m */; };
-		2DF23C0E1E67F526001CCCA6 /* PerspectiveBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF23C0B1E67F526001CCCA6 /* PerspectiveBox.m */; };
 		7935C33ADB07255AA73AF8B8 /* Pods_Mobile_ARTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324104D757D546EA5253FAB3 /* Pods_Mobile_ARTests.framework */; };
 		8AF91C376DBFB5676D61F88D /* Pods_Mobile_ARUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A81661E07B26EA5835D15A6F /* Pods_Mobile_ARUITests.framework */; };
 		F2862A5A91EA805E630E461C /* Pods_Mobile_AR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC1983C85BBCDDA6376428D /* Pods_Mobile_AR.framework */; };
@@ -101,7 +85,7 @@
 		2D1BC9AA1E5AA614000D5CB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D1BC9AC1E5AA614000D5CB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D1BC9B11E5AA615000D5CB7 /* Mobile ARTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mobile ARTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D1BC9B51E5AA615000D5CB7 /* Mobile_ARTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mobile_ARTests.m; sourceTree = "<group>"; };
+		2D1BC9B51E5AA615000D5CB7 /* Mobile_ARTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Mobile_ARTests.mm; sourceTree = "<group>"; };
 		2D1BC9B71E5AA615000D5CB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D1BC9BC1E5AA615000D5CB7 /* Mobile ARUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mobile ARUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1BC9C01E5AA615000D5CB7 /* Mobile_ARUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mobile_ARUITests.m; sourceTree = "<group>"; };
@@ -241,7 +225,7 @@
 		2D1BC9B41E5AA615000D5CB7 /* Mobile ARTests */ = {
 			isa = PBXGroup;
 			children = (
-				2D1BC9B51E5AA615000D5CB7 /* Mobile_ARTests.m */,
+				2D1BC9B51E5AA615000D5CB7 /* Mobile_ARTests.mm */,
 				2D1BC9B71E5AA615000D5CB7 /* Info.plist */,
 			);
 			path = "Mobile ARTests";
@@ -685,18 +669,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DF23C0D1E67F526001CCCA6 /* PerspectiveBox.m in Sources */,
-				2D249B7B1E5AA88500FA012F /* BoxView.m in Sources */,
-				2D249B601E5AA88500FA012F /* CC3Foundation.m in Sources */,
 				2DA8DB711E7664510045925C /* fhog.cpp in Sources */,
-				2D1BC9B61E5AA615000D5CB7 /* Mobile_ARTests.m in Sources */,
+				2D1BC9B61E5AA615000D5CB7 /* Mobile_ARTests.mm in Sources */,
 				2D249B751E5AA88500FA012F /* CaptureViewController.swift in Sources */,
-				2D249B661E5AA88500FA012F /* CC3Kazmath.c in Sources */,
-				2D7327B81E79A24700CCA034 /* CameraDelegate.mm in Sources */,
-				2D249B691E5AA88500FA012F /* CC3Math.m in Sources */,
 				2DA8DB741E7664510045925C /* kcftracker.cpp in Sources */,
-				2D249B631E5AA88500FA012F /* CC3GLMatrix.m in Sources */,
-				2D249B721E5AA88500FA012F /* CameraViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,18 +680,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DF23C0E1E67F526001CCCA6 /* PerspectiveBox.m in Sources */,
-				2D249B7C1E5AA88500FA012F /* BoxView.m in Sources */,
-				2D249B611E5AA88500FA012F /* CC3Foundation.m in Sources */,
 				2DA8DB721E7664510045925C /* fhog.cpp in Sources */,
 				2D1BC9C11E5AA615000D5CB7 /* Mobile_ARUITests.m in Sources */,
 				2D249B761E5AA88500FA012F /* CaptureViewController.swift in Sources */,
-				2D249B671E5AA88500FA012F /* CC3Kazmath.c in Sources */,
-				2D7327B91E79A24700CCA034 /* CameraDelegate.mm in Sources */,
-				2D249B6A1E5AA88500FA012F /* CC3Math.m in Sources */,
 				2DA8DB751E7664510045925C /* kcftracker.cpp in Sources */,
-				2D249B641E5AA88500FA012F /* CC3GLMatrix.m in Sources */,
-				2D249B731E5AA88500FA012F /* CameraViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

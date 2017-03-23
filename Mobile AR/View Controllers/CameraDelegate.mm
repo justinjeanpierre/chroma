@@ -43,7 +43,7 @@ Rect2d regionOfInterest;
 }
 
 -(void)processImage:(cv::Mat &)image {
-    CGRect contour;
+    CGRect contour = CGRectZero;
 
     if (_shouldInvertColors == YES) {
         // invert image
@@ -61,7 +61,6 @@ Rect2d regionOfInterest;
         vector<vector<cv::Point>> contours;
         vector<Vec4i> hierarchy;
         int largest_area = 0;
-        int largest_contour_index = 0;
 
         // desaturate
         cvtColor(image, gray_image, CV_BGR2GRAY);
@@ -77,7 +76,6 @@ Rect2d regionOfInterest;
 
             if(a > largest_area) {
                 largest_area = a;
-                largest_contour_index = i;  //index of largest contour
                 // bounding rectangle for biggest contour
                 bounding_rect = boundingRect(contours[i]);
             }
