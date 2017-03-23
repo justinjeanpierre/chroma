@@ -117,6 +117,7 @@ Rect2d regionOfInterest;
 
                     Mat croppedImage;
                     image(regionOfInterest).copyTo(croppedImage);
+                    cvtColor(croppedImage, croppedImage, CV_BGR2BGRA);
                     [_displayTarget updatePreviewWithImage:MatToUIImage(croppedImage)];
                     [_displayTarget updateTrackerBoundingBoxWithRect:CGRectMake(regionOfInterest.x,
                                                                                 regionOfInterest.y,
