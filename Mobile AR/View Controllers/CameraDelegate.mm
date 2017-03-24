@@ -52,42 +52,13 @@ Rect2d regionOfInterest;
         cvtColor(image_copy, image, CV_BGR2BGRA);
     }
 
-    CGRect contour = CGRectZero;
+
     if (_shouldDetectFeatures == YES) {
-        Mat gray_image;
-        Mat edges;
-        Rect2f bounding_rect;
+        Mat copyOfSourceImage;
+        image.copyTo(copyOfSourceImage);
 
-        vector<vector<cv::Point>> contours;
-        vector<Vec4i> hierarchy;
-        int largest_area = 0;
-
-        // desaturate
-        cvtColor(image, gray_image, CV_BGR2GRAY);
-
-        // edge detection code
-        Canny(gray_image, edges, 5, 200, 3);
-
-        // Find the contours in the image
-        findContours( edges, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
-
-        for ( int i = 0; i < contours.size(); i++ ) { // iterate through each contour.
-            double a = contourArea(contours[i], false);  //  Find the area of contour
-
-            if (a > largest_area) {
-                largest_area = a;
-                // bounding rectangle for biggest contour
-                bounding_rect = boundingRect(contours[i]);
-            }
-
-            //coordinates of all corners going clockwise:
-            contour.origin.x = bounding_rect.x;
-            contour.origin.y = bounding_rect.y;
-            contour.size.width = contour.origin.x + bounding_rect.width;
-            contour.size.height = contour.origin.y - bounding_rect.height;
-        }
-
-        [_displayTarget updateContourBoundingBoxWithRect:contour];
+        UIImage *imageToProcess = MatToUIImage(copyOfSourceImage);
+        [self detectContoursInImage:imageToProcess];
     }
 
     if (_isTracking == YES) {
@@ -149,6 +120,56 @@ Rect2d regionOfInterest;
         }
     }
 }
+
+-(void)detectContoursInImage:(UIImage *)sourceImage {
+
+    // take the UIImage sent into this method
+    // and turn it into a cv::Mat
+
+    cv::Mat image;
+    UIImageToMat(sourceImage, image);
+
+    CGRect contour = CGRectZero;
+
+    Mat gray_image;
+    Mat edges;
+    Rect2f bounding_rect;
+
+    vector<vector<cv::Point>> contours;
+    vector<Vec4i> hierarchy;
+    int largest_area = 0;
+
+    // desaturate
+    cvtColor(image, gray_image, CV_BGR2GRAY);
+
+    // edge detection code
+    Canny(gray_image, edges, 5, 200, 3);
+
+    // Find the contours in the image
+    findContours( edges, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
+
+    for ( int i = 0; i < contours.size(); i++ ) { // iterate through each contour.
+        double a = contourArea(contours[i], false);  //  Find the area of contour
+
+        if (a > largest_area) {
+            largest_area = a;
+            // bounding rectangle for biggest contour
+            bounding_rect = boundingRect(contours[i]);
+        }
+
+        //coordinates of all corners going clockwise:
+        contour.origin.x = bounding_rect.x;
+        contour.origin.y = bounding_rect.y;
+        contour.size.width = contour.origin.x + bounding_rect.width;
+        contour.size.height = contour.origin.y - bounding_rect.height;
+    }
+
+    // this tells the view to update the bounding
+    // rectangle with the new contour coordinates
+    [_displayTarget updateContourBoundingBoxWithRect:contour];
+}
+
+#pragma mark - toggles and state
 
 -(void)toggleTracking {
     _isTracking = !_isTracking;

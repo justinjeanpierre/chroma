@@ -25,4 +25,5 @@
 -(void)toggleColorInversion;
 -(void)toggleFeatureDetection;
 -(void)updateRegionOfInterest:(cv::Rect)newROI;
+-(void)detectContoursInImage:(UIImage *)sourceImage;
 @end
