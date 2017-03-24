@@ -15,7 +15,7 @@ using namespace cv;
 @interface CameraDelegate ()
 @property (nonatomic) KCFTracker tracker;
 @property (nonatomic) BOOL shouldInvertColors;
-@property (nonatomic) BOOL shouldDetectFeatures;
+
 @property (nonatomic) BOOL isTracking;
 @property (nonatomic) BOOL isTrackerInitialized;
 @property (nonatomic) BOOL isRegionSpecified;

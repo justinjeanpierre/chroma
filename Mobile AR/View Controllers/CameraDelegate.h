@@ -21,6 +21,8 @@
 
 @interface CameraDelegate : NSObject <CvVideoCameraDelegate>
 @property (nonatomic, strong) NSObject <DisplayTargetProtocol>* displayTarget;
+@property (nonatomic) BOOL shouldDetectFeatures;
+
 -(void)toggleTracking;
 -(void)toggleColorInversion;
 -(void)toggleFeatureDetection;

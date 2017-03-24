@@ -41,6 +41,7 @@
 		2D29DC1B1E614C6B00FCC601 /* SimpleVertexTexture.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D29DC171E614C6B00FCC601 /* SimpleVertexTexture.glsl */; };
 		2D29DC1C1E614C6B00FCC601 /* SimpleVertexTexture.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D29DC171E614C6B00FCC601 /* SimpleVertexTexture.glsl */; };
 		2D29DC1D1E614C6B00FCC601 /* SimpleVertexTexture.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 2D29DC171E614C6B00FCC601 /* SimpleVertexTexture.glsl */; };
+		2D48CD2B1E85AFA700209B4D /* ContourDetectionTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D48CD2A1E85AFA700209B4D /* ContourDetectionTests.mm */; };
 		2D7327B71E79A24700CCA034 /* CameraDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2D7327B61E79A24700CCA034 /* CameraDelegate.mm */; };
 		2DA8DB701E7664510045925C /* fhog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8DB681E7664510045925C /* fhog.cpp */; };
 		2DA8DB711E7664510045925C /* fhog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8DB681E7664510045925C /* fhog.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -114,6 +115,7 @@
 		2D249B5E1E5AA88500FA012F /* BoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxView.m; sourceTree = "<group>"; };
 		2D29DC161E614C6B00FCC601 /* SimpleFragmentTexture.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleFragmentTexture.glsl; sourceTree = "<group>"; };
 		2D29DC171E614C6B00FCC601 /* SimpleVertexTexture.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleVertexTexture.glsl; sourceTree = "<group>"; };
+		2D48CD2A1E85AFA700209B4D /* ContourDetectionTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContourDetectionTests.mm; sourceTree = "<group>"; };
 		2D7327B51E79A24700CCA034 /* CameraDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraDelegate.h; sourceTree = "<group>"; };
 		2D7327B61E79A24700CCA034 /* CameraDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraDelegate.mm; sourceTree = "<group>"; };
 		2D7327BA1E79B13C00CCA034 /* Protocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Protocols.h; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				2D1BC9B51E5AA615000D5CB7 /* Mobile_ARTests.mm */,
+				2D48CD2A1E85AFA700209B4D /* ContourDetectionTests.mm */,
 				2D1BC9B71E5AA615000D5CB7 /* Info.plist */,
 			);
 			path = "Mobile ARTests";
@@ -670,6 +673,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DA8DB711E7664510045925C /* fhog.cpp in Sources */,
+				2D48CD2B1E85AFA700209B4D /* ContourDetectionTests.mm in Sources */,
 				2D1BC9B61E5AA615000D5CB7 /* Mobile_ARTests.mm in Sources */,
 				2D249B751E5AA88500FA012F /* CaptureViewController.swift in Sources */,
 				2DA8DB741E7664510045925C /* kcftracker.cpp in Sources */,

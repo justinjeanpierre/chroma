@@ -83,8 +83,6 @@ cv::Rect2d roi;
     cv::Mat &img = *new cv::Mat();
     UIImageToMat(testImage, img);
 
-    _tracker = KCFTracker(NO, YES, NO, NO);
-
     _shouldDetectFeatures = YES;
 
     roi.x = 10;
