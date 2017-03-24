@@ -43,7 +43,6 @@ Rect2d regionOfInterest;
 }
 
 -(void)processImage:(cv::Mat &)image {
-    CGRect contour = CGRectZero;
 
     if (_shouldInvertColors == YES) {
         // invert image
@@ -53,6 +52,7 @@ Rect2d regionOfInterest;
         cvtColor(image_copy, image, CV_BGR2BGRA);
     }
 
+    CGRect contour = CGRectZero;
     if (_shouldDetectFeatures == YES) {
         Mat gray_image;
         Mat edges;
@@ -71,10 +71,10 @@ Rect2d regionOfInterest;
         // Find the contours in the image
         findContours( edges, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
 
-        for( int i = 0; i < contours.size(); i++ ) { // iterate through each contour.
+        for ( int i = 0; i < contours.size(); i++ ) { // iterate through each contour.
             double a = contourArea(contours[i], false);  //  Find the area of contour
 
-            if(a > largest_area) {
+            if (a > largest_area) {
                 largest_area = a;
                 // bounding rectangle for biggest contour
                 bounding_rect = boundingRect(contours[i]);
@@ -97,14 +97,12 @@ Rect2d regionOfInterest;
         Mat targetImage;
         cvtColor(image, targetImage, CV_BGRA2BGR);
 
-        // check whether touchesEnded:withEvent was called and produced a non-zero ROI
         if (_isRegionSpecified == YES) {
             if (_isTrackerInitialized == NO) {
                 _tracker.init(regionOfInterest, targetImage);
                 _isTrackerInitialized = YES;
             } else {
                 // update ROI from tracker
-                // TODO: investigate tracker bounds (why do the axes seem inverted?)
                 regionOfInterest = _tracker.update(targetImage);
 
                 // set overlay image to regionOfInterest contents
@@ -113,8 +111,8 @@ Rect2d regionOfInterest;
                     && regionOfInterest.x + regionOfInterest.width <= image.cols
                     && 0 <= regionOfInterest.y
                     && 0 <= regionOfInterest.height
-                    && regionOfInterest.y + regionOfInterest.height <= image.rows) {
-
+                    && regionOfInterest.y + regionOfInterest.height <= image.rows)
+                {
                     // select region to display in tracker ROI from input image
                     cv::Rect2f cropBounds = regionOfInterest;
                     cropBounds.x += regionOfInterest.tl().x;
@@ -122,15 +120,26 @@ Rect2d regionOfInterest;
                     cropBounds.width = 2 * regionOfInterest.size().width;
                     cropBounds.height = 2 * regionOfInterest.size().height;
 
-                    // copy ROI from source image to tracker overlay image
-                    Mat croppedImage;
-                    image(cropBounds).copyTo(croppedImage);
+                    // quick fix to keep app from crashing when
+                    // tracker overlay moves to edge of view
+                    if (0 <= cropBounds.x
+                        && 0 <= cropBounds.width
+                        && cropBounds.x + cropBounds.width <= image.cols
+                        && 0 <= cropBounds.y
+                        && 0 <= cropBounds.height
+                        && cropBounds.y + cropBounds.height <= image.rows)
+                    {
+                        // copy ROI from source image to tracker overlay image
+                        Mat croppedImage;
+                        image(cropBounds).copyTo(croppedImage);
 
-                    // convert image back to original colours
-                    cvtColor(croppedImage, croppedImage, CV_BGR2BGRA);
+                        // convert image back to original colours
+                        cvtColor(croppedImage, croppedImage, CV_BGR2BGRA);
 
-                    // ask delegate to update tracker overlay image and bounds
-                    [_displayTarget updatePreviewWithImage:MatToUIImage(croppedImage)];
+                        // ask delegate to update tracker overlay image and bounds
+                        [_displayTarget updatePreviewWithImage:MatToUIImage(croppedImage)];
+                    }
+
                     [_displayTarget updateTrackerBoundingBoxWithRect:CGRectMake(regionOfInterest.x,
                                                                                 regionOfInterest.y,
                                                                                 regionOfInterest.width,
