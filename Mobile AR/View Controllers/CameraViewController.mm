@@ -137,7 +137,12 @@ using namespace cv;
         }
 
         [_glView enableOrientationUpdates];
-        [self.cameraView insertSubview:_glView belowSubview:_trackedObjectImageView];
+
+        if (_trackedObjectImageView == nil) {
+            [self.cameraView addSubview:_glView];
+        } else {
+            [self.cameraView insertSubview:_glView belowSubview:_trackedObjectImageView];
+        }
     } else {
         [button setTitle:@"show cube" forState:UIControlStateNormal];
         [_glView removeFromSuperview];
@@ -236,8 +241,8 @@ using namespace cv;
 
         _trackedObjectImageView.layer.cornerRadius = _trackerBoundingBox.layer.cornerRadius;
         [self.cameraView addSubview:_trackedObjectImageView];
-
     } else {
+        _trackedObjectImageView.image = nil;
         [_trackedObjectImageView removeFromSuperview];
 
         [_toggleTrackingButton setTitle:@"start tracking" forState:UIControlStateNormal];
