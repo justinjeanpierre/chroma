@@ -241,8 +241,8 @@ using namespace cv;
 
         _trackedObjectImageView.layer.cornerRadius = _trackerBoundingBox.layer.cornerRadius;
         [self.cameraView addSubview:_trackedObjectImageView];
-
     } else {
+        _trackedObjectImageView.image = nil;
         [_trackedObjectImageView removeFromSuperview];
 
         [_toggleTrackingButton setTitle:@"start tracking" forState:UIControlStateNormal];
