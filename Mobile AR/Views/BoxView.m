@@ -446,7 +446,7 @@
     [motionManager startDeviceMotionUpdates];
 }
 
--(void)enableOrientationUpdates {
+-(void)enableOrientationScaling {
     orientationScale = 1.0;
 }
 
