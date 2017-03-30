@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -89,15 +88,8 @@
                                         <constraint firstItem="uMk-OV-MZg" firstAttribute="bottom" secondItem="CwV-dX-WH7" secondAttribute="bottomMargin" id="yhb-Gi-6FD"/>
                                     </constraints>
                                 </view>
-                                <blurEffect style="light"/>
+                                <blurEffect style="dark"/>
                             </visualEffectView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6J-MJ-FH6">
-                                <rect key="frame" x="10" y="69" width="50" height="50"/>
-                                <state key="normal" image="switch cameras"/>
-                                <connections>
-                                    <action selector="switchCameras:" destination="ib7-yu-0vu" eventType="touchUpInside" id="0iM-Kn-vYz"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNk-Jk-haH">
                                 <rect key="frame" x="290" y="79" width="69" height="30"/>
                                 <state key="normal" title="using KCF"/>
@@ -121,13 +113,16 @@
                             <constraint firstAttribute="trailing" secondItem="791-1B-OUJ" secondAttribute="trailing" id="EA9-1M-3Sn"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="leading" secondItem="c3I-A4-Hfi" secondAttribute="leading" id="GrS-s3-XFx"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="trailing" secondItem="Gjq-FE-dws" secondAttribute="trailing" id="S3x-i2-62I"/>
-                            <constraint firstItem="fNk-Jk-haH" firstAttribute="centerY" secondItem="Q6J-MJ-FH6" secondAttribute="centerY" id="UTF-Oh-BgQ"/>
                             <constraint firstItem="fNk-Jk-haH" firstAttribute="top" secondItem="GB6-D9-LSe" secondAttribute="bottom" constant="15" id="d7G-0l-eEl"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="leading" secondItem="Gjq-FE-dws" secondAttribute="leading" id="p6U-oe-yPg"/>
-                            <constraint firstItem="791-1B-OUJ" firstAttribute="leading" secondItem="Q6J-MJ-FH6" secondAttribute="trailing" constant="-60" id="vg0-TE-EnO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="G8J-la-ONm">
+                        <barButtonItem key="leftBarButtonItem" image="Camera" id="Tjf-xh-hbR">
+                            <connections>
+                                <action selector="switchCameras:" destination="ib7-yu-0vu" id="z3h-ce-BaQ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="organize" id="Ul7-dV-fR4"/>
                     </navigationItem>
                     <connections>
@@ -145,7 +140,7 @@
         <scene sceneID="QnR-se-Ty7">
             <objects>
                 <navigationController id="83x-8T-0Oq" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gWu-az-Sv1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="gWu-az-Sv1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -159,6 +154,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="switch cameras" width="50" height="50"/>
+        <image name="Camera" width="44" height="44"/>
     </resources>
 </document>
