@@ -55,7 +55,7 @@ Rect2d regionOfInterest;
     CGRect contour = CGRectZero;
     if (_shouldDetectFeatures == YES) {
         Mat gray_image;
-        Mat edges;
+        Mat edges, dst, dest_frame;
         Rect2f bounding_rect;
 
         vector<vector<cv::Point>> contours;
@@ -64,12 +64,18 @@ Rect2d regionOfInterest;
 
         // desaturate
         cvtColor(image, gray_image, CV_BGR2GRAY);
+        
+        //bilateral filter
+        cv::bilateralFilter(gray_image, dest_frame, 9,80, 80);
 
         // edge detection code
-        Canny(gray_image, edges, 5, 200, 3);
+        Canny(dest_frame, edges, 5, 200, 3);
 
         // Find the contours in the image
         findContours( edges, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
+        
+        //Find corners in the image
+        cornerHarris( gray_image, dst, 2, 3, 0.04, BORDER_DEFAULT );
 
         for ( int i = 0; i < contours.size(); i++ ) { // iterate through each contour.
             double a = contourArea(contours[i], false);  //  Find the area of contour
@@ -88,6 +94,7 @@ Rect2d regionOfInterest;
         }
 
         [_displayTarget updateContourBoundingBoxWithRect:contour];
+        _shouldDetectFeatures= NO;// process on single frame
     }
 
     if (_isTracking == YES) {
