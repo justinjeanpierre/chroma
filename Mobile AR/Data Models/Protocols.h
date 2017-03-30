@@ -13,6 +13,7 @@
 -(void)updatePreviewWithImage:(UIImage *)newImage;
 -(void)updateTrackerBoundingBoxWithRect:(CGRect)newBoundingBox;
 -(void)updateContourBoundingBoxWithRect:(CGRect)newBoundingBox;
+-(void)scaleModelByXAxisRatio:(float)xRatio yAxisRatio:(float)yRatio zAxisRatio:(float)zRatio;
 @end
 
 #endif /* Protocols_h */
