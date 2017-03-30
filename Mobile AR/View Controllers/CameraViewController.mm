@@ -18,7 +18,7 @@ using namespace cv;
 @property (nonatomic, strong) CameraDelegate *captureDelegate;
 @property (nonatomic, strong) UIView *trackerBoundingBox;
 @property (nonatomic, strong) UIView *contourBoundingBox;
-
+@property (nonatomic, strong) UIImageView *trackedObjectImageView;
 @property (nonatomic) BOOL shouldInvertColors;
 @property (nonatomic) BOOL shouldDetectFeatures;
 @property (nonatomic) BOOL shouldShowCube;
@@ -26,8 +26,6 @@ using namespace cv;
 @property (nonatomic) BOOL isTracking;
 @property (nonatomic) BOOL isTrackerInitialized;
 @property (nonatomic) BOOL isRegionSpecified;
-
-@property (nonatomic, strong) UIImageView *trackedObjectImageView;
 
 @end
 
@@ -277,8 +275,7 @@ using namespace cv;
 }
 
 #pragma mark - Touch handling
-// the touches_____:withEvent: methods replace the selectROI()
-// method and populate a Rect2d based on the user's input.
+// specify a region of interest based on the user's input.
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if (_isTrackerInitialized == NO) {
         if (_isTracking == YES) {
