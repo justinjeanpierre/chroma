@@ -140,7 +140,6 @@ using namespace cv;
 
     // configure virtual cube
     if (_shouldShowCube == YES) {
-        [button setTitle:@"hide cube" forState:UIControlStateNormal];
         if (!_boxView) {
             _boxView = [[BoxView alloc] initWithFrame:self.cameraView.bounds];
         } else {
@@ -155,7 +154,6 @@ using namespace cv;
             [self.cameraView insertSubview:_boxView belowSubview:_trackedObjectImageView];
         }
     } else {
-        [button setTitle:@"show cube" forState:UIControlStateNormal];
         [_boxView removeFromSuperview];
     }
 
