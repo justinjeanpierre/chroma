@@ -22,7 +22,7 @@
 @interface CameraViewController : UIViewController <DisplayTargetProtocol>
 
 @property (weak, nonatomic) IBOutlet UIImageView *cameraView;
-@property (nonatomic, retain) BoxView *glView;
+@property (nonatomic, retain) BoxView *boxView;
 @property (nonatomic, retain) IBOutlet UIButton *perspectiveButton;
 @property (nonatomic, retain) IBOutlet UIButton *toggleTrackingButton;
 @property (nonatomic, weak) IBOutlet UIButton *textureMenuButton;
