@@ -36,7 +36,7 @@ using namespace cv;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self setTitle:@"CHROMA"];
+    [self setTitle:@"Chroma"];
 
     if (self.navigationItem.rightBarButtonItem != nil) {
         [self.navigationItem.rightBarButtonItem setTarget:self];
