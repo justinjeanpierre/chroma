@@ -31,17 +31,25 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZk-Hn-bE1">
-                                            <rect key="frame" x="158" y="14" width="58" height="58"/>
+                                            <rect key="frame" x="159" y="15" width="58" height="58"/>
                                             <state key="normal" image="record-start"/>
                                             <connections>
                                                 <action selector="startStopRecording:" destination="ib7-yu-0vu" eventType="touchUpInside" id="gjl-ct-fvb"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Me4-iR-rIL">
-                                            <rect key="frame" x="337" y="28" width="30" height="30"/>
+                                            <rect key="frame" x="337" y="29" width="30" height="30"/>
                                             <state key="normal" image="colour-invert"/>
                                             <connections>
                                                 <action selector="invertColors:" destination="ib7-yu-0vu" eventType="touchUpInside" id="0ge-P9-wjF"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWJ-dr-d91">
+                                            <rect key="frame" x="8" y="28" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="tracker-cube"/>
+                                            <connections>
+                                                <action selector="toggleCubeVisibility:" destination="ib7-yu-0vu" eventType="touchUpInside" id="Sac-EE-UOi"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -79,13 +87,6 @@
                                     <action selector="toggleTracking:" destination="ib7-yu-0vu" eventType="touchUpInside" id="T8a-0y-4vq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWJ-dr-d91">
-                                <rect key="frame" x="16" y="504" width="75" height="30"/>
-                                <state key="normal" title="show cube"/>
-                                <connections>
-                                    <action selector="toggleCubeVisibility:" destination="ib7-yu-0vu" eventType="touchUpInside" id="Sac-EE-UOi"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLK-Tx-cYM">
                                 <rect key="frame" x="302" y="504" width="57" height="30"/>
                                 <state key="normal" title="features"/>
@@ -104,12 +105,10 @@
                             <constraint firstItem="p2f-St-xDV" firstAttribute="leading" secondItem="uMk-OV-MZg" secondAttribute="leading" id="E26-BA-szB"/>
                             <constraint firstAttribute="trailing" secondItem="791-1B-OUJ" secondAttribute="trailing" id="EA9-1M-3Sn"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="leading" secondItem="c3I-A4-Hfi" secondAttribute="leading" id="GrS-s3-XFx"/>
-                            <constraint firstItem="WYQ-ZC-4bx" firstAttribute="top" secondItem="RWJ-dr-d91" secondAttribute="bottom" constant="8" symbolic="YES" id="HtJ-Tz-bZo"/>
-                            <constraint firstItem="RWJ-dr-d91" firstAttribute="top" secondItem="p2f-St-xDV" secondAttribute="bottom" constant="8" symbolic="YES" id="Mll-qq-TQc"/>
-                            <constraint firstItem="p2f-St-xDV" firstAttribute="leading" secondItem="RWJ-dr-d91" secondAttribute="leading" id="Pt6-fV-x3U"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="trailing" secondItem="Gjq-FE-dws" secondAttribute="trailing" id="S3x-i2-62I"/>
                             <constraint firstItem="WYQ-ZC-4bx" firstAttribute="leading" secondItem="c3I-A4-Hfi" secondAttribute="leadingMargin" constant="-8" id="aYH-eu-kJn"/>
                             <constraint firstItem="fNk-Jk-haH" firstAttribute="top" secondItem="GB6-D9-LSe" secondAttribute="bottom" constant="15" id="d7G-0l-eEl"/>
+                            <constraint firstItem="Gjq-FE-dws" firstAttribute="top" secondItem="WYQ-ZC-4bx" secondAttribute="bottom" constant="8" symbolic="YES" id="eM6-9Z-qcx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KLK-Tx-cYM" secondAttribute="trailing" id="fFB-RY-4wJ"/>
                             <constraint firstItem="p2f-St-xDV" firstAttribute="top" secondItem="uMk-OV-MZg" secondAttribute="bottom" constant="8" symbolic="YES" id="jrR-zx-O6H"/>
                             <constraint firstItem="p2f-St-xDV" firstAttribute="centerX" secondItem="c3I-A4-Hfi" secondAttribute="centerX" constant="-131" id="kEs-DZ-0Cf"/>
@@ -158,5 +157,6 @@
         <image name="Camera" width="44" height="44"/>
         <image name="colour-invert" width="30" height="30"/>
         <image name="record-start" width="58" height="58"/>
+        <image name="tracker-cube" width="30" height="30"/>
     </resources>
 </document>
