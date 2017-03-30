@@ -167,11 +167,6 @@ using namespace cv;
     [_boxView changePerspective:button];
 }
 
--(IBAction)updateCube:(UIButton *)sender {
-    // toggle one of the cube's points
-    [_boxView scaleYBy:1.5];
-}
-
 -(IBAction)showTextureMenu:(UIButton *)sender {
     UIAlertController *textureMenuActions = [UIAlertController alertControllerWithTitle:@"Filter options"
                                                                                 message:@"Select a filter to apply to the scene"
