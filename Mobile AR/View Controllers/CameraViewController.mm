@@ -128,35 +128,35 @@ using namespace cv;
     // configure virtual cube
     if (_shouldShowCube == YES) {
         [button setTitle:@"hide cube" forState:UIControlStateNormal];
-        if (!_glView) {
-            _glView = [[BoxView alloc] initWithFrame:self.cameraView.bounds];
+        if (!_boxView) {
+            _boxView = [[BoxView alloc] initWithFrame:self.cameraView.bounds];
         } else {
-            [_glView setFrame:self.cameraView.bounds];
+            [_boxView setFrame:self.cameraView.bounds];
         }
 
-        [_glView enableOrientationScaling];
+        [_boxView enableOrientationScaling];
 
         if (_trackedObjectImageView == nil) {
-            [self.cameraView addSubview:_glView];
+            [self.cameraView addSubview:_boxView];
         } else {
-            [self.cameraView insertSubview:_glView belowSubview:_trackedObjectImageView];
+            [self.cameraView insertSubview:_boxView belowSubview:_trackedObjectImageView];
         }
     } else {
         [button setTitle:@"show cube" forState:UIControlStateNormal];
-        [_glView removeFromSuperview];
+        [_boxView removeFromSuperview];
     }
 
-    _glView.alpha = (_shouldShowCube == YES);
+    _boxView.alpha = (_shouldShowCube == YES);
     _textureMenuButton.alpha = (_shouldShowCube == YES);
 }
 
 -(IBAction)toggleCubePerpective:(UIButton *)button {
-    [_glView changePerspective:button];
+    [_boxView changePerspective:button];
 }
 
 -(IBAction)updateCube:(UIButton *)sender {
     // toggle one of the cube's points
-    [_glView scaleYBy:1.5];
+    [_boxView scaleYBy:1.5];
 }
 
 -(IBAction)showTextureMenu:(UIButton *)sender {
@@ -169,7 +169,7 @@ using namespace cv;
                                                      handler:^(UIAlertAction * _Nonnull action) {
         _shouldShowTexture = YES;
 
-        [_glView updateTextureWithShaderIndex:1];
+        [_boxView updateTextureWithShaderIndex:1];
     }];
 
     UIAlertAction *texture2 = [UIAlertAction actionWithTitle:@"stones"
@@ -177,7 +177,7 @@ using namespace cv;
                                                      handler:^(UIAlertAction * _Nonnull action) {
         _shouldShowTexture = YES;
 
-        [_glView updateTextureWithShaderIndex:2];
+        [_boxView updateTextureWithShaderIndex:2];
     }];
 
     UIAlertAction *texture3 = [UIAlertAction actionWithTitle:@"bricks"
@@ -185,7 +185,7 @@ using namespace cv;
                                                      handler:^(UIAlertAction * _Nonnull action) {
         _shouldShowTexture = YES;
 
-        [_glView updateTextureWithShaderIndex:3];
+        [_boxView updateTextureWithShaderIndex:3];
     }];
 
     NSString *toggleMenuOptionString;
@@ -196,13 +196,13 @@ using namespace cv;
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * _Nonnull action) {
         _shouldShowTexture = !_shouldShowTexture;
-        [_glView updateTextureWithShaderIndex:(int)_shouldShowTexture];
+        [_boxView updateTextureWithShaderIndex:(int)_shouldShowTexture];
     }];
 
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel"
                                                            style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction * _Nonnull action) {
-        _shouldShowTexture == YES ? [_glView updateTextureWithShaderIndex:(int)_shouldShowTexture] : [_glView updateTextureWithShaderIndex:0];
+        _shouldShowTexture == YES ? [_boxView updateTextureWithShaderIndex:(int)_shouldShowTexture] : [_boxView updateTextureWithShaderIndex:0];
     }];
 
     [textureMenuActions addAction:texture1];
@@ -313,12 +313,6 @@ using namespace cv;
             roi.y = _trackerBoundingBox.frame.origin.y;
             roi.width = _trackerBoundingBox.frame.size.width;
             roi.height = _trackerBoundingBox.frame.size.height;
-
-            NSLog(@"selected image location: (%.0f, %.0f, %.0f, %.0f)",
-                  roi.x,
-                  roi.y,
-                  roi.width,
-                  roi.height);
 
             // let tracker start tracking
             _isRegionSpecified = YES;
