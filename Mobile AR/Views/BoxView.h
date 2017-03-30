@@ -30,11 +30,8 @@
     GLuint _textureUniform;
 }
 
--(void)changePerspective:(UIButton *)sender;
--(void)updateBoxWithPoint:(CGPoint3D)newPoint;
--(void)updateVertexAtPoint:(CGPoint3D)oldPoint toPoint:(CGPoint3D)newPoint;
 -(void)updateTextureWithShaderIndex:(int)shaderIndex;
-
+-(void)changePerspective:(UIButton *)sender;
 -(void)scaleXBy:(float)scaleFactor;
 -(void)scaleYBy:(float)scaleFactor;
 -(void)scaleZBy:(float)scaleFactor;
