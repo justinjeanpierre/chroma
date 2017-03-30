@@ -288,7 +288,7 @@ using namespace cv;
 }
 
 -(void)scaleModelByXAxisRatio:(float)xRatio yAxisRatio:(float)yRatio zAxisRatio:(float)zRatio {
-    [_glView scaleXAxis:xRatio yAxis:yRatio zAxis:zRatio];
+    [_boxView scaleXAxis:xRatio yAxis:yRatio zAxis:zRatio];
 }
 
 #pragma mark - Touch handling
