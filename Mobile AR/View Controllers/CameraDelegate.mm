@@ -78,7 +78,6 @@ Rect2d regionOfInterest;
         
         //Find corners in the image
         goodFeaturesToTrack( gray_image,corners, 50, 0.01, 10, Mat(), 3, true, 0.04 );
-
         // corner detection largest contour
         
         //contour comparison
