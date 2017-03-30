@@ -26,6 +26,7 @@ using namespace cv;
 @property (nonatomic) BOOL isTracking;
 @property (nonatomic) BOOL isTrackerInitialized;
 @property (nonatomic) BOOL isRegionSpecified;
+@property (nonatomic) BOOL isRecording;
 
 @end
 
@@ -76,6 +77,18 @@ using namespace cv;
 #pragma mark - Button actions - Switch cameras
 -(IBAction)switchCameras:(id)sender {
     [self.videoCamera switchCameras];
+}
+
+#pragma mark - Button actions - Start/stop recording
+-(IBAction)startStopRecording:(UIButton *)sender {
+    NSLog(@"%s", __func__);
+    _isRecording = !_isRecording;
+
+    if (_isRecording == YES) {
+        [sender setImage:[UIImage imageNamed:@"record-stop"] forState:UIControlStateNormal];
+    } else {
+        [sender setImage:[UIImage imageNamed:@"record-start"] forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark - Button actions - Show files
