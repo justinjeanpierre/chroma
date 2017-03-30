@@ -429,7 +429,7 @@
 				TargetAttributes = {
 					2D1BC9971E5AA614000D5CB7 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 6G559H2L26;
+						DevelopmentTeam = 3RQH926644;
 						LastSwiftMigration = 0820;
 					};
 					2D1BC9B01E5AA615000D5CB7 = {
@@ -817,7 +817,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "bar icon";
-				DEVELOPMENT_TEAM = 6G559H2L26;
+				DEVELOPMENT_TEAM = 3RQH926644;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -837,7 +837,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "bar icon";
-				DEVELOPMENT_TEAM = 6G559H2L26;
+				DEVELOPMENT_TEAM = 3RQH926644;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

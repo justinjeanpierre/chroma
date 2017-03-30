@@ -116,10 +116,6 @@ using namespace cv;
 
         // put the box on screen
         [self.cameraView addSubview:_contourBoundingBox];
-        
-        //alert user that the feature detection process is complete
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mapping Initialization" message:@"Feature Detection Complete" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
     } else {
         // someone turned off the contour detection,
         // so we don't need the box on screen anymore.
@@ -255,6 +251,7 @@ using namespace cv;
     }
 }
 
+#pragma mark - DisplayTargetProtocol delegate methods
 -(void)updatePreviewWithImage:(UIImage *)newImage {
     dispatch_async(dispatch_get_main_queue(), ^{
         [_trackedObjectImageView performSelectorOnMainThread:@selector(setImage:)
@@ -276,8 +273,24 @@ using namespace cv;
 
 -(void)updateContourBoundingBoxWithRect:(CGRect)newBoundingBox {
     dispatch_async(dispatch_get_main_queue(), ^{
+        // update the contour box to display the new area
         _contourBoundingBox.frame = newBoundingBox;
+
+        // flip the detection bool
+        _shouldDetectFeatures = !_shouldDetectFeatures;
+
+        //alert user that the feature detection process is complete
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mapping Initialization"
+                                                        message:@"Feature detection complete"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
     });
+}
+
+-(void)scaleModelByXAxisRatio:(float)xRatio yAxisRatio:(float)yRatio zAxisRatio:(float)zRatio {
+    [_glView scaleXAxis:xRatio yAxis:yRatio zAxis:zRatio];
 }
 
 #pragma mark - Touch handling
