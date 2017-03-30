@@ -68,16 +68,16 @@ Rect2d regionOfInterest;
         cvtColor(image, gray_image, CV_BGR2GRAY);
         
         //bilateral filter
-        cv::bilateralFilter(gray_image, dest_frame, 9,80, 80);
+        cv::bilateralFilter(gray_image, dest_frame, 3 ,6, 1.5);
 
         // edge detection code
-        Canny(dest_frame, edges, 5, 200, 3);
+        Canny(dest_frame, edges, 100, 220 , 3);
 
         // Find the contours in the image
         findContours( edges, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
         
         //Find corners in the image
-        goodFeaturesToTrack( gray_image,corners, 100, 0.01, 10, Mat(), 3, true, 0.04 );
+        goodFeaturesToTrack( gray_image,corners, 50, 0.01, 10, Mat(), 3, true, 0.04 );
         
         // corner detection largest contour
         
@@ -103,6 +103,8 @@ Rect2d regionOfInterest;
 
         [_displayTarget updateContourBoundingBoxWithRect:contour];
         _shouldDetectFeatures= NO;// process on single frame
+        
+
     }
 
     if (_isTracking == YES) {

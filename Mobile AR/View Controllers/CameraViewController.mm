@@ -116,6 +116,10 @@ using namespace cv;
 
         // put the box on screen
         [self.cameraView addSubview:_contourBoundingBox];
+        
+        //alert user that the feature detection process is complete
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mapping Initialization" message:@"Feature Detection Complete" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
     } else {
         // someone turned off the contour detection,
         // so we don't need the box on screen anymore.
