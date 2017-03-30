@@ -66,7 +66,7 @@ using namespace cv;
     // initial tracker state to NO
     _isTracking =           \
     _isRegionSpecified =    NO;
-    _isTrackerInitialized = NO; // ???
+    _isTrackerInitialized = NO;
     
     [self.videoCamera start];
 }
@@ -136,7 +136,7 @@ using namespace cv;
             [_glView setFrame:self.cameraView.bounds];
         }
 
-        [_glView enableOrientationUpdates];
+        [_glView enableOrientationScaling];
 
         if (_trackedObjectImageView == nil) {
             [self.cameraView addSubview:_glView];
