@@ -249,6 +249,7 @@ using namespace cv;
     }
 }
 
+#pragma mark - DisplayTargetProtocol delegate methods
 -(void)updatePreviewWithImage:(UIImage *)newImage {
     dispatch_async(dispatch_get_main_queue(), ^{
         [_trackedObjectImageView performSelectorOnMainThread:@selector(setImage:)
@@ -270,8 +271,24 @@ using namespace cv;
 
 -(void)updateContourBoundingBoxWithRect:(CGRect)newBoundingBox {
     dispatch_async(dispatch_get_main_queue(), ^{
+        // update the contour box to display the new area
         _contourBoundingBox.frame = newBoundingBox;
+
+        // flip the detection bool
+        _shouldDetectFeatures = !_shouldDetectFeatures;
+
+        //alert user that the feature detection process is complete
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mapping Initialization"
+                                                        message:@"Feature detection complete"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
     });
+}
+
+-(void)scaleModelByRatiosForWidth:(float)widthRatio height:(float)heightRatio depth:(float)depthRatio {
+    [_boxView scaleXAxis:widthRatio yAxis:heightRatio zAxis:depthRatio];
 }
 
 #pragma mark - Touch handling
