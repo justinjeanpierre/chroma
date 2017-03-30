@@ -287,8 +287,8 @@ using namespace cv;
     });
 }
 
--(void)scaleModelByXAxisRatio:(float)xRatio yAxisRatio:(float)yRatio zAxisRatio:(float)zRatio {
-    [_boxView scaleXAxis:xRatio yAxis:yRatio zAxis:zRatio];
+-(void)scaleModelByRatiosForWidth:(float)widthRatio height:(float)heightRatio depth:(float)depthRatio {
+    [_boxView scaleXAxis:widthRatio yAxis:heightRatio zAxis:depthRatio];
 }
 
 #pragma mark - Touch handling

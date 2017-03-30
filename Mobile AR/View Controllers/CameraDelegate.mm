@@ -99,7 +99,7 @@ Rect2d regionOfInterest;
         
         // integer ratio (height/width) variable to be passed for virtual mapping
         ratio = contour.size.height/contour.size.width;
-        [_displayTarget scaleModelByXAxisRatio:0 yAxisRatio:ratio zAxisRatio:0];
+        [_displayTarget scaleModelByRatiosForWidth:0 height:ratio depth:0];
 
         if (ratio > 0) {
             [_displayTarget updateContourBoundingBoxWithRect:contour];
