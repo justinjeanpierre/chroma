@@ -57,12 +57,14 @@ Rect2d regionOfInterest;
         Mat gray_image;
         Mat edges, dst, dest_frame;
         Rect2f bounding_rect;
-
+        
         vector<vector<cv::Point>> contours;
         vector<Vec4i> hierarchy;
+        vector<Point2f> corners;
         int largest_area = 0;
+        int ratio;
 
-        // desaturate
+        //desaturate
         cvtColor(image, gray_image, CV_BGR2GRAY);
         
         //bilateral filter
@@ -75,8 +77,11 @@ Rect2d regionOfInterest;
         findContours( edges, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
         
         //Find corners in the image
-        cornerHarris( gray_image, dst, 2, 3, 0.04, BORDER_DEFAULT );
-
+        goodFeaturesToTrack( gray_image,corners, 100, 0.01, 10, Mat(), 3, true, 0.04 );
+        
+        // corner detection largest contour
+        
+        //contour comparison
         for ( int i = 0; i < contours.size(); i++ ) { // iterate through each contour.
             double a = contourArea(contours[i], false);  //  Find the area of contour
 
@@ -92,6 +97,9 @@ Rect2d regionOfInterest;
             contour.size.width = contour.origin.x + bounding_rect.width;
             contour.size.height = contour.origin.y - bounding_rect.height;
         }
+        
+        // integer ratio (height/width) variable to be passed for virtual mapping
+        ratio = contour.size.height/contour.size.width;
 
         [_displayTarget updateContourBoundingBoxWithRect:contour];
         _shouldDetectFeatures= NO;// process on single frame
