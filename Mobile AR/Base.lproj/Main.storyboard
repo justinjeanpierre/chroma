@@ -44,26 +44,41 @@
                                                 <action selector="invertColors:" destination="ib7-yu-0vu" eventType="touchUpInside" id="0ge-P9-wjF"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWJ-dr-d91">
-                                            <rect key="frame" x="8" y="28" width="30" height="30"/>
-                                            <state key="normal" image="cube-tracker"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p2f-St-xDV">
+                                            <rect key="frame" x="118" y="27.5" width="30" height="30"/>
+                                            <state key="normal" image="cube-stretch"/>
                                             <connections>
-                                                <action selector="toggleCubeVisibility:" destination="ib7-yu-0vu" eventType="touchUpInside" id="Sac-EE-UOi"/>
+                                                <action selector="toggleCubePerpective:" destination="ib7-yu-0vu" eventType="touchUpInside" id="1v1-vK-c0C"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYQ-ZC-4bx">
-                                            <rect key="frame" x="52" y="28" width="30" height="30"/>
+                                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYQ-ZC-4bx">
+                                            <rect key="frame" x="72" y="28" width="30" height="30"/>
                                             <state key="normal" image="cube-texture"/>
                                             <connections>
                                                 <action selector="showTextureMenu:" destination="ib7-yu-0vu" eventType="touchUpInside" id="GJx-Lq-3Jt"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWJ-dr-d91">
+                                            <rect key="frame" x="8" y="28" width="48" height="30"/>
+                                            <state key="normal" image="cube-tracker"/>
+                                            <connections>
+                                                <action selector="toggleCubeVisibility:" destination="ib7-yu-0vu" eventType="touchUpInside" id="Sac-EE-UOi"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="p2f-St-xDV" firstAttribute="leading" secondItem="RWJ-dr-d91" secondAttribute="leading" constant="110" id="5xu-bj-S8B"/>
+                                        <constraint firstItem="p2f-St-xDV" firstAttribute="leading" secondItem="WYQ-ZC-4bx" secondAttribute="trailing" constant="16" id="Bbn-1N-x4P"/>
                                         <constraint firstItem="Me4-iR-rIL" firstAttribute="trailing" secondItem="CwV-dX-WH7" secondAttribute="trailingMargin" id="FMd-HS-iKr"/>
+                                        <constraint firstItem="WYQ-ZC-4bx" firstAttribute="baseline" secondItem="p2f-St-xDV" secondAttribute="baseline" constant="1" id="Iuq-iI-Kbt"/>
+                                        <constraint firstItem="WYQ-ZC-4bx" firstAttribute="baseline" secondItem="RWJ-dr-d91" secondAttribute="baseline" id="RgB-Q2-ePz"/>
+                                        <constraint firstItem="WYQ-ZC-4bx" firstAttribute="leading" secondItem="RWJ-dr-d91" secondAttribute="trailing" constant="16" id="YDC-1q-4Tf"/>
                                         <constraint firstItem="Me4-iR-rIL" firstAttribute="centerY" secondItem="CwV-dX-WH7" secondAttribute="centerY" id="fmW-6T-uhy"/>
+                                        <constraint firstItem="RWJ-dr-d91" firstAttribute="top" secondItem="p2f-St-xDV" secondAttribute="bottom" constant="-30" id="lPr-qx-kCH"/>
+                                        <constraint firstItem="p2f-St-xDV" firstAttribute="centerX" secondItem="CwV-dX-WH7" secondAttribute="centerX" constant="-54.5" id="nss-Sg-wWD"/>
                                         <constraint firstItem="fZk-Hn-bE1" firstAttribute="centerX" secondItem="CwV-dX-WH7" secondAttribute="centerX" id="sZR-1r-flq"/>
-                                        <constraint firstItem="WYQ-ZC-4bx" firstAttribute="leading" secondItem="CwV-dX-WH7" secondAttribute="leadingMargin" constant="44" id="x86-zQ-WC8"/>
+                                        <constraint firstItem="RWJ-dr-d91" firstAttribute="centerY" secondItem="CwV-dX-WH7" secondAttribute="centerY" id="trW-Y9-nqt"/>
+                                        <constraint firstItem="WYQ-ZC-4bx" firstAttribute="leading" secondItem="CwV-dX-WH7" secondAttribute="leadingMargin" constant="64" id="x86-zQ-WC8"/>
                                         <constraint firstItem="WYQ-ZC-4bx" firstAttribute="top" secondItem="RWJ-dr-d91" secondAttribute="bottom" constant="-30" id="y5u-kz-D1U"/>
                                         <constraint firstItem="Me4-iR-rIL" firstAttribute="centerY" secondItem="fZk-Hn-bE1" secondAttribute="centerY" id="zxJ-Ty-shn"/>
                                     </constraints>
@@ -73,13 +88,6 @@
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNk-Jk-haH">
                                 <rect key="frame" x="290" y="79" width="69" height="30"/>
                                 <state key="normal" title="using KCF"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p2f-St-xDV">
-                                <rect key="frame" x="16" y="466" width="81" height="30"/>
-                                <state key="normal" title="perspective"/>
-                                <connections>
-                                    <action selector="toggleCubePerpective:" destination="ib7-yu-0vu" eventType="touchUpInside" id="1v1-vK-c0C"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uMk-OV-MZg">
                                 <rect key="frame" x="16" y="428" width="92" height="30"/>
@@ -103,19 +111,15 @@
                             <constraint firstItem="fNk-Jk-haH" firstAttribute="trailing" secondItem="c3I-A4-Hfi" secondAttribute="trailingMargin" id="Bsv-fF-CeD"/>
                             <constraint firstItem="Gjq-FE-dws" firstAttribute="bottom" secondItem="KE1-hu-WFk" secondAttribute="top" id="Csm-It-wQ3"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="bottom" secondItem="KE1-hu-WFk" secondAttribute="top" id="Dxo-xy-LQg"/>
-                            <constraint firstItem="p2f-St-xDV" firstAttribute="leading" secondItem="uMk-OV-MZg" secondAttribute="leading" id="E26-BA-szB"/>
                             <constraint firstAttribute="trailing" secondItem="791-1B-OUJ" secondAttribute="trailing" id="EA9-1M-3Sn"/>
+                            <constraint firstItem="uMk-OV-MZg" firstAttribute="leading" secondItem="c3I-A4-Hfi" secondAttribute="leadingMargin" id="EgB-mf-ogX"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="leading" secondItem="c3I-A4-Hfi" secondAttribute="leading" id="GrS-s3-XFx"/>
-                            <constraint firstItem="RWJ-dr-d91" firstAttribute="top" secondItem="p2f-St-xDV" secondAttribute="bottom" constant="112" id="Mll-qq-TQc"/>
-                            <constraint firstItem="p2f-St-xDV" firstAttribute="leading" secondItem="RWJ-dr-d91" secondAttribute="leading" constant="8" id="Pt6-fV-x3U"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="trailing" secondItem="Gjq-FE-dws" secondAttribute="trailing" id="S3x-i2-62I"/>
                             <constraint firstItem="fNk-Jk-haH" firstAttribute="top" secondItem="GB6-D9-LSe" secondAttribute="bottom" constant="15" id="d7G-0l-eEl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KLK-Tx-cYM" secondAttribute="trailing" id="fFB-RY-4wJ"/>
-                            <constraint firstItem="p2f-St-xDV" firstAttribute="top" secondItem="uMk-OV-MZg" secondAttribute="bottom" constant="8" symbolic="YES" id="jrR-zx-O6H"/>
-                            <constraint firstItem="p2f-St-xDV" firstAttribute="centerX" secondItem="c3I-A4-Hfi" secondAttribute="centerX" constant="-131" id="kEs-DZ-0Cf"/>
+                            <constraint firstItem="Gjq-FE-dws" firstAttribute="top" secondItem="KLK-Tx-cYM" secondAttribute="bottom" constant="46" id="fub-Er-eaD"/>
                             <constraint firstItem="791-1B-OUJ" firstAttribute="leading" secondItem="Gjq-FE-dws" secondAttribute="leading" id="p6U-oe-yPg"/>
                             <constraint firstItem="uMk-OV-MZg" firstAttribute="bottom" secondItem="c3I-A4-Hfi" secondAttribute="bottomMargin" constant="-209" id="pT2-LU-ytW"/>
-                            <constraint firstItem="p2f-St-xDV" firstAttribute="baseline" secondItem="KLK-Tx-cYM" secondAttribute="baseline" constant="-38" id="wTt-3v-wRi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="G8J-la-ONm">
@@ -157,6 +161,7 @@
     <resources>
         <image name="Camera" width="44" height="44"/>
         <image name="colour-invert" width="30" height="30"/>
+        <image name="cube-stretch" width="30" height="30"/>
         <image name="cube-texture" width="30" height="30"/>
         <image name="cube-tracker" width="30" height="30"/>
         <image name="record-start" width="58" height="58"/>
