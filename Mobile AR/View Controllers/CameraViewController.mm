@@ -26,6 +26,7 @@ using namespace cv;
 @property (nonatomic) BOOL isTracking;
 @property (nonatomic) BOOL isTrackerInitialized;
 @property (nonatomic) BOOL isRegionSpecified;
+@property (nonatomic) BOOL isRecording;
 
 @end
 
@@ -78,6 +79,18 @@ using namespace cv;
     [self.videoCamera switchCameras];
 }
 
+#pragma mark - Button actions - Start/stop recording
+-(IBAction)startStopRecording:(UIButton *)sender {
+    NSLog(@"%s", __func__);
+    _isRecording = !_isRecording;
+
+    if (_isRecording == YES) {
+        [sender setImage:[UIImage imageNamed:@"record-stop"] forState:UIControlStateNormal];
+    } else {
+        [sender setImage:[UIImage imageNamed:@"record-start"] forState:UIControlStateNormal];
+    }
+}
+
 #pragma mark - Button actions - Show files
 -(IBAction)showFiles:(UIButton *) sender {
     [self presentViewController:[[FileBrowser alloc] init]
@@ -127,7 +140,6 @@ using namespace cv;
 
     // configure virtual cube
     if (_shouldShowCube == YES) {
-        [button setTitle:@"hide cube" forState:UIControlStateNormal];
         if (!_boxView) {
             _boxView = [[BoxView alloc] initWithFrame:self.cameraView.bounds];
         } else {
@@ -142,21 +154,15 @@ using namespace cv;
             [self.cameraView insertSubview:_boxView belowSubview:_trackedObjectImageView];
         }
     } else {
-        [button setTitle:@"show cube" forState:UIControlStateNormal];
         [_boxView removeFromSuperview];
     }
 
     _boxView.alpha = (_shouldShowCube == YES);
-    _textureMenuButton.alpha = (_shouldShowCube == YES);
+    _textureMenuButton.enabled = (_shouldShowCube == YES);
 }
 
 -(IBAction)toggleCubePerpective:(UIButton *)button {
     [_boxView changePerspective:button];
-}
-
--(IBAction)updateCube:(UIButton *)sender {
-    // toggle one of the cube's points
-    [_boxView scaleYBy:1.5];
 }
 
 -(IBAction)showTextureMenu:(UIButton *)sender {
@@ -220,8 +226,6 @@ using namespace cv;
     [self.captureDelegate toggleTracking];
 
     if (_isTracking == YES) {
-        [_toggleTrackingButton setTitle:@"stop tracking" forState:UIControlStateNormal];
-        
         if (_trackerBoundingBox == nil) {
             _trackerBoundingBox = [[UIView alloc] initWithFrame:CGRectZero];
         }
@@ -243,7 +247,6 @@ using namespace cv;
         _trackedObjectImageView.image = nil;
         [_trackedObjectImageView removeFromSuperview];
 
-        [_toggleTrackingButton setTitle:@"start tracking" forState:UIControlStateNormal];
         [_trackerBoundingBox removeFromSuperview];
         _isTrackerInitialized = _isRegionSpecified = NO;
     }
@@ -278,12 +281,13 @@ using namespace cv;
         _shouldDetectFeatures = !_shouldDetectFeatures;
 
         //alert user that the feature detection process is complete
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mapping Initialization"
-                                                        message:@"Feature detection complete"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-        [alert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Mapping Initialization"
+                                                                         message:@"Feature detection complete"
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ok"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction * _Nonnull action) { }]];
+        [self presentViewController:alert animated:YES completion:^{ }];
     });
 }
 
