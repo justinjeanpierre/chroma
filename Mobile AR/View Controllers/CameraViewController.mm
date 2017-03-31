@@ -158,7 +158,7 @@ using namespace cv;
     }
 
     _boxView.alpha = (_shouldShowCube == YES);
-    _textureMenuButton.alpha = (_shouldShowCube == YES);
+    _textureMenuButton.enabled = (_shouldShowCube == YES);
 }
 
 -(IBAction)toggleCubePerpective:(UIButton *)button {
