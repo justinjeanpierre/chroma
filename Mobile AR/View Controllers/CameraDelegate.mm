@@ -56,7 +56,7 @@ Rect2d regionOfInterest;
     if (_shouldDetectFeatures == YES) {
         Mat gray_image;
         Mat edges, dst, dest_frame;
-        Rect2f bounding_rect;
+        Rect2f bounding_rect, bounding_rect_corners, bounding_rect_canny;
         
         vector<vector<cv::Point>> contours;
         vector<Vec4i> hierarchy;
@@ -68,7 +68,7 @@ Rect2d regionOfInterest;
         cvtColor(image, gray_image, CV_BGR2GRAY);
         
         //bilateral filter
-        cv::bilateralFilter(gray_image, dest_frame, 3 ,6, 1.5);
+        cv::bilateralFilter(gray_image, dest_frame, 5 ,1.5,3);
 
         // edge detection code
         Canny(dest_frame, edges, 100, 220 , 3);
@@ -77,8 +77,10 @@ Rect2d regionOfInterest;
         findContours( edges, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
         
         //Find corners in the image
-        goodFeaturesToTrack( gray_image,corners, 50, 0.01, 10, Mat(), 3, true, 0.04 );
+        goodFeaturesToTrack( dest_frame,corners, 50, 0.01, 10, Mat(), 3, true, 0.04 );
+       
         // corner detection largest contour
+        //bounding_rect_corners= boundingRect(corners[0],corners[1]);
         
         //contour comparison
         for ( int i = 0; i < contours.size(); i++ ) { // iterate through each contour.
@@ -87,20 +89,33 @@ Rect2d regionOfInterest;
             if (a > largest_area) {
                 largest_area = a;
                 // bounding rectangle for biggest contour
-                bounding_rect = boundingRect(contours[i]);
+                bounding_rect_canny = boundingRect(contours[i]);
             }
-
-            //coordinates of all corners going clockwise:
-            contour.origin.x = bounding_rect.x;
-            contour.origin.y = bounding_rect.y;
-            contour.size.width = contour.origin.x + bounding_rect.width;
-            contour.size.height = contour.origin.y - bounding_rect.height;
+         /*
+            if (bounding_rect_canny.area() > bounding_rect_corners.area())
+                bounding_rect = bounding_rect_canny;
+           else
+              bounding_rect = bounding_rect_corners;
+          */
+            
         }
+        //coordinates of all corners going clockwise:
+        contour.origin.x = bounding_rect_canny.x;
+        contour.origin.y = bounding_rect_canny.y;
+        //contour.size.width = contour.origin.x + bounding_rect.width;
+        //contour.size.height = contour.origin.y - bounding_rect.height;
+        contour.size.width =bounding_rect_canny.width;
+        contour.size.height =bounding_rect_canny.height;
         
         // integer ratio (height/width) variable to be passed for virtual mapping
         ratio = contour.size.height/contour.size.width;
         [_displayTarget scaleModelByRatiosForWidth:0 height:ratio depth:0];
 
+        NSLog(@" data %d", ratio);
+        NSLog(@" data %f", contour.origin.x);
+        NSLog(@" data %f", contour.origin.y);
+        NSLog(@" data %f", contour.size.width);
+       
         if (ratio > 0) {
             [_displayTarget updateContourBoundingBoxWithRect:contour];
             _shouldDetectFeatures = NO;// process on single frame
