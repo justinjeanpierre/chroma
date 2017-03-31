@@ -226,8 +226,6 @@ using namespace cv;
     [self.captureDelegate toggleTracking];
 
     if (_isTracking == YES) {
-        [_toggleTrackingButton setTitle:@"stop tracking" forState:UIControlStateNormal];
-        
         if (_trackerBoundingBox == nil) {
             _trackerBoundingBox = [[UIView alloc] initWithFrame:CGRectZero];
         }
@@ -249,7 +247,6 @@ using namespace cv;
         _trackedObjectImageView.image = nil;
         [_trackedObjectImageView removeFromSuperview];
 
-        [_toggleTrackingButton setTitle:@"start tracking" forState:UIControlStateNormal];
         [_trackerBoundingBox removeFromSuperview];
         _isTrackerInitialized = _isRegionSpecified = NO;
     }
