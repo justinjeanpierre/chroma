@@ -284,12 +284,13 @@ using namespace cv;
         _shouldDetectFeatures = !_shouldDetectFeatures;
 
         //alert user that the feature detection process is complete
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mapping Initialization"
-                                                        message:@"Feature detection complete"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-        [alert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Mapping Initialization"
+                                                                         message:@"Feature detection complete"
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ok"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction * _Nonnull action) { }]];
+        [self presentViewController:alert animated:YES completion:^{ }];
     });
 }
 
